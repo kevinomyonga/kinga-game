@@ -32,9 +32,6 @@ dependencies:
   # A minimalist Flutter game engine.
   flame: ^0.18.2
 
-  # Style your flame/flutter game with a beautiful splash screen. Simple to use but very customizable.
-  flame_splash_screen: ^0.0.1
-
   # Provides an API for querying information about an application package.
   package_info: ^0.4.0+13
 
