@@ -1,4 +1,4 @@
-# kinga
+# KINGA Game
 
 Kinga - Fight The Outbreak. My first game built using Flutter and the Flame engine.
 
