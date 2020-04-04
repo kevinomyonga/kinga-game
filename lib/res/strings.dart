@@ -20,7 +20,7 @@ class AppStrings {
   static const String invite_friend             = 'Share With A Friend';
   static const String loading                   = 'Loading. Please Wait...';
   static const String donateToWho               = 'Donate To WHO';
-  static const String donateToWhoSubtitle       = 'For COVID-Solidarity Response Fund';
+  static const String donateToWhoSubtitle       = 'COVID-Solidarity Response Fund';
 
   // URLs
   static const String url_my_website            = 'https://www.kevinomyonga.com';

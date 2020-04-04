@@ -1,6 +1,6 @@
 class Assets {
 
-  // Audio
+  /// Audio
   static const String audioBgmDir       = "bgm";
   static const String audioSfxDir       = "sfx";
 
@@ -9,10 +9,10 @@ class Assets {
   static const String playing           = "$audioBgmDir/temp_music.aac";
 
   // SFX Audio
-  static const String enemyOuch         = "$audioSfxDir/ouch10.ogg";
-  static const String enemyHaha         = "$audioSfxDir/haha5.ogg";
+  static const String enemyHaha         = "$audioSfxDir/haha5.mp3";
+  static const String enemyOuch         = "$audioSfxDir/ouch10.mp3";
 
-  // Images
+  /// Images
   static const String imageBgDir        = "bg";
   static const String imageBrandingDir  = "branding";
   static const String imageEnemiesDir   = "enemies";

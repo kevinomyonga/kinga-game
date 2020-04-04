@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/strings.dart';
@@ -13,7 +16,18 @@ class AboutGameDialog extends StatefulWidget {
 
 class _AboutGameDialogState extends State<AboutGameDialog> {
 
+  static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   String appVersion;
+
+  String deviceMake;
+  String deviceModel;
+  String deviceOSVersion;
+
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,9 +149,46 @@ class _AboutGameDialogState extends State<AboutGameDialog> {
   // Launch a mail application to be used to send feedback to the developer
   _sendFeedback() {
     String subject = '${AppStrings.appName} Game Feedback';
-    String body = "\bFeedback:\b  \n\n";
+    //String body = "\bFeedback:\b  \n\n";
 
-    _launchURL('mailto:${AppStrings.companyEmail}?subject=$subject&body=$body');
+    String body = "\bFeedback:\b  \n\n" +
+        "\n\bApp Version:\b $appVersion " +
+        "\n\bManufacturer:\b $deviceMake " +
+        "\n\bDevice:\b $deviceModel " +
+        "\n\bOS Version:\b $deviceOSVersion ";
+
+    if(Platform.isAndroid) {
+      _launchURL('mailto:${AppStrings.companyEmail}?subject=$subject&body=$body');
+    } else if (Platform.isIOS) {
+      _launchURL('mailto:${AppStrings.companyEmail}?subject=${Uri.encodeComponent(subject)}&body=${Uri.encodeComponent(body)}');
+    }
+  }
+
+  Future<AndroidDeviceInfo> getAndroidDeviceInfo(deviceInfo) async {
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    return androidInfo;
+  }
+
+  Future<IosDeviceInfo> getIosInfo(deviceInfo) async {
+    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+    return iosInfo;
+  }
+
+  Future<void> initPlatformState() async {
+
+    if(Platform.isAndroid) {
+      getAndroidDeviceInfo(deviceInfoPlugin).then((androidInfo) {
+        deviceMake = androidInfo.manufacturer;
+        deviceModel = androidInfo.model;
+        deviceOSVersion = androidInfo.version.sdkInt.toString();
+      });
+    } else if (Platform.isIOS) {
+      getIosInfo(deviceInfoPlugin).then((iosInfo) {
+        deviceMake = 'Apple';
+        deviceModel = iosInfo.utsname.machine;
+        deviceOSVersion = iosInfo.utsname.version;
+      });
+    }
   }
 
   // Launch an app selection popup to select the app to be used for sharing a link to KINGA

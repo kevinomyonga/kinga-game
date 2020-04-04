@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game.dart';
-import 'package:kinga/views/about.dart';
+import 'package:kinga/views/about-view.dart';
 
 class StartScreen extends StatefulWidget {
   @override
