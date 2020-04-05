@@ -178,7 +178,11 @@ class _AboutGameDialogState extends State<AboutGameDialog> {
 
   // Launch an app selection popup to select the app to be used for sharing a link to KINGA
   _inviteFriend() {
-    Share.share('Check out the ${AppStrings.appName} Game here: ${AppStrings.appName}');
+    if(Platform.isAndroid) {
+      Share.share('Check out the ${AppStrings.appName} Game here: ${AppStrings.url_play_store}');
+    } else if (Platform.isIOS) {
+      Share.share('Check out the ${AppStrings.appName} Game here: ${AppStrings.url_app_store}');
+    }
   }
 
   // Launch a developer website
