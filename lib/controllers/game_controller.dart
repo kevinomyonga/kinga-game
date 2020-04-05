@@ -131,7 +131,7 @@ class GameController extends Game with TapDetector {
     if(gameState == GameState.PLAYING) {
       enemySpawner.update(t);
       enemies.forEach((Enemy enemy) => enemy.update(t));
-      enemies.removeWhere((Enemy enemy) => enemy.isDead);
+      enemies.removeWhere((Enemy enemy) => enemy.isDead && enemy.isOffScreen);
       player.update(t);
       scoreDisplay.update(t);
       healthBar.update(t);

@@ -19,9 +19,12 @@ class Enemy {
   List<Sprite> houseFlySprite;
   List<Sprite> droolerFlySprite;
 
+  Sprite deadSprite;
+
   double flyingSpriteIndex = 0;
 
   bool isDead = false;
+  bool isOffScreen = false;
 
   Enemy(this.gameController, double x, double y) {
     health = 3;
@@ -50,6 +53,8 @@ class Enemy {
     flyingSprite.add(machoFlySprite);
     flyingSprite.add(houseFlySprite);
     flyingSprite.add(droolerFlySprite);
+
+    deadSprite = Sprite(Assets.enemyDroolerDead);
   }
 
   void render(Canvas c) {
@@ -75,6 +80,8 @@ class Enemy {
       enemySprites = flyingSprite[index].toList();
       enemySprites[flyingSpriteIndex.toInt()].renderRect(
           c, enemyRect.inflate(enemyRect.width / 2));
+    } else {
+      deadSprite.renderRect(c, enemyRect.inflate(enemyRect.width / 2));
     }
   }
 
@@ -95,6 +102,12 @@ class Enemy {
         enemyRect = enemyRect.shift(stepToPlayer);
       } else {
         attack();
+      }
+    } else {
+      // Make the fly fall
+      enemyRect = enemyRect.translate(0, gameController.tileSize * 12 * t);
+      if (enemyRect.top > gameController.screenSize.height) {
+        isOffScreen = true;
       }
     }
   }

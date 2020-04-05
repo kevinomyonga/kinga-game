@@ -33,6 +33,7 @@ class Assets {
   static const String enemyHouse2       = "$imageEnemiesDir/house-fly-2.png";
   static const String enemyDrooler1     = "$imageEnemiesDir/drooler-fly-1.png";
   static const String enemyDrooler2     = "$imageEnemiesDir/drooler-fly-2.png";
+  static const String enemyDroolerDead  = "$imageEnemiesDir/drooler-fly-dead.png";
 
   // Player
   static const String playerImg         = "$imagePlayerDir/player.png";

@@ -49,6 +49,7 @@ Future setupFlame() async {
     Assets.enemyHouse2,
     Assets.enemyDrooler1,
     Assets.enemyDrooler2,
+    Assets.enemyDroolerDead,
     Assets.titleImg,
     Assets.playerImg,
     Assets.gameOverImg,
