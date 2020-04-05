@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kinga/res/strings.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HelpDialog extends StatelessWidget {
 

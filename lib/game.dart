@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/views/about-view.dart';
 import 'package:kinga/views/help-view.dart';
@@ -37,7 +38,9 @@ class _GameWidgetState extends State<GameWidget> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: Stack(children: <Widget>[
         gameController.widget,
       ]),
