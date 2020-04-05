@@ -116,20 +116,6 @@ class _AboutGameDialogState extends State<AboutGameDialog> {
 
           Divider(),
 
-          InkWell(
-            onTap: () => launch(AppStrings.url_who_covid_donation),
-            child: ListTile(
-              leading: Icon(
-                Icons.monetization_on,
-              ),
-              title: Text(AppStrings.donateToWho),
-              subtitle: Text(AppStrings.donateToWhoSubtitle),
-              trailing: Icon(Icons.arrow_right),
-            ),
-          ),
-
-          Divider(),
-
           new SizedBox(
             height: 25.0,
           ),
@@ -149,7 +135,6 @@ class _AboutGameDialogState extends State<AboutGameDialog> {
   // Launch a mail application to be used to send feedback to the developer
   _sendFeedback() {
     String subject = '${AppStrings.appName} Game Feedback';
-    //String body = "\bFeedback:\b  \n\n";
 
     String body = "\bFeedback:\b  \n\n" +
         "\n\bApp Version:\b $appVersion " +
