@@ -22,10 +22,20 @@ class Assets {
   static const String backgroundImg     = "$imageBgDir/background.png";
   static const String gameOverImg       = "$imageBgDir/lose-splash.png";
   static const String titleImg          = "$imageBrandingDir/title.png";
-  static const String virus1Img         = "$imageEnemiesDir/virus1.png";
-  static const String virus2Img         = "$imageEnemiesDir/virus2.png";
-  static const String virus3Img         = "$imageEnemiesDir/virus3.png";
-  static const String playerImg         = "$imagePlayerDir/red-blood-cell.png";
+
+  // Enemies
+  static const String enemy1Img         = "$imageEnemiesDir/agile-fly-1.png";
+  static const String enemy2Img         = "$imageEnemiesDir/agile-fly-2.png";
+
+  static const String enemyMacho1       = "$imageEnemiesDir/macho-fly-1.png";
+  static const String enemyMacho2       = "$imageEnemiesDir/macho-fly-2.png";
+  static const String enemyHouse1       = "$imageEnemiesDir/house-fly-1.png";
+  static const String enemyHouse2       = "$imageEnemiesDir/house-fly-2.png";
+  static const String enemyDrooler1     = "$imageEnemiesDir/drooler-fly-1.png";
+  static const String enemyDrooler2     = "$imageEnemiesDir/drooler-fly-2.png";
+
+  // Player
+  static const String playerImg         = "$imagePlayerDir/player.png";
 
   // UI Buttons
   static const String startButtonImg    = "$imageUIDir/start-button.png";

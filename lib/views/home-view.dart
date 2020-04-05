@@ -16,7 +16,7 @@ class HomeView {
 
   HomeView(this.gameController) {
     resize();
-    titleSprite = Sprite(Assets.virus1Img);
+    titleSprite = Sprite(Assets.enemy1Img);
   }
 
   void render(Canvas c) {

@@ -13,7 +13,13 @@ class Enemy {
   int damage;
   double speed;
   Rect enemyRect;
-  List<Sprite> enemySprites;
+  List<List<Sprite>> flyingSprite;
+
+  List<Sprite> machoFlySprite;
+  List<Sprite> houseFlySprite;
+  List<Sprite> droolerFlySprite;
+
+  double flyingSpriteIndex = 0;
 
   bool isDead = false;
 
@@ -28,41 +34,59 @@ class Enemy {
         gameController.tileSize * 1.2
     );
     //sprite = Sprite(Assets.virus3Img);
-    enemySprites = List<Sprite>();
-    enemySprites.add(Sprite(Assets.virus1Img));
-    enemySprites.add(Sprite(Assets.virus2Img));
-    enemySprites.add(Sprite(Assets.virus3Img));
+    machoFlySprite = List<Sprite>();
+    machoFlySprite.add(Sprite(Assets.enemyMacho1));
+    machoFlySprite.add(Sprite(Assets.enemyMacho2));
+
+    houseFlySprite = List<Sprite>();
+    houseFlySprite.add(Sprite(Assets.enemyHouse1));
+    houseFlySprite.add(Sprite(Assets.enemyHouse2));
+
+    droolerFlySprite = List<Sprite>();
+    droolerFlySprite.add(Sprite(Assets.enemyDrooler1));
+    droolerFlySprite.add(Sprite(Assets.enemyDrooler2));
+
+    flyingSprite = List<List<Sprite>>();
+    flyingSprite.add(machoFlySprite);
+    flyingSprite.add(houseFlySprite);
+    flyingSprite.add(droolerFlySprite);
   }
 
   void render(Canvas c) {
-    //Color color;
     int index;
 
     switch(health) {
       case 1:
-        //color = Color(0xFFFF7F7F);
         index = 2;
         break;
       case 2:
-        //color = Color(0xFFFF4C4C);
         index = 1;
         break;
       case 3:
-        //color = Color(0xFFFF4500);
         index = 0;
         break;
       default:
-        //color = Color(0xFFFF0000);
         index = 0;
         break;
     }
-    /*Paint enemyColor = Paint()..color = color;
-    c.drawRect(enemyRect, enemyColor);*/
-    enemySprites[index].renderRect(c, enemyRect);
+
+    if(!isDead) {
+      List<Sprite> enemySprites = List<Sprite>();
+      enemySprites = flyingSprite[index].toList();
+      enemySprites[flyingSpriteIndex.toInt()].renderRect(
+          c, enemyRect.inflate(enemyRect.width / 2));
+    }
   }
 
   void update(double t) {
     if(!isDead) {
+      // Flap the wings
+      flyingSpriteIndex += 30 * t;
+      while (flyingSpriteIndex >= 2) {
+        flyingSpriteIndex -= 2;
+      }
+
+      // Move the fly
       double stepDistance = speed * t;
       Offset toPlayer = gameController.player.playerRect.center  - enemyRect.center;
 

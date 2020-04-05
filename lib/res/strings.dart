@@ -16,7 +16,7 @@ class AppStrings {
   static const String developerWebsite          = 'Developer\'s Website';
   static const String highScore                 = 'HighScore';
   static const String howToPlay                 = 'How To Play';
-  static const String howToPlayExplanation      = 'Protect The Healthy Cell.\nTap 3 Times To Destroy The Viruses.';
+  static const String howToPlayExplanation      = 'Protect The Cookie.\nTap 3 Times To Destroy A Fly.';
   static const String invite_friend             = 'Share With A Friend';
   static const String loading                   = 'Loading. Please Wait...';
 
