@@ -19,8 +19,7 @@ class Assets {
   static const String imagePlayerDir    = "player";
   static const String imageUIDir        = "ui";
 
-  static const String background1Img    = "$imageBgDir/background1.png";
-  static const String background2Img    = "$imageBgDir/starfield.png";
+  static const String backgroundImg     = "$imageBgDir/background.png";
   static const String gameOverImg       = "$imageBgDir/lose-splash.png";
   static const String titleImg          = "$imageBrandingDir/title.png";
   static const String virus1Img         = "$imageEnemiesDir/virus1.png";

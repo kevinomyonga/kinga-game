@@ -11,7 +11,7 @@ class Backdrop {
   Rect bgRect;
 
   Backdrop(this.gameController) {
-    bgSprite = Sprite(Assets.background1Img);
+    bgSprite = Sprite(Assets.backgroundImg);
     resize();
   }
 

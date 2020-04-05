@@ -4,7 +4,7 @@ class AppStrings {
   static const String appAuthor                 = 'Kevin Omyonga ($appAuthorAlias)';
   static const String appAuthorAlias            = 'Dr. KNO';
   static const String appName                   = 'KINGA';
-  static const String appTagline                = 'Stop The Outbreak.';
+  static const String appTagline                = 'Fight The Outbreak.';
   static const String appLegalese               = '© 2020 ' + companyName;
   static const String companyName               = 'KNOEYES Games';
   static const String companyEmail              = 'komyonga@gmail.com';

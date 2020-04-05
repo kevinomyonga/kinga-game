@@ -38,8 +38,7 @@ Future setupFlame() async {
   flameUtil.setOrientation(DeviceOrientation.portraitUp); //Force the app to be in this screen mode
 
   await Flame.images.loadAll(<String>[
-    Assets.background1Img,
-    Assets.background2Img,
+    Assets.backgroundImg,
     Assets.startButtonImg,
     Assets.backButtonImg,
     Assets.virus1Img,
