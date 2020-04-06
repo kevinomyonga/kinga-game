@@ -22,6 +22,6 @@ class AppStrings {
 
   // URLs
   static const String url_my_website            = 'https://www.kevinomyonga.com';
-  static const String url_app_store             = 'https://apps.apple.com/ke/developer/kevin-omyonga/id1253419766';
+  static const String url_app_store             = 'https://apps.apple.com/ke/app/kinga/id1506422810';
   static const String url_play_store            = 'https://play.google.com/store/apps/details?id=com.knoeyes.games.kinga&hl=en';
 }
