@@ -10,6 +10,11 @@ import 'package:kinga/components/back-button.dart';
 import 'package:kinga/components/backdrop.dart';
 import 'package:kinga/components/credits-button.dart';
 import 'package:kinga/components/enemy.dart';
+import 'package:kinga/components/flies/agile-fly.dart';
+import 'package:kinga/components/flies/drooler-fly.dart';
+import 'package:kinga/components/flies/house-fly.dart';
+import 'package:kinga/components/flies/hungry-fly.dart';
+import 'package:kinga/components/flies/macho-fly.dart';
 import 'package:kinga/components/health_bar.dart';
 import 'package:kinga/components/help-button.dart';
 import 'package:kinga/components/highscore_display.dart';
@@ -116,6 +121,8 @@ class GameController extends Game with TapDetector {
     }
 
     musicButton.render(c);
+    // Prevent music from playing if disabled
+    if(!musicButton.isEnabled) BGM.pause();
     soundButton.render(c);
 
     //if (gameState == GameState.HELP) helpView.render(c);
@@ -124,6 +131,7 @@ class GameController extends Game with TapDetector {
 
   void update(double t) {
     if(gameState == GameState.MENU) {
+      homeView.update(t);
       startButton.update(t);
       highScoreDisplay.update(t);
     }
@@ -225,6 +233,7 @@ class GameController extends Game with TapDetector {
   }
 
   void spawnEnemy() {
+    // Set where enemy will spawn from
     double x,y;
     switch(rand.nextInt(4)) {
       case 0:
@@ -248,7 +257,25 @@ class GameController extends Game with TapDetector {
         y = rand.nextDouble() * screenSize.height;
         break;
     }
-    enemies.add(Enemy(this, x, y));
+
+    // Type of enemy spawned
+    switch (rand.nextInt(5)) {
+      case 0:
+        enemies.add(HouseFly(this, x, y));
+        break;
+      case 1:
+        enemies.add(DroolerFly(this, x, y));
+        break;
+      case 2:
+        enemies.add(AgileFly(this, x, y));
+        break;
+      case 3:
+        enemies.add(MachoFly(this, x, y));
+        break;
+      case 4:
+        enemies.add(HungryFly(this, x, y));
+        break;
+    }
   }
 
   Function() showHelp;
