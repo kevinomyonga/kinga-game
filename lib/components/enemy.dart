@@ -13,11 +13,7 @@ class Enemy {
   int damage;
   double speed;
   Rect enemyRect;
-  List<List<Sprite>> flyingSprite;
-
-  List<Sprite> machoFlySprite;
-  List<Sprite> houseFlySprite;
-  List<Sprite> droolerFlySprite;
+  List<Sprite> flyingSprite;
 
   Sprite deadSprite;
 
@@ -26,60 +22,17 @@ class Enemy {
   bool isDead = false;
   bool isOffScreen = false;
 
-  Enemy(this.gameController, double x, double y) {
+  Enemy(this.gameController) {
     health = 3;
     damage = 1;
     speed = gameController.tileSize * 2;
-    enemyRect = Rect.fromLTWH(
-        x,
-        y,
-        gameController.tileSize * 1.2,
-        gameController.tileSize * 1.2
-    );
-    //sprite = Sprite(Assets.virus3Img);
-    machoFlySprite = List<Sprite>();
-    machoFlySprite.add(Sprite(Assets.enemyMacho1));
-    machoFlySprite.add(Sprite(Assets.enemyMacho2));
 
-    houseFlySprite = List<Sprite>();
-    houseFlySprite.add(Sprite(Assets.enemyHouse1));
-    houseFlySprite.add(Sprite(Assets.enemyHouse2));
-
-    droolerFlySprite = List<Sprite>();
-    droolerFlySprite.add(Sprite(Assets.enemyDrooler1));
-    droolerFlySprite.add(Sprite(Assets.enemyDrooler2));
-
-    flyingSprite = List<List<Sprite>>();
-    flyingSprite.add(machoFlySprite);
-    flyingSprite.add(houseFlySprite);
-    flyingSprite.add(droolerFlySprite);
-
-    deadSprite = Sprite(Assets.enemyDroolerDead);
+    deadSprite = Sprite(Assets.enemyDroolerFlyDead);
   }
 
   void render(Canvas c) {
-    int index;
-
-    switch(health) {
-      case 1:
-        index = 2;
-        break;
-      case 2:
-        index = 1;
-        break;
-      case 3:
-        index = 0;
-        break;
-      default:
-        index = 0;
-        break;
-    }
-
     if(!isDead) {
-      List<Sprite> enemySprites = List<Sprite>();
-      enemySprites = flyingSprite[index].toList();
-      enemySprites[flyingSpriteIndex.toInt()].renderRect(
-          c, enemyRect.inflate(enemyRect.width / 2));
+      flyingSprite[flyingSpriteIndex.toInt()].renderRect(c, enemyRect.inflate(enemyRect.width / 2));
     } else {
       deadSprite.renderRect(c, enemyRect.inflate(enemyRect.width / 2));
     }
@@ -111,6 +64,8 @@ class Enemy {
       }
     }
   }
+
+  void resize() {}
 
   void attack() {
     if(!gameController.player.isDead) {
