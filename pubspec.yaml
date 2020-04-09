@@ -11,7 +11,7 @@ description: Kinga - Fight The Outbreak. My first game built using Flutter and t
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.4+5
+version: 1.0.5+6
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -34,6 +34,9 @@ dependencies:
 
   # Provides an API for querying information about an application package.
   package_info: ^0.4.0+13
+
+  # Allows to kindly ask users to rate your app if custom conditions are met
+  rate_my_app: ^0.6.0+2
 
   # A Flutter plugin to share content from your Flutter app via the platform's share dialog.
   share: ^0.6.3+6

@@ -9,7 +9,7 @@ class AppStrings {
   static const String companyName               = 'KNOEYES Games';
   static const String companyEmail              = 'komyonga@gmail.com';
 
-  // Strings
+  /// Strings
   static const String about                     = 'About';
   static const String about_app                 = 'About App';
   static const String feedback                  = 'Feedback';
@@ -20,8 +20,16 @@ class AppStrings {
   static const String invite_friend             = 'Share With A Friend';
   static const String loading                   = 'Loading. Please Wait...';
 
+  // App Rating Dialog
+  static const String ard_title       = 'Enjoying $appName?';
+  static const String ard_message     = 'Please take a little bit of your time to review it.'
+      '\nIt really helps us and it shouldn\'t take you more than one minute.';
+  static const String ard_rateButton  = 'RATE';
+  static const String ard_noButton    = 'NO THANKS';
+  static const String ard_laterButton = 'MAYBE LATER';
+
   // URLs
   static const String url_my_website            = 'https://www.kevinomyonga.com';
   static const String url_app_store             = 'https://apps.apple.com/ke/app/kinga/id1506422810';
-  static const String url_play_store            = 'https://play.google.com/store/apps/details?id=com.knoeyes.games.kinga&hl=en';
+  static const String url_play_store            = 'https://play.google.com/store/apps/details?id=com.knoeyes.games.kinga';
 }
