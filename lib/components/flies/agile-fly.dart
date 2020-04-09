@@ -12,9 +12,17 @@ class AgileFly extends Enemy {
   AgileFly(GameController gameController, double x, double y) : super(gameController) {
     resize(x: x, y: y);
     flyingSprite = List<Sprite>();
-    flyingSprite.add(Sprite(Assets.enemyAgileFly1));
-    flyingSprite.add(Sprite(Assets.enemyAgileFly2));
-    deadSprite = Sprite(Assets.enemyAgileFlyDead);
+
+    // Determine which side the fly is coming from
+    if(x > gameController.screenSize.width / 2) {
+      flyingSprite.add(Sprite(Assets.enemyAgileFly1));
+      flyingSprite.add(Sprite(Assets.enemyAgileFly2));
+      deadSprite = Sprite(Assets.enemyAgileFlyDead);
+    } else {
+      flyingSprite.add(Sprite(Assets.enemyAgileFly1Inverted));
+      flyingSprite.add(Sprite(Assets.enemyAgileFly2Inverted));
+      deadSprite = Sprite(Assets.enemyAgileFlyDeadInverted);
+    }
   }
 
   void resize({double x, double y}) {

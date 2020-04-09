@@ -10,9 +10,17 @@ class HungryFly extends Enemy {
   HungryFly(GameController gameController, double x, double y) : super(gameController) {
     resize(x: x, y: y);
     flyingSprite = List<Sprite>();
-    flyingSprite.add(Sprite(Assets.enemyHungryFly1));
-    flyingSprite.add(Sprite(Assets.enemyHungryFly2));
-    deadSprite = Sprite(Assets.enemyHungryFlyDead);
+
+    // Determine which side the fly is coming from
+    if(x > gameController.screenSize.width / 2) {
+      flyingSprite.add(Sprite(Assets.enemyHungryFly1));
+      flyingSprite.add(Sprite(Assets.enemyHungryFly2));
+      deadSprite = Sprite(Assets.enemyHungryFlyDead);
+    } else {
+      flyingSprite.add(Sprite(Assets.enemyHungryFly1Inverted));
+      flyingSprite.add(Sprite(Assets.enemyHungryFly2Inverted));
+      deadSprite = Sprite(Assets.enemyHungryFlyDeadInverted);
+    }
   }
 
   void resize({double x, double y}) {

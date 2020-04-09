@@ -10,9 +10,17 @@ class HouseFly extends Enemy {
   HouseFly(GameController gameController, double x, double y) : super(gameController) {
     resize(x: x, y: y);
     flyingSprite = List<Sprite>();
-    flyingSprite.add(Sprite(Assets.enemyHouseFly1));
-    flyingSprite.add(Sprite(Assets.enemyHouseFly2));
-    deadSprite = Sprite(Assets.enemyHouseFlyDead);
+
+    // Determine which side the fly is coming from
+    if(x > gameController.screenSize.width / 2) {
+      flyingSprite.add(Sprite(Assets.enemyHouseFly1));
+      flyingSprite.add(Sprite(Assets.enemyHouseFly2));
+      deadSprite = Sprite(Assets.enemyHouseFlyDead);
+    } else {
+      flyingSprite.add(Sprite(Assets.enemyHouseFly1Inverted));
+      flyingSprite.add(Sprite(Assets.enemyHouseFly2Inverted));
+      deadSprite = Sprite(Assets.enemyHouseFlyDeadInverted);
+    }
   }
 
   void resize({double x, double y}) {
