@@ -1,6 +1,6 @@
 # KINGA Game
 
-Kinga - Fight The Outbreak. My first game built using Flutter and the Flame engine.
+Kinga - Protect the Cookie. My first game built using Flutter and the Flame engine.
 
 ## Getting Started
 
