@@ -12,9 +12,17 @@ class MachoFly extends Enemy {
   MachoFly(GameController gameController, double x, double y) : super(gameController) {
     resize(x: x, y: y);
     flyingSprite = List<Sprite>();
-    flyingSprite.add(Sprite(Assets.enemyMachoFly1));
-    flyingSprite.add(Sprite(Assets.enemyMachoFly2));
-    deadSprite = Sprite(Assets.enemyMachoFlyDead);
+
+    // Determine which side the fly is coming from
+    if(x > gameController.screenSize.width / 2) {
+      flyingSprite.add(Sprite(Assets.enemyMachoFly1));
+      flyingSprite.add(Sprite(Assets.enemyMachoFly2));
+      deadSprite = Sprite(Assets.enemyMachoFlyDead);
+    } else {
+      flyingSprite.add(Sprite(Assets.enemyMachoFly1Inverted));
+      flyingSprite.add(Sprite(Assets.enemyMachoFly2Inverted));
+      deadSprite = Sprite(Assets.enemyMachoFlyDeadInverted);
+    }
   }
 
   void resize({double x, double y}) {
