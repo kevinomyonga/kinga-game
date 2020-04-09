@@ -77,6 +77,12 @@ class Enemy {
     if(!isDead) {
       health--;
 
+      if(health >= 0) {
+        if (gameController.soundButton.isEnabled) {
+          Flame.audio.play(Assets.enemyHit);
+        }
+      }
+
       if(health <= 0) {
         if (gameController.soundButton.isEnabled) {
           Flame.audio.play(Assets.enemyOuch);

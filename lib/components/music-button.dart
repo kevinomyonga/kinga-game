@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flame/sprite.dart';
 import 'package:kinga/bgm.dart';
 import 'package:kinga/controllers/game_controller.dart';
+import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/assets.dart';
 
 class MusicButton {
@@ -15,6 +16,9 @@ class MusicButton {
     resize();
     enabledSprite = Sprite(Assets.musicEnabledImg);
     disabledSprite = Sprite(Assets.musicDisabledImg);
+
+    // Load Pref
+    isEnabled = gameController.storage.getBool(Ids.sharedPrefMusic) ?? true;
   }
 
   void render(Canvas c) {
@@ -42,5 +46,7 @@ class MusicButton {
       isEnabled = true;
       BGM.resume();
     }
+    // Save Pref
+    gameController.storage.setBool(Ids.sharedPrefMusic, isEnabled);
   }
 }
