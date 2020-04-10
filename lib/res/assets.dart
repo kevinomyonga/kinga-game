@@ -14,6 +14,7 @@ class Assets {
   static const String enemyOuch             = "$audioSfxDir/ouch10.mp3";
 
   /// Images
+  static const String assetsImageDir        = "assets/images/";
   static const String imageBgDir            = "bg";
   static const String imageBrandingDir      = "branding";
   static const String imageEnemiesDir       = "enemies";
@@ -23,6 +24,9 @@ class Assets {
   static const String backgroundImg         = "$imageBgDir/background.png";
   static const String gameOverImg           = "$imageBgDir/lose-splash.png";
   static const String titleImg              = "$imageBrandingDir/title.png";
+
+  // Splash Screen
+  static const String knoeyesGamesLogo      = "$assetsImageDir$imageBrandingDir/knoeyes-games-logo-black.gif";
 
   /// Enemies
   static const String enemyAgileFly1        = "$imageEnemiesDir/agile-fly-1.png";

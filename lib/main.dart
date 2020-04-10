@@ -6,6 +6,7 @@ import 'package:kinga/bgm.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game.dart';
 import 'package:kinga/res/assets.dart';
+import 'package:kinga/splashscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 SharedPreferences sharedPrefs;
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: GameWidget(),
+      home: SplashScreen(),
+      //home: GameWidget(),
     );
   }
 }

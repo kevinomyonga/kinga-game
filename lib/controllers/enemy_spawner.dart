@@ -28,7 +28,7 @@ class EnemySpawner {
   void update(double t) {
     int now = DateTime.now().millisecondsSinceEpoch;
     if(gameController.enemies.length < maxEnemies && now >= nextSpawn) {
-      gameController.spawnEnemy();
+      gameController.playView.spawnEnemy();
 
       if(currentInterval > minSpawnInterval) {
         currentInterval -= intervalChange;

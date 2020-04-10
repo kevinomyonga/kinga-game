@@ -1,7 +1,10 @@
 import 'dart:ui';
 
 import 'package:flame/sprite.dart';
+import 'package:flutter/widgets.dart';
+import 'package:kinga/components/buttons/back-button.dart';
 import 'package:kinga/controllers/game_controller.dart';
+import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
 class LostView {
@@ -10,13 +13,19 @@ class LostView {
   Rect rect;
   Sprite sprite;
 
+  BackButton backButton;
+
   LostView(this.gameController) {
     resize();
     sprite = Sprite(Assets.gameOverImg);
+
+    backButton = BackButton(gameController);
   }
 
   void render(Canvas c) {
     sprite.renderRect(c, rect);
+
+    backButton.render(c);
   }
 
   void resize() {
@@ -26,5 +35,19 @@ class LostView {
       gameController.tileSize * 7,
       gameController.tileSize * 5,
     );
+
+    backButton?.resize();
+  }
+
+  void onTapDown(TapDownDetails d) {
+    bool isHandled = false;
+
+    // Back Button
+    if (!isHandled && backButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.GAME_OVER) {
+        backButton.onTapDown();
+        isHandled = true;
+      }
+    }
   }
 }
