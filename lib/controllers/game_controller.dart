@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:kinga/bgm.dart';
 import 'package:kinga/components/backdrop.dart';
 import 'package:kinga/components/buttons/music-button.dart';
+import 'package:kinga/components/buttons/screenshot-button.dart';
 import 'package:kinga/components/buttons/sound-button.dart';
 import 'package:kinga/components/enemy.dart';
 import 'package:kinga/controllers/enemy_spawner.dart';
@@ -36,6 +37,7 @@ class GameController extends Game with TapDetector {
 
   MusicButton musicButton;
   SoundButton soundButton;
+  ScreenshotButton screenshotButton;
 
   HomeView homeView;
   PlayView playView;
@@ -58,6 +60,7 @@ class GameController extends Game with TapDetector {
 
     musicButton = MusicButton(this);
     soundButton = SoundButton(this);
+    screenshotButton = ScreenshotButton(this);
 
     rand = Random();
     enemies = List<Enemy>();
@@ -88,6 +91,7 @@ class GameController extends Game with TapDetector {
     // Prevent music from playing if disabled
     if(!musicButton.isEnabled) BGM.pause();
     soundButton.render(c);
+    screenshotButton.render(c);
 
     //if (gameState == GameState.HELP) helpView.render(c);
     if (gameState == GameState.CREDITS) creditsView.render(c);
@@ -116,6 +120,7 @@ class GameController extends Game with TapDetector {
 
     musicButton?.resize();
     soundButton?.resize();
+    screenshotButton?.resize();
   }
 
   void onTapDown(TapDownDetails d) {
@@ -134,6 +139,12 @@ class GameController extends Game with TapDetector {
     // Sound button
     if(!isHandled && soundButton.rect.contains(d.globalPosition)) {
       soundButton.onTapDown();
+      isHandled = true;
+    }
+
+    // Screenshot button
+    if(!isHandled && screenshotButton.rect.contains(d.globalPosition)) {
+      screenshotButton.onTapDown();
       isHandled = true;
     }
   }

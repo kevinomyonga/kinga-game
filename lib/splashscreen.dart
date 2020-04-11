@@ -13,6 +13,23 @@ class _SplashScreenGameState extends State<SplashScreen> {
   FlameSplashController controller;
 
   @override
+  void initState() {
+    super.initState();
+    controller = FlameSplashController(
+        fadeInDuration: Duration(seconds: 1),
+        fadeOutDuration: Duration(milliseconds: 250),
+        waitDuration: Duration(seconds: 4),
+    );
+  }
+
+  @override
+  void dispose() {
+    // Dispose it when necessary
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: FlameSplashScreen(
@@ -21,6 +38,7 @@ class _SplashScreenGameState extends State<SplashScreen> {
           logoBuilder: _darkLogoBuilder,
         ),
         onFinish: (context) => navigationPage(),
+        controller: controller,
       ),
     );
   }

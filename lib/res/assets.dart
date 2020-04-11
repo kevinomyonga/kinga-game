@@ -81,6 +81,7 @@ class Assets {
   static const String musicDisabledImg      = "$imageUIDir/icon-music-disabled.png";
   static const String soundEnabledImg       = "$imageUIDir/icon-sound-enabled.png";
   static const String soundDisabledImg      = "$imageUIDir/icon-sound-disabled.png";
-  static const String helpImg               = "$imageUIDir/icon-help.png";
   static const String creditsImg            = "$imageUIDir/credits-button.png";
+  static const String helpImg               = "$imageUIDir/icon-help.png";
+  static const String screenshotImg         = "$imageUIDir/icon-credits.png";
 }

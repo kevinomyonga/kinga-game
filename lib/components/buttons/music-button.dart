@@ -1,11 +1,12 @@
 import 'dart:ui';
 import 'package:flame/sprite.dart';
 import 'package:kinga/bgm.dart';
+import 'package:kinga/components/buttons/base-button.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/assets.dart';
 
-class MusicButton {
+class MusicButton extends BaseButton {
 
   final GameController gameController;
   Rect rect;
@@ -13,7 +14,7 @@ class MusicButton {
   Sprite disabledSprite;
   bool isEnabled = true;
 
-  MusicButton(this.gameController) {
+  MusicButton(this.gameController) : super(gameController) {
     resize();
     enabledSprite = Sprite(Assets.musicEnabledImg);
     disabledSprite = Sprite(Assets.musicDisabledImg);

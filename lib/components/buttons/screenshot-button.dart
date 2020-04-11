@@ -5,15 +5,15 @@ import 'package:kinga/components/buttons/base-button.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/res/assets.dart';
 
-class HelpButton extends BaseButton {
+class ScreenshotButton extends BaseButton {
 
   final GameController gameController;
   Rect rect;
   Sprite sprite;
 
-  HelpButton(this.gameController) : super(gameController) {
+  ScreenshotButton(this.gameController) : super(gameController) {
     resize();
-    sprite = Sprite(Assets.helpImg);
+    sprite = Sprite(Assets.screenshotImg);
   }
 
   void render(Canvas c) {
@@ -22,7 +22,7 @@ class HelpButton extends BaseButton {
 
   void resize() {
     rect = Rect.fromLTWH(
-      gameController.tileSize * .25,
+      gameController.screenSize.width - (gameController.tileSize * 1.25),
       gameController.screenSize.height - (gameController.tileSize * 1.25),
       gameController.tileSize,
       gameController.tileSize,
@@ -30,6 +30,6 @@ class HelpButton extends BaseButton {
   }
 
   void onTapDown() {
-    gameController.showHelp();
+    gameController.showCredits();
   }
 }

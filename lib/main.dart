@@ -81,6 +81,7 @@ Future setupFlame() async {
     Assets.soundDisabledImg,
     Assets.helpImg,
     Assets.creditsImg,
+    Assets.screenshotImg,
   ]);
 
   Flame.audio.disableLog();

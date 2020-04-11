@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:kinga/controllers/game_controller.dart';
+import 'package:kinga/game_data.dart';
 import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/assets.dart';
 
@@ -94,9 +95,11 @@ class Enemy {
         gameController.playView.score++;
         print(gameController.playView.score);
 
-        if(gameController.playView.score > (gameController.storage.getInt(Ids.sharedPrefHighScore) ?? 0)) {
+        GameData.updateScore(gameController.playView.score);
+
+        /*if(gameController.playView.score > (gameController.storage.getInt(Ids.sharedPrefHighScore) ?? 0)) {
           gameController.storage.setInt(Ids.sharedPrefHighScore, gameController.playView.score);
-        }
+        }*/
       }
     }
   }

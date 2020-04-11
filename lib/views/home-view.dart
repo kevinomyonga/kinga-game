@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flame/sprite.dart';
@@ -20,6 +21,8 @@ class HomeView {
   Offset titleRectOriginalPosition;
   bool isHoveringDown = true;
 
+  Random rand;
+
   //Sprite titleSprite;
   List<Sprite> titleSprite;
   double flyingSpriteIndex = 0;
@@ -37,10 +40,10 @@ class HomeView {
 
   HomeView(this.gameController) {
     resize();
+    rand = gameController.rand;
     //titleSprite = Sprite(Assets.enemyAgileFly1);
     titleSprite = List<Sprite>();
-    titleSprite.add(Sprite(Assets.enemyAgileFly1));
-    titleSprite.add(Sprite(Assets.enemyAgileFly2));
+    titleFly();
 
     speed = gameController.tileSize * 1;
 
@@ -83,7 +86,7 @@ class HomeView {
 
   void resize() {
     titleRect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 2.5),
+      (gameController.screenSize.width / 2) - (gameController.tileSize * 2),
       (gameController.screenSize.height / 2) - (gameController.tileSize * 6),
       gameController.tileSize * 3.5,
       gameController.tileSize * 3.5,
@@ -139,5 +142,31 @@ class HomeView {
         isHandled = true;
       }
     }*/
+  }
+
+  void titleFly() {
+    // Type of enemy spawned
+    switch (rand.nextInt(5)) {
+      case 0:
+        titleSprite.add(Sprite(Assets.enemyAgileFly1));
+        titleSprite.add(Sprite(Assets.enemyAgileFly2));
+        break;
+      case 1:
+        titleSprite.add(Sprite(Assets.enemyDroolerFly1));
+        titleSprite.add(Sprite(Assets.enemyDroolerFly2));
+        break;
+      case 2:
+        titleSprite.add(Sprite(Assets.enemyHouseFly1));
+        titleSprite.add(Sprite(Assets.enemyHouseFly2));
+        break;
+      case 3:
+        titleSprite.add(Sprite(Assets.enemyHungryFly1));
+        titleSprite.add(Sprite(Assets.enemyHungryFly2));
+        break;
+      case 4:
+        titleSprite.add(Sprite(Assets.enemyMachoFly1));
+        titleSprite.add(Sprite(Assets.enemyMachoFly2));
+        break;
+    }
   }
 }

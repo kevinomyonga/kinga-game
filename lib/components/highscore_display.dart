@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:kinga/controllers/game_controller.dart';
+import 'package:kinga/game_data.dart';
 import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/strings.dart';
 
@@ -23,8 +24,9 @@ class HighScoreDisplay {
     painter.paint(c, position);
   }
 
-  void update(double t) {
-    int highScore = gameController.storage.getInt(Ids.sharedPrefHighScore) ?? 0;
+  Future<void> update(double t) async {
+    //int highScore = gameController.storage.getInt(Ids.sharedPrefHighScore) ?? 0;
+    int highScore = await GameData.getScore();
 
     Shadow shadow = Shadow(
       blurRadius: gameController.tileSize * .0625,
