@@ -48,7 +48,7 @@ class Enemy {
 
       // Move the fly
       double stepDistance = speed * t;
-      Offset toPlayer = gameController.player.playerRect.center  - enemyRect.center;
+      Offset toPlayer = gameController.playView.player.playerRect.center  - enemyRect.center;
 
       if(stepDistance <= toPlayer.distance - gameController.tileSize * 1.25) {
         Offset stepToPlayer = Offset.fromDirection(toPlayer.direction, stepDistance);
@@ -68,8 +68,8 @@ class Enemy {
   void resize() {}
 
   void attack() {
-    if(!gameController.player.isDead) {
-      gameController.player.currentHealth -= damage;
+    if(!gameController.playView.player.isDead) {
+      gameController.playView.player.currentHealth -= damage;
     }
   }
 
@@ -91,11 +91,11 @@ class Enemy {
         isDead = true;
 
         // Score
-        gameController.score++;
-        print(gameController.score);
+        gameController.playView.score++;
+        print(gameController.playView.score);
 
-        if(gameController.score > (gameController.storage.getInt(Ids.sharedPrefHighScore) ?? 0)) {
-          gameController.storage.setInt(Ids.sharedPrefHighScore, gameController.score);
+        if(gameController.playView.score > (gameController.storage.getInt(Ids.sharedPrefHighScore) ?? 0)) {
+          gameController.storage.setInt(Ids.sharedPrefHighScore, gameController.playView.score);
         }
       }
     }

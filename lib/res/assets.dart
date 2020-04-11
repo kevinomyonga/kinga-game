@@ -21,12 +21,13 @@ class Assets {
   static const String imagePlayerDir        = "player";
   static const String imageUIDir            = "ui";
 
+  // Splash Screen
+  static const String knoeyesGamesLogo      = "$imageBrandingDir/knoeyes-games-logo-black.gif";
+
   static const String backgroundImg         = "$imageBgDir/background.png";
+  static const String dialogBgImg           = "$imageBgDir/dialog.png";
   static const String gameOverImg           = "$imageBgDir/lose-splash.png";
   static const String titleImg              = "$imageBrandingDir/title.png";
-
-  // Splash Screen
-  static const String knoeyesGamesLogo      = "$assetsImageDir$imageBrandingDir/knoeyes-games-logo-black.gif";
 
   /// Enemies
   static const String enemyAgileFly1        = "$imageEnemiesDir/agile-fly-1.png";
@@ -81,5 +82,5 @@ class Assets {
   static const String soundEnabledImg       = "$imageUIDir/icon-sound-enabled.png";
   static const String soundDisabledImg      = "$imageUIDir/icon-sound-disabled.png";
   static const String helpImg               = "$imageUIDir/icon-help.png";
-  static const String creditsImg            = "$imageUIDir/icon-credits.png";
+  static const String creditsImg            = "$imageUIDir/credits-button.png";
 }

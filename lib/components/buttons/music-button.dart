@@ -6,6 +6,7 @@ import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/assets.dart';
 
 class MusicButton {
+
   final GameController gameController;
   Rect rect;
   Sprite enabledSprite;

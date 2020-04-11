@@ -7,7 +7,7 @@ import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
-class LostView {
+class CreditsView {
 
   final GameController gameController;
   Rect rect;
@@ -15,9 +15,9 @@ class LostView {
 
   BackButton backButton;
 
-  LostView(this.gameController) {
+  CreditsView(this.gameController) {
     resize();
-    sprite = Sprite(Assets.gameOverImg);
+    sprite = Sprite(Assets.dialogBgImg);
 
     backButton = BackButton(gameController);
   }
@@ -33,10 +33,10 @@ class LostView {
 
   void resize() {
     rect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 3.5),
-      (gameController.screenSize.height / 2) - (gameController.tileSize * 5),
-      gameController.tileSize * 7,
-      gameController.tileSize * 5,
+      (gameController.screenSize.width / 2) - (gameController.tileSize * 4),
+      (gameController.screenSize.height / 2) - (gameController.tileSize * 6),
+      gameController.tileSize * 8,
+      gameController.tileSize * 12,
     );
 
     backButton?.resize();
@@ -47,7 +47,7 @@ class LostView {
 
     // Back Button
     if (!isHandled && backButton.rect.contains(d.globalPosition)) {
-      if (gameController.gameState == GameState.CREDITS || gameController.gameState == GameState.GAME_OVER) {
+      if (gameController.gameState == GameState.CREDITS) {
         backButton.onTapDown();
         isHandled = true;
       }

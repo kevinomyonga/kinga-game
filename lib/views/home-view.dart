@@ -4,7 +4,9 @@ import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import 'package:kinga/components/buttons/credits-button.dart';
 import 'package:kinga/components/buttons/help-button.dart';
+import 'package:kinga/components/buttons/leaderboard-button.dart';
 import 'package:kinga/components/buttons/start-button.dart';
+import 'package:kinga/components/copyright-display.dart';
 import 'package:kinga/components/highscore_display.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
@@ -14,15 +16,24 @@ class HomeView {
 
   final GameController gameController;
   Rect titleRect;
+
+  Offset titleRectOriginalPosition;
+  bool isHoveringDown = true;
+
   //Sprite titleSprite;
   List<Sprite> titleSprite;
   double flyingSpriteIndex = 0;
+
+  double speed;
 
   HighScoreDisplay highScoreDisplay;
 
   StartButton startButton;
   HelpButton helpButton;
   CreditsButton creditsButton;
+  LeaderBoardButton leaderBoardButton;
+
+  CopyrightDisplay copyrightDisplay;
 
   HomeView(this.gameController) {
     resize();
@@ -31,22 +42,28 @@ class HomeView {
     titleSprite.add(Sprite(Assets.enemyAgileFly1));
     titleSprite.add(Sprite(Assets.enemyAgileFly2));
 
+    speed = gameController.tileSize * 1;
+
     highScoreDisplay = HighScoreDisplay(gameController);
+    copyrightDisplay = CopyrightDisplay(gameController);
 
     startButton = StartButton(gameController);
     helpButton = HelpButton(gameController);
     creditsButton = CreditsButton(gameController);
+    leaderBoardButton = LeaderBoardButton(gameController);
   }
 
   void render(Canvas c) {
     //titleSprite.renderRect(c, titleRect);
     titleSprite[flyingSpriteIndex.toInt()].renderRect(c, titleRect.inflate(titleRect.width / 2));
 
-    // Menu Buttons
+    // Menu
     startButton.render(c);
     highScoreDisplay.render(c);
     helpButton.render(c);
     creditsButton.render(c);
+    leaderBoardButton.render(c);
+    copyrightDisplay.render(c);
   }
 
   void update(double t) {
@@ -56,23 +73,28 @@ class HomeView {
       flyingSpriteIndex -= 2;
     }
 
+    // Move the fly (Hover)
+
     // Menu
     startButton.update(t);
     highScoreDisplay.update(t);
+    copyrightDisplay.update(t);
   }
 
   void resize() {
     titleRect = Rect.fromLTWH(
       (gameController.screenSize.width / 2) - (gameController.tileSize * 2.5),
-      (gameController.screenSize.height / 2) - (gameController.tileSize * 4),
+      (gameController.screenSize.height / 2) - (gameController.tileSize * 6),
       gameController.tileSize * 3.5,
       gameController.tileSize * 3.5,
     );
+    titleRectOriginalPosition = titleRect.center;
 
     // Menu
     startButton?.resize();
     helpButton?.resize();
     creditsButton?.resize();
+    leaderBoardButton?.resize();
   }
 
   void onTapDown(TapDownDetails d) {
@@ -86,7 +108,7 @@ class HomeView {
       }
     }
 
-    // Help button
+    // Help Button
     if (!isHandled && helpButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.MENU || gameController.gameState == GameState.GAME_OVER) {
         helpButton.onTapDown();
@@ -94,7 +116,7 @@ class HomeView {
       }
     }
 
-    // Credits button
+    // Credits Button
     if (!isHandled && creditsButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.MENU || gameController.gameState == GameState.GAME_OVER) {
         creditsButton.onTapDown();
@@ -102,12 +124,20 @@ class HomeView {
       }
     }
 
-    // Dialog boxes
-    if (!isHandled) {
-      if (gameController.gameState == GameState.HELP || gameController.gameState == GameState.CREDITS) {
-        gameController.gameState = GameState.MENU;
+    // LeaderBoard Button
+    if (!isHandled && leaderBoardButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.MENU || gameController.gameState == GameState.GAME_OVER) {
+        leaderBoardButton.onTapDown();
         isHandled = true;
       }
     }
+
+    // Dialog Boxes
+    /*if (!isHandled) {
+      if (gameController.gameState == GameState.HELP || gameController.gameState == GameState.CREDITS) {
+        //gameController.gameState = GameState.MENU;
+        isHandled = true;
+      }
+    }*/
   }
 }

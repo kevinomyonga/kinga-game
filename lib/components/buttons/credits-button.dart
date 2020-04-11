@@ -22,14 +22,15 @@ class CreditsButton {
 
   void resize() {
     rect = Rect.fromLTWH(
-      gameController.screenSize.width - (gameController.tileSize * 1.25),
-      gameController.screenSize.height - (gameController.tileSize * 1.25),
-      gameController.tileSize,
-      gameController.tileSize,
+      (gameController.screenSize.width / 2) - (gameController.tileSize * 3),
+      (gameController.screenSize.height * .90) - (gameController.tileSize * 1.5),
+      gameController.tileSize * 6,
+      gameController.tileSize * 1.5,
     );
   }
 
   void onTapDown() {
-    gameController.showCredits();
+    //gameController.showCredits();
+    gameController.gameState = GameState.CREDITS;
   }
 }

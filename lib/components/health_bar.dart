@@ -35,7 +35,7 @@ class HealthBar {
 
   void update(double t) {
     double barWidth = gameController.screenSize.width / 1.75;
-    double percentHealth = gameController.player.currentHealth / gameController.player.maxHealth;
+    double percentHealth = gameController.playView.player.currentHealth / gameController.playView.player.maxHealth;
 
     remainingHealthRect = Rect.fromLTWH(
         gameController.screenSize.width / 2 - barWidth / 2,

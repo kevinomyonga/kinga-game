@@ -10,12 +10,10 @@ import 'package:kinga/components/backdrop.dart';
 import 'package:kinga/components/buttons/music-button.dart';
 import 'package:kinga/components/buttons/sound-button.dart';
 import 'package:kinga/components/enemy.dart';
-import 'package:kinga/components/health_bar.dart';
-import 'package:kinga/components/player.dart';
-import 'package:kinga/components/score_text.dart';
 import 'package:kinga/controllers/enemy_spawner.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/main.dart';
+import 'package:kinga/views/credits-view.dart';
 import 'package:kinga/views/home-view.dart';
 import 'package:kinga/views/lost-view.dart';
 import 'package:kinga/views/play-view.dart';
@@ -29,10 +27,6 @@ class GameController extends Game with TapDetector {
   double tileSize;
 
   Backdrop background;
-  Player player;
-  HealthBar healthBar;
-  int score;
-  ScoreDisplay scoreDisplay;
 
   Random rand;
   EnemySpawner enemySpawner;
@@ -47,6 +41,8 @@ class GameController extends Game with TapDetector {
   PlayView playView;
   LostView lostView;
 
+  CreditsView creditsView;
+
   GameController() {
     storage = sharedPrefs;
     initialize();
@@ -56,21 +52,22 @@ class GameController extends Game with TapDetector {
     resize(await Flame.util.initialDimensions());
 
     background = Backdrop(this);
-    healthBar = HealthBar(this);
-    score = 0;
-    scoreDisplay = ScoreDisplay(this);
+    //healthBar = HealthBar(this);
+    //score = 0;
+    //scoreDisplay = ScoreDisplay(this);
 
     musicButton = MusicButton(this);
     soundButton = SoundButton(this);
 
     rand = Random();
-    player = Player(this);
     enemies = List<Enemy>();
     enemySpawner = EnemySpawner(this);
 
     homeView = HomeView(this);
     playView = PlayView(this);
     lostView = LostView(this);
+
+    creditsView = CreditsView(this);
 
     // Play Menu Music
     BGM.play(BGMType.HOME);
@@ -84,9 +81,7 @@ class GameController extends Game with TapDetector {
     background.render(c);
 
     if(gameState == GameState.MENU) homeView.render(c);
-
     if(gameState == GameState.PLAYING) playView.render(c);
-
     if(gameState == GameState.GAME_OVER) lostView.render(c);
 
     musicButton.render(c);
@@ -95,13 +90,13 @@ class GameController extends Game with TapDetector {
     soundButton.render(c);
 
     //if (gameState == GameState.HELP) helpView.render(c);
-    //if (gameState == GameState.CREDITS) creditsView.render(c);
+    if (gameState == GameState.CREDITS) creditsView.render(c);
   }
 
   void update(double t) {
     if(gameState == GameState.MENU) homeView.update(t);
-
     if(gameState == GameState.PLAYING) playView.update(t);
+    if(gameState == GameState.GAME_OVER) lostView.update(t);
   }
 
   void resize(Size size) {
@@ -114,7 +109,10 @@ class GameController extends Game with TapDetector {
     //scoreDisplay?.resize();
 
     homeView?.resize();
+    playView?.resize();
     lostView?.resize();
+
+    creditsView?.resize();
 
     musicButton?.resize();
     soundButton?.resize();

@@ -35,6 +35,6 @@ class _SplashScreenGameState extends State<SplashScreen> {
 WidgetBuilder _darkLogoBuilder = (context) => Image(
   width: 300,
   image: const AssetImage(
-    Assets.knoeyesGamesLogo,
+    Assets.assetsImageDir + Assets.knoeyesGamesLogo,
   ),
 );
