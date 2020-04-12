@@ -2,13 +2,14 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
+import 'package:kinga/components/buttons/pause-button.dart';
 import 'package:kinga/components/enemy.dart';
 import 'package:kinga/components/flies/agile-fly.dart';
 import 'package:kinga/components/flies/drooler-fly.dart';
 import 'package:kinga/components/flies/house-fly.dart';
 import 'package:kinga/components/flies/hungry-fly.dart';
 import 'package:kinga/components/flies/macho-fly.dart';
-import 'package:kinga/components/health_bar.dart';
+import 'package:kinga/components/health-bar.dart';
 import 'package:kinga/components/player.dart';
 import 'package:kinga/components/score-display.dart';
 import 'package:kinga/controllers/enemy_spawner.dart';
@@ -28,6 +29,8 @@ class PlayView {
   EnemySpawner enemySpawner;
   List<Enemy> enemies;
 
+  PauseButton pauseButton;
+
   PlayView(this.gameController) {
     resize();
 
@@ -43,6 +46,8 @@ class PlayView {
     rand = gameController.rand;
     enemies = gameController.enemies;
     enemySpawner = gameController.enemySpawner;
+
+    pauseButton = PauseButton(gameController);
   }
 
   void render(Canvas c) {
@@ -55,9 +60,17 @@ class PlayView {
     // Render Health And Score Displays
     scoreDisplay.render(c);
     healthBar.render(c);
+
+    // Render Pause Game Button
+    pauseButton.render(c);
   }
 
   void update(double t) {
+    // Check if game is paused
+    if (gameController.gameState == GameState.PAUSED) {
+      return;
+    }
+
     // Update Player
     player.update(t);
 
@@ -69,13 +82,17 @@ class PlayView {
     // Update Health And Score Displays
     scoreDisplay.update(t);
     healthBar.update(t);
+
+    // Render Pause Game Button
+    pauseButton.update(t);
   }
 
   void resize() {
+    pauseButton?.resize();
   }
 
   void onTapDown(TapDownDetails d) {
-    //bool isHandled = false;
+    bool isHandled = false;
 
     // Destroying Enemies
     if(gameController.gameState == GameState.PLAYING) {
@@ -85,6 +102,12 @@ class PlayView {
           //isHandled = true;
         }
       });
+    }
+
+    // Pause/Resume Button
+    if(!isHandled && pauseButton.rect.contains(d.globalPosition)) {
+      pauseButton.onTapDown();
+      isHandled = true;
     }
   }
 

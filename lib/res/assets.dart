@@ -76,12 +76,22 @@ class Assets {
 
   // UI Buttons
   static const String startButtonImg        = "$imageUIDir/start-button.png";
+  static const String playButtonImg         = "$imageUIDir/button-play.png";
+  static const String pauseButtonImg        = "$imageUIDir/button-pause.png";
+  static const String homeButtonImg         = "$imageUIDir/button-home.png";
+  static const String reloadButtonImg       = "$imageUIDir/button-reload.png";
+
   static const String backButtonImg         = "$imageUIDir/back-button.gif";
   static const String musicEnabledImg       = "$imageUIDir/icon-music-enabled.png";
   static const String musicDisabledImg      = "$imageUIDir/icon-music-disabled.png";
-  static const String soundEnabledImg       = "$imageUIDir/icon-sound-enabled.png";
-  static const String soundDisabledImg      = "$imageUIDir/icon-sound-disabled.png";
+  static const String soundEnabledImg       = "$imageUIDir/button-sound-on.png";
+  static const String soundDisabledImg      = "$imageUIDir/button-sound-off.png";
   static const String creditsImg            = "$imageUIDir/credits-button.png";
   static const String helpImg               = "$imageUIDir/icon-help.png";
   static const String screenshotImg         = "$imageUIDir/icon-credits.png";
+
+  static const String healthBar             = "$imageUIDir/bar-health.png";
+  static const String healthBarEmpty        = "$imageUIDir/bar-health-empty.png";
+  static const String healthBarFull         = "$imageUIDir/bar-health-full.png";
+  static const String heart                 = "$imageUIDir/heart.png";
 }

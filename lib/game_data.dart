@@ -14,7 +14,7 @@ class GameData {
 
   static Future<int> getScore() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getInt(Ids.sharedPrefHighScore);
+    return prefs.getInt(Ids.sharedPrefHighScore) ?? 0;
   }
 
   static void updateCoins(int coins) async {

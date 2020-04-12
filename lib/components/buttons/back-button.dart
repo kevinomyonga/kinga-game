@@ -35,5 +35,7 @@ class BackButton extends BaseButton {
 
   void onTapDown() {
     gameController.gameState = GameState.MENU;
+    // Reset game
+    gameController.initialize();
   }
 }

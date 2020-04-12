@@ -6,20 +6,22 @@ import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
-class HelpButton extends BaseButton {
+class PauseButton extends BaseButton {
 
   final GameController gameController;
   Rect rect;
   Sprite sprite;
 
-  HelpButton(this.gameController) : super(gameController) {
+  PauseButton(this.gameController) : super(gameController) {
     resize();
-    sprite = Sprite(Assets.helpImg);
+    sprite = Sprite(Assets.pauseButtonImg);
   }
 
   void render(Canvas c) {
     sprite.renderRect(c, rect);
   }
+
+  void update(double t) {}
 
   void resize() {
     rect = Rect.fromLTWH(
@@ -31,6 +33,6 @@ class HelpButton extends BaseButton {
   }
 
   void onTapDown() {
-    gameController.gameState = GameState.CREDITS;
+    gameController.gameState = GameState.PAUSED;
   }
 }

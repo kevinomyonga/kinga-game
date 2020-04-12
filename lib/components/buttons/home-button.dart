@@ -7,15 +7,15 @@ import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
-class StartButton extends BaseButton {
+class HomeButton extends BaseButton {
 
   final GameController gameController;
   Rect rect;
   Sprite sprite;
 
-  StartButton(this.gameController) : super(gameController) {
+  HomeButton(this.gameController) : super(gameController) {
     resize();
-    sprite = Sprite(Assets.startButtonImg);
+    sprite = Sprite(Assets.homeButtonImg);
   }
 
   void render(Canvas c) {
@@ -26,15 +26,16 @@ class StartButton extends BaseButton {
 
   void resize() {
     rect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 3),
-      (gameController.screenSize.height * .65) - (gameController.tileSize * 1.5),
-      gameController.tileSize * 6,
+      (gameController.screenSize.width / 2) - (gameController.tileSize * 0.75),
+      (gameController.screenSize.height * .75) - (gameController.tileSize * 1.5),
+      gameController.tileSize * 1.5,
       gameController.tileSize * 1.5,
     );
   }
 
   void onTapDown() {
-    gameController.gameState = GameState.PLAYING;
-    BGM.play(BGMType.PLAYING);
+    gameController.gameState = GameState.MENU;
+    // Reset game
+    gameController.initialize();
   }
 }

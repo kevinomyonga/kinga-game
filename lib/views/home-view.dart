@@ -113,7 +113,7 @@ class HomeView {
 
     // Help Button
     if (!isHandled && helpButton.rect.contains(d.globalPosition)) {
-      if (gameController.gameState == GameState.MENU || gameController.gameState == GameState.GAME_OVER) {
+      if (gameController.gameState == GameState.MENU) {
         helpButton.onTapDown();
         isHandled = true;
       }
@@ -121,7 +121,7 @@ class HomeView {
 
     // Credits Button
     if (!isHandled && creditsButton.rect.contains(d.globalPosition)) {
-      if (gameController.gameState == GameState.MENU || gameController.gameState == GameState.GAME_OVER) {
+      if (gameController.gameState == GameState.MENU) {
         creditsButton.onTapDown();
         isHandled = true;
       }
@@ -129,7 +129,7 @@ class HomeView {
 
     // LeaderBoard Button
     if (!isHandled && leaderBoardButton.rect.contains(d.globalPosition)) {
-      if (gameController.gameState == GameState.MENU || gameController.gameState == GameState.GAME_OVER) {
+      if (gameController.gameState == GameState.MENU) {
         leaderBoardButton.onTapDown();
         isHandled = true;
       }
