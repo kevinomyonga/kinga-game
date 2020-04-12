@@ -9,7 +9,7 @@ import 'package:kinga/components/flies/drooler-fly.dart';
 import 'package:kinga/components/flies/house-fly.dart';
 import 'package:kinga/components/flies/hungry-fly.dart';
 import 'package:kinga/components/flies/macho-fly.dart';
-import 'package:kinga/components/health-bar.dart';
+import 'package:kinga/components/player-health-bar.dart';
 import 'package:kinga/components/player.dart';
 import 'package:kinga/components/text/score-display.dart';
 import 'package:kinga/controllers/enemy_spawner.dart';
