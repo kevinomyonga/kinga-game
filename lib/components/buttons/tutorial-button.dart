@@ -34,6 +34,7 @@ class TutorialButton extends BaseButton {
   }
 
   void onTapDown() {
+    super.onTapUp();
     gameController.gameState = GameState.PLAYING;
     BGM.play(BGMType.PLAYING);
   }

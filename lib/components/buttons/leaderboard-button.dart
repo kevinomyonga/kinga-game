@@ -30,7 +30,8 @@ class LeaderBoardButton extends BaseButton {
     );
   }
 
-  void onTapDown() {
+  void onTapUp() {
+    super.onTapUp();
     gameController.showCredits();
   }
 }

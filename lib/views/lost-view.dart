@@ -42,13 +42,25 @@ class LostView {
     backButton?.resize();
   }
 
-  void onTapDown(TapDownDetails d) {
+  /*void onTapDown(TapDownDetails d) {
     bool isHandled = false;
 
     // Back Button
     if (!isHandled && backButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.CREDITS || gameController.gameState == GameState.GAME_OVER) {
         backButton.onTapDown();
+        isHandled = true;
+      }
+    }
+  }*/
+
+  void onTapUp(TapUpDetails d) {
+    bool isHandled = false;
+
+    // Back Button
+    if (!isHandled && backButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.CREDITS || gameController.gameState == GameState.GAME_OVER) {
+        backButton.onTapUp();
         isHandled = true;
       }
     }

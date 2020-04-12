@@ -25,6 +25,7 @@ class ReloadButton extends BaseButton {
   void update(double t) {}
 
   void resize() {
+    super.onTapUp();
     rect = Rect.fromLTWH(
       (gameController.screenSize.width / 2) - (gameController.tileSize * 0.75),
       (gameController.screenSize.height * .55) - (gameController.tileSize * 1.5),
@@ -33,7 +34,7 @@ class ReloadButton extends BaseButton {
     );
   }
 
-  void onTapDown() {
+  void onTapUp() {
     gameController.gameState = GameState.PLAYING;
     // Reset game
     gameController.initialize();

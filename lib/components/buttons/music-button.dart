@@ -40,7 +40,8 @@ class MusicButton extends BaseButton {
     );
   }
 
-  void onTapDown() {
+  void onTapUp() {
+    super.onTapUp();
     if (isEnabled) {
       isEnabled = false;
       BGM.pause();

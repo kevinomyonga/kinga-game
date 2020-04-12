@@ -11,7 +11,7 @@ import 'package:kinga/components/flies/hungry-fly.dart';
 import 'package:kinga/components/flies/macho-fly.dart';
 import 'package:kinga/components/health-bar.dart';
 import 'package:kinga/components/player.dart';
-import 'package:kinga/components/score-display.dart';
+import 'package:kinga/components/text/score-display.dart';
 import 'package:kinga/controllers/enemy_spawner.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
@@ -92,21 +92,23 @@ class PlayView {
   }
 
   void onTapDown(TapDownDetails d) {
-    bool isHandled = false;
 
     // Destroying Enemies
     if(gameController.gameState == GameState.PLAYING) {
       enemies.forEach((Enemy enemy) {
         if (enemy.enemyRect.contains(d.globalPosition)) {
           enemy.onTapDown();
-          //isHandled = true;
         }
       });
     }
+  }
+
+  void onTapUp(TapUpDetails d) {
+    bool isHandled = false;
 
     // Pause/Resume Button
     if(!isHandled && pauseButton.rect.contains(d.globalPosition)) {
-      pauseButton.onTapDown();
+      pauseButton.onTapUp();
       isHandled = true;
     }
   }

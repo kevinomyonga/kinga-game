@@ -40,7 +40,8 @@ class SoundButton extends BaseButton {
     );
   }
 
-  void onTapDown() {
+  void onTapUp() {
+    super.onTapUp();
     isEnabled = !isEnabled;
     // Save Pref
     gameController.storage.setBool(Ids.sharedPrefSound, isEnabled);

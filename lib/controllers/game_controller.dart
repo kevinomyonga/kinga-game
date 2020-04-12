@@ -129,33 +129,39 @@ class GameController extends Game with TapDetector {
   }
 
   void onTapDown(TapDownDetails d) {
+    // The PlayView requires input to be registered immediately when playing
+    playView.onTapDown(d);
+  }
+
+  void onTapUp(TapUpDetails d) {
     bool isHandled = false;
 
-    homeView.onTapDown(d);
-    playView.onTapDown(d);
-    pauseView.onTapDown(d);
-    lostView.onTapDown(d);
-    creditsView.onTapDown(d);
+    homeView.onTapUp(d);
+    playView.onTapUp(d);
+    pauseView.onTapUp(d);
+    lostView.onTapUp(d);
+    creditsView.onTapUp(d);
 
     // Music Button
     if(!isHandled && musicButton.rect.contains(d.globalPosition)) {
-      musicButton.onTapDown();
+      musicButton.onTapUp();
       isHandled = true;
     }
 
     // Sound Button
     if(!isHandled && soundButton.rect.contains(d.globalPosition)) {
-      soundButton.onTapDown();
+      soundButton.onTapUp();
       isHandled = true;
     }
 
     // Screenshot Button
     if(!isHandled && screenshotButton.rect.contains(d.globalPosition)) {
-      screenshotButton.onTapDown();
+      screenshotButton.onTapUp();
       isHandled = true;
     }
   }
 
   Function() showHelp;
   Function() showCredits;
+  Function() takeScreenshot;
 }

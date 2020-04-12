@@ -46,6 +46,13 @@ class _GameWidgetState extends State<GameWidget> {
             return AboutGameDialog();
           });
     };
+    gameController.takeScreenshot = () {
+      showDialog(
+          context: context,
+          builder: (BuildContext buildContext) {
+            return AboutGameDialog();
+          });
+    };
 
     showRatingDialog();
   }

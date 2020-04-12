@@ -19,6 +19,7 @@ class AppStrings {
   static const String howToPlayExplanation      = 'Protect The Cookie.\nTap 3 Times To Destroy A Fly.';
   static const String invite_friend             = 'Share With A Friend';
   static const String loading                   = 'Loading. Please Wait...';
+  static const String pause                     = 'Pause';
 
   // App Rating Dialog
   static const String ard_title       = 'Enjoying $appName?';

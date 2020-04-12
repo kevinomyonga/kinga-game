@@ -7,8 +7,8 @@ import 'package:kinga/components/buttons/credits-button.dart';
 import 'package:kinga/components/buttons/help-button.dart';
 import 'package:kinga/components/buttons/leaderboard-button.dart';
 import 'package:kinga/components/buttons/start-button.dart';
-import 'package:kinga/components/copyright-display.dart';
-import 'package:kinga/components/highscore_display.dart';
+import 'package:kinga/components/text/copyright-display.dart';
+import 'package:kinga/components/text/highscore_display.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
@@ -100,7 +100,7 @@ class HomeView {
     leaderBoardButton?.resize();
   }
 
-  void onTapDown(TapDownDetails d) {
+  /*void onTapDown(TapDownDetails d) {
     bool isHandled = false;
 
     // Start Button
@@ -136,12 +136,48 @@ class HomeView {
     }
 
     // Dialog Boxes
-    /*if (!isHandled) {
+    *//*if (!isHandled) {
       if (gameController.gameState == GameState.HELP || gameController.gameState == GameState.CREDITS) {
         //gameController.gameState = GameState.MENU;
         isHandled = true;
       }
-    }*/
+    }*//*
+  }*/
+
+  void onTapUp(TapUpDetails d) {
+    bool isHandled = false;
+
+    // Start Button
+    if (!isHandled && startButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.MENU) {
+        startButton.onTapUp();
+        isHandled = true;
+      }
+    }
+
+    // Help Button
+    if (!isHandled && helpButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.MENU) {
+        helpButton.onTapUp();
+        isHandled = true;
+      }
+    }
+
+    // Credits Button
+    if (!isHandled && creditsButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.MENU) {
+        creditsButton.onTapUp();
+        isHandled = true;
+      }
+    }
+
+    // LeaderBoard Button
+    if (!isHandled && leaderBoardButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.MENU) {
+        leaderBoardButton.onTapUp();
+        isHandled = true;
+      }
+    }
   }
 
   void titleFly() {

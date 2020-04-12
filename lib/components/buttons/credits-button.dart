@@ -30,7 +30,8 @@ class CreditsButton extends BaseButton {
     );
   }
 
-  void onTapDown() {
+  void onTapUp() {
+    super.onTapUp();
     gameController.gameState = GameState.CREDITS;
   }
 }

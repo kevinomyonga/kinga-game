@@ -9,9 +9,13 @@ class Assets {
   static const String playing               = "$audioBgmDir/temp_music.aac";
 
   // SFX Audio
+  static const String buttonClick           = "$audioSfxDir/click.wav";
   static const String enemyHaha             = "$audioSfxDir/haha5.mp3";
   static const String enemyHit              = "$audioSfxDir/hit.mp3";
   static const String enemyOuch             = "$audioSfxDir/ouch10.mp3";
+
+  /// Fonts
+  static const String fontEquestria         = "Equestria";
 
   /// Images
   static const String assetsImageDir        = "assets/images/";
@@ -81,7 +85,7 @@ class Assets {
   static const String homeButtonImg         = "$imageUIDir/button-home.png";
   static const String reloadButtonImg       = "$imageUIDir/button-reload.png";
 
-  static const String backButtonImg         = "$imageUIDir/back-button.gif";
+  static const String backButtonImg         = "$imageUIDir/button-back.png";
   static const String musicEnabledImg       = "$imageUIDir/icon-music-enabled.png";
   static const String musicDisabledImg      = "$imageUIDir/icon-music-disabled.png";
   static const String soundEnabledImg       = "$imageUIDir/button-sound-on.png";

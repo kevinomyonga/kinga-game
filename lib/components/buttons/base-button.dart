@@ -8,9 +8,9 @@ class BaseButton {
 
   BaseButton(this.gameController);
 
-  void onTapDown() {
+  void onTapUp() {
     if (gameController.soundButton.isEnabled) {
-      Flame.audio.play(Assets.enemyHit);
+      Flame.audio.play(Assets.buttonClick);
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:kinga/controllers/game_controller.dart';
+import 'package:kinga/res/assets.dart';
 
 class ScoreDisplay {
 
@@ -34,6 +35,7 @@ class ScoreDisplay {
         text: gameController.playView.score.toString(),
         style: TextStyle(
           color: Colors.white,
+          fontFamily: Assets.fontEquestria,
           fontSize: 70.0,
           shadows: <Shadow>[shadow, shadow, shadow, shadow, shadow, shadow, shadow, shadow],
         ),

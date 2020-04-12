@@ -42,13 +42,13 @@ class TutorialView {
     backButton?.resize();
   }
 
-  void onTapDown(TapDownDetails d) {
+  void onTapUp(TapUpDetails d) {
     bool isHandled = false;
 
     // Back Button
     if (!isHandled && backButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.CREDITS) {
-        backButton.onTapDown();
+        backButton.onTapUp();
         isHandled = true;
       }
     }

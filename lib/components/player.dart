@@ -34,11 +34,11 @@ class Player {
       isDead = true;
 
       // Reset game
-      /*gameController.gameState = GameState.GAME_OVER;
+      gameController.gameState = GameState.GAME_OVER;
       gameController.initialize();
       if (gameController.soundButton.isEnabled) {
         Flame.audio.play(Assets.enemyHaha);
-      }*/
+      }
     }
   }
 

@@ -26,14 +26,15 @@ class BackButton extends BaseButton {
 
   void resize() {
     rect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 3),
+      (gameController.screenSize.width / 2) - (gameController.tileSize * 0.75),
       (gameController.screenSize.height * .75) - (gameController.tileSize * 1.5),
-      gameController.tileSize * 6,
-      gameController.tileSize * 3,
+      gameController.tileSize * 1.5,
+      gameController.tileSize * 1.5,
     );
   }
 
-  void onTapDown() {
+  void onTapUp() {
+    super.onTapUp();
     gameController.gameState = GameState.MENU;
     // Reset game
     gameController.initialize();

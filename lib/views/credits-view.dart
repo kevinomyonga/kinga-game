@@ -42,13 +42,25 @@ class CreditsView {
     backButton?.resize();
   }
 
-  void onTapDown(TapDownDetails d) {
+  /*void onTapDown(TapDownDetails d) {
     bool isHandled = false;
 
     // Back Button
     if (!isHandled && backButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.CREDITS) {
         backButton.onTapDown();
+        isHandled = true;
+      }
+    }
+  }*/
+
+  void onTapUp(TapUpDetails d) {
+    bool isHandled = false;
+
+    // Back Button
+    if (!isHandled && backButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.CREDITS) {
+        backButton.onTapUp();
         isHandled = true;
       }
     }

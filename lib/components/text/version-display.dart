@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_data.dart';
-import 'package:kinga/res/Ids.dart';
+import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
 
-class HighScoreDisplay {
+class VersionDisplay {
 
   final GameController gameController;
   TextPainter painter;
   Offset position;
 
-  HighScoreDisplay(this.gameController) {
+  VersionDisplay(this.gameController) {
     painter = TextPainter(
       textAlign: TextAlign.center,
       textDirection: TextDirection.ltr,
@@ -24,9 +23,7 @@ class HighScoreDisplay {
     painter.paint(c, position);
   }
 
-  Future<void> update(double t) async {
-    //int highScore = gameController.storage.getInt(Ids.sharedPrefHighScore) ?? 0;
-    int highScore = await GameData.getScore();
+  void update(double t) {
 
     Shadow shadow = Shadow(
       blurRadius: gameController.tileSize * .0625,
@@ -35,22 +32,19 @@ class HighScoreDisplay {
     );
 
     painter.text = TextSpan(
-      text: AppStrings.highScore + ': $highScore',
+      text: AppStrings.pause,
       style: TextStyle(
         color: Colors.white,
-        fontSize: gameController.tileSize * .75,
+        fontFamily: Assets.fontEquestria,
+        fontSize: gameController.tileSize * .55,
         shadows: <Shadow>[shadow, shadow, shadow, shadow, shadow, shadow, shadow, shadow],
       ),
     );
     painter.layout();
 
-    /*position = Offset(
-      (gameController.screenSize.width / 2) - (painter.width / 2),
-      (gameController.screenSize.height * 0.2) - (painter.height / 2),
-    );*/
     position = Offset(
-      gameController.screenSize.width - (gameController.tileSize * .25) - painter.width,
-      gameController.tileSize * .25,
+      (gameController.screenSize.width / 2) - (painter.width / 2),
+      (gameController.screenSize.height * 0.3) - (painter.height / 2),
     );
   }
 }
