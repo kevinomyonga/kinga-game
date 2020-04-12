@@ -1,26 +1,16 @@
-import 'dart:ui';
-
-import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
-import 'package:kinga/components/buttons/base-button.dart';
+import 'package:flutter/painting.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
 
-class LeaderBoardButton extends BaseButton {
+class CreditsDisplay {
 
   final GameController gameController;
-  Rect rect;
-  Sprite sprite;
-
   TextPainter painter;
   Offset position;
 
-  LeaderBoardButton(this.gameController) : super(gameController) {
-    resize();
-    sprite = Sprite(Assets.menuButtonBg);
-
+  CreditsDisplay(this.gameController) {
     painter = TextPainter(
       textAlign: TextAlign.center,
       textDirection: TextDirection.ltr,
@@ -30,7 +20,6 @@ class LeaderBoardButton extends BaseButton {
   }
 
   void render(Canvas c) {
-    sprite.renderRect(c, rect);
     painter.paint(c, position);
   }
 
@@ -43,11 +32,11 @@ class LeaderBoardButton extends BaseButton {
     );
 
     painter.text = TextSpan(
-      text: AppStrings.leaderBoard,
+      text: AppStrings.credits,
       style: TextStyle(
         color: Colors.white,
         fontFamily: Assets.fontEquestria,
-        fontSize: gameController.tileSize,
+        fontSize: 70.0,
         shadows: <Shadow>[shadow, shadow, shadow, shadow, shadow, shadow, shadow, shadow],
       ),
     );
@@ -55,22 +44,7 @@ class LeaderBoardButton extends BaseButton {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      ((gameController.screenSize.height * .75) - (gameController.tileSize * 1.5)
-          + (gameController.tileSize * 1.5 / 2)) - (painter.height / 2),
+      (gameController.screenSize.height * 0.3) - (painter.height / 2),
     );
-  }
-
-  void resize() {
-    rect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 3),
-      (gameController.screenSize.height * .75) - (gameController.tileSize * 1.5),
-      gameController.tileSize * 6,
-      gameController.tileSize * 1.5,
-    );
-  }
-
-  void onTapUp() {
-    super.onTapUp();
-    gameController.showCredits();
   }
 }

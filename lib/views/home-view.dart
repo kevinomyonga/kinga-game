@@ -52,8 +52,8 @@ class HomeView {
 
     startButton = StartButton(gameController);
     helpButton = HelpButton(gameController);
-    creditsButton = CreditsButton(gameController);
     leaderBoardButton = LeaderBoardButton(gameController);
+    creditsButton = CreditsButton(gameController);
   }
 
   void render(Canvas c) {
@@ -80,6 +80,8 @@ class HomeView {
 
     // Menu
     startButton.update(t);
+    leaderBoardButton.update(t);
+    creditsButton.update(t);
     highScoreDisplay.update(t);
     copyrightDisplay.update(t);
   }
@@ -95,9 +97,9 @@ class HomeView {
 
     // Menu
     startButton?.resize();
-    helpButton?.resize();
-    creditsButton?.resize();
     leaderBoardButton?.resize();
+    creditsButton?.resize();
+    helpButton?.resize();
   }
 
   /*void onTapDown(TapDownDetails d) {

@@ -84,6 +84,7 @@ class Assets {
   static const String pauseButtonImg        = "$imageUIDir/button-pause.png";
   static const String homeButtonImg         = "$imageUIDir/button-home.png";
   static const String reloadButtonImg       = "$imageUIDir/button-reload.png";
+  static const String menuButtonBg          = "$imageUIDir/menu-button-bg.png";
 
   static const String backButtonImg         = "$imageUIDir/button-back.png";
   static const String musicEnabledImg       = "$imageUIDir/icon-music-enabled.png";
