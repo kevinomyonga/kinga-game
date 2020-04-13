@@ -5,13 +5,13 @@ import 'package:kinga/components/buttons/base-button.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/res/assets.dart';
 
-class ScreenshotButton extends BaseButton {
+class ShareButton extends BaseButton {
 
   final GameController gameController;
   Rect rect;
   Sprite sprite;
 
-  ScreenshotButton(this.gameController) : super(gameController) {
+  ShareButton(this.gameController) : super(gameController) {
     resize();
     sprite = Sprite(Assets.screenshotImg);
   }
@@ -31,6 +31,6 @@ class ScreenshotButton extends BaseButton {
 
   void onTapUp() {
     super.onTapUp();
-    gameController.showCredits();
+    gameController.shareGame();
   }
 }

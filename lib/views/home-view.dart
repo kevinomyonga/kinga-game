@@ -9,6 +9,7 @@ import 'package:kinga/components/buttons/leaderboard-button.dart';
 import 'package:kinga/components/buttons/start-button.dart';
 import 'package:kinga/components/text/copyright-display.dart';
 import 'package:kinga/components/text/highscore_display.dart';
+import 'package:kinga/components/text/title-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
@@ -30,6 +31,7 @@ class HomeView {
   double speed;
 
   HighScoreDisplay highScoreDisplay;
+  TitleDisplay titleDisplay;
 
   StartButton startButton;
   HelpButton helpButton;
@@ -48,6 +50,7 @@ class HomeView {
     speed = gameController.tileSize * 1;
 
     highScoreDisplay = HighScoreDisplay(gameController);
+    titleDisplay = TitleDisplay(gameController);
     copyrightDisplay = CopyrightDisplay(gameController);
 
     startButton = StartButton(gameController);
@@ -61,11 +64,12 @@ class HomeView {
     titleSprite[flyingSpriteIndex.toInt()].renderRect(c, titleRect.inflate(titleRect.width / 2));
 
     // Menu
-    startButton.render(c);
     highScoreDisplay.render(c);
-    helpButton.render(c);
-    creditsButton.render(c);
+    titleDisplay.render(c);
+    startButton.render(c);
     leaderBoardButton.render(c);
+    creditsButton.render(c);
+    helpButton.render(c);
     copyrightDisplay.render(c);
   }
 
@@ -79,16 +83,17 @@ class HomeView {
     // Move the fly (Hover)
 
     // Menu
+    highScoreDisplay.update(t);
+    titleDisplay.update(t);
     startButton.update(t);
     leaderBoardButton.update(t);
     creditsButton.update(t);
-    highScoreDisplay.update(t);
     copyrightDisplay.update(t);
   }
 
   void resize() {
     titleRect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 2),
+      (gameController.screenSize.width / 2) - (gameController.tileSize * 2.3),
       (gameController.screenSize.height / 2) - (gameController.tileSize * 6),
       gameController.tileSize * 3.5,
       gameController.tileSize * 3.5,

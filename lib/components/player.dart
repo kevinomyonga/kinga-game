@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:kinga/controllers/game_controller.dart';
+import 'package:kinga/game_data.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
@@ -32,6 +33,9 @@ class Player {
     //print(currentHealth);
     if(!isDead && currentHealth <= 0) {
       isDead = true;
+
+      // Save the current score
+      GameData.setLastSubmittedScore(gameController.playView.score);
 
       // Reset game
       gameController.gameState = GameState.GAME_OVER;

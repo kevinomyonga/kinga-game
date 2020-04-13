@@ -66,15 +66,15 @@ class GameData {
     await prefs.setString("playerId", playerId);
   }
 
-  static Future<double> getLastSubmittedScore() async {
+  static Future<int> getLastSubmittedScore() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    return prefs.getDouble("lastSubmittedScore");
+    return prefs.getInt(Ids.sharedPrefCurrentScore) ?? 0;
   }
 
-  static Future<void> setLastSubmittedScore(double score) async {
+  static Future<void> setLastSubmittedScore(int score) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    await prefs.setDouble("lastSubmittedScore", score);
+    await prefs.setInt(Ids.sharedPrefCurrentScore, score);
   }
 }

@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:kinga/bgm.dart';
 import 'package:kinga/components/backdrop.dart';
 import 'package:kinga/components/buttons/music-button.dart';
-import 'package:kinga/components/buttons/screenshot-button.dart';
+import 'package:kinga/components/buttons/share-button.dart';
 import 'package:kinga/components/buttons/sound-button.dart';
 import 'package:kinga/components/enemy.dart';
 import 'package:kinga/controllers/enemy_spawner.dart';
@@ -38,7 +38,7 @@ class GameController extends Game with TapDetector {
 
   MusicButton musicButton;
   SoundButton soundButton;
-  ScreenshotButton screenshotButton;
+  ShareButton screenshotButton;
 
   HomeView homeView;
   PlayView playView;
@@ -61,7 +61,7 @@ class GameController extends Game with TapDetector {
 
     musicButton = MusicButton(this);
     soundButton = SoundButton(this);
-    screenshotButton = ScreenshotButton(this);
+    screenshotButton = ShareButton(this);
 
     rand = Random();
     enemies = List<Enemy>();
@@ -163,5 +163,5 @@ class GameController extends Game with TapDetector {
 
   Function() showHelp;
   Function() showCredits;
-  Function() takeScreenshot;
+  Function() shareGame;
 }

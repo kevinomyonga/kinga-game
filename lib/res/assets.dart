@@ -87,13 +87,13 @@ class Assets {
   static const String menuButtonBg          = "$imageUIDir/menu-button-bg.png";
 
   static const String backButtonImg         = "$imageUIDir/button-back.png";
-  static const String musicEnabledImg       = "$imageUIDir/icon-music-enabled.png";
-  static const String musicDisabledImg      = "$imageUIDir/icon-music-disabled.png";
+  static const String musicEnabledImg       = "$imageUIDir/button-music-on.png";
+  static const String musicDisabledImg      = "$imageUIDir/button-music-off.png";
   static const String soundEnabledImg       = "$imageUIDir/button-sound-on.png";
   static const String soundDisabledImg      = "$imageUIDir/button-sound-off.png";
   static const String creditsImg            = "$imageUIDir/credits-button.png";
-  static const String helpImg               = "$imageUIDir/icon-help.png";
-  static const String screenshotImg         = "$imageUIDir/icon-credits.png";
+  static const String helpImg               = "$imageUIDir/button-help.png";
+  static const String screenshotImg         = "$imageUIDir/button-share.png";
 
   static const String healthBar             = "$imageUIDir/bar-health.png";
   static const String healthBarEmpty        = "$imageUIDir/bar-health-empty.png";

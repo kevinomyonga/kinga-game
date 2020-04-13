@@ -36,7 +36,7 @@ class PauseDisplay {
       style: TextStyle(
         color: Colors.white,
         fontFamily: Assets.fontEquestria,
-        fontSize: 70.0,
+        fontSize: gameController.tileSize * 2,
         shadows: <Shadow>[shadow, shadow, shadow, shadow, shadow, shadow, shadow, shadow],
       ),
     );
