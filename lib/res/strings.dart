@@ -12,13 +12,20 @@ class AppStrings {
   /// Strings
   static const String about                     = 'About';
   static const String about_app                 = 'About App';
-  static const String feedback                  = 'Feedback';
+  static const String credits                   = 'Credits';
   static const String developerWebsite          = 'Developer\'s Website';
+  static const String feedback                  = 'Feedback';
+  static const String gameOver                  = 'Game Over';
   static const String highScore                 = 'HighScore';
   static const String howToPlay                 = 'How To Play';
   static const String howToPlayExplanation      = 'Protect The Cookie.\nTap 3 Times To Destroy A Fly.';
+  static const String leaderBoard               = 'Leaderboard';
   static const String invite_friend             = 'Share With A Friend';
   static const String loading                   = 'Loading. Please Wait...';
+  static const String pause                     = 'Pause';
+  static const String play                      = 'Play';
+  static const String bestScore                 = 'Best Score';
+  static const String yourScore                 = 'Your Score';
 
   // App Rating Dialog
   static const String ard_title       = 'Enjoying $appName?';

@@ -11,7 +11,7 @@ description: Kinga - Fight The Outbreak. My first game built using Flutter and t
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.5+6
+version: 1.0.6+7
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -31,6 +31,9 @@ dependencies:
 
   # A minimalist Flutter game engine.
   flame: ^0.18.2
+
+  # Style your flame game with a beautiful splash screen.
+  flame_splash_screen: ^0.0.1
 
   # Provides an API for querying information about an application package.
   package_info: ^0.4.0+13
@@ -64,8 +67,10 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/
     - assets/audio/bgm/
     - assets/audio/sfx/
+    - assets/fonts/
     - assets/images/bg/
     - assets/images/branding/
     - assets/images/enemies/
@@ -102,3 +107,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  fonts:
+    - family: Equestria
+      fonts:
+        - asset: assets/fonts/Equestria.otf

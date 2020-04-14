@@ -1,11 +1,12 @@
 import 'dart:ui';
 
 import 'package:flame/sprite.dart';
+import 'package:kinga/components/buttons/base-button.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/assets.dart';
 
-class SoundButton {
+class SoundButton extends BaseButton {
 
   final GameController gameController;
   Rect rect;
@@ -13,7 +14,7 @@ class SoundButton {
   Sprite disabledSprite;
   bool isEnabled = true;
 
-  SoundButton(this.gameController) {
+  SoundButton(this.gameController) : super(gameController) {
     resize();
     enabledSprite = Sprite(Assets.soundEnabledImg);
     disabledSprite = Sprite(Assets.soundDisabledImg);
@@ -39,7 +40,8 @@ class SoundButton {
     );
   }
 
-  void onTapDown() {
+  void onTapUp() {
+    super.onTapUp();
     isEnabled = !isEnabled;
     // Save Pref
     gameController.storage.setBool(Ids.sharedPrefSound, isEnabled);

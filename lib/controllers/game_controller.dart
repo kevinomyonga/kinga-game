@@ -6,57 +6,45 @@ import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kinga/bgm.dart';
-import 'package:kinga/components/back-button.dart';
 import 'package:kinga/components/backdrop.dart';
-import 'package:kinga/components/credits-button.dart';
+import 'package:kinga/components/buttons/music-button.dart';
+import 'package:kinga/components/buttons/share-button.dart';
+import 'package:kinga/components/buttons/sound-button.dart';
 import 'package:kinga/components/enemy.dart';
-import 'package:kinga/components/flies/agile-fly.dart';
-import 'package:kinga/components/flies/drooler-fly.dart';
-import 'package:kinga/components/flies/house-fly.dart';
-import 'package:kinga/components/flies/hungry-fly.dart';
-import 'package:kinga/components/flies/macho-fly.dart';
-import 'package:kinga/components/health_bar.dart';
-import 'package:kinga/components/help-button.dart';
-import 'package:kinga/components/highscore_display.dart';
-import 'package:kinga/components/music-button.dart';
-import 'package:kinga/components/player.dart';
-import 'package:kinga/components/score_text.dart';
-import 'package:kinga/components/sound-button.dart';
-import 'package:kinga/components/start_button.dart';
 import 'package:kinga/controllers/enemy_spawner.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/main.dart';
+import 'package:kinga/views/credits-view.dart';
 import 'package:kinga/views/home-view.dart';
 import 'package:kinga/views/lost-view.dart';
+import 'package:kinga/views/pause-view.dart';
+import 'package:kinga/views/play-view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GameController extends Game with TapDetector {
 
   SharedPreferences storage;
-  Random rand;
+
   Size screenSize;
   double tileSize;
 
   Backdrop background;
-  Player player;
-  HealthBar healthBar;
-  int score;
-  ScoreDisplay scoreDisplay;
-  HighScoreDisplay highScoreDisplay;
 
+  Random rand;
   EnemySpawner enemySpawner;
   List<Enemy> enemies;
 
   GameState gameState = GameState.MENU;
-  StartButton startButton;
-  BackButton backButton;
+
   MusicButton musicButton;
   SoundButton soundButton;
-  HelpButton helpButton;
-  CreditsButton creditsButton;
+  ShareButton screenshotButton;
 
   HomeView homeView;
+  PlayView playView;
+  PauseView pauseView;
   LostView lostView;
+  CreditsView creditsView;
 
   GameController() {
     storage = sharedPrefs;
@@ -67,27 +55,27 @@ class GameController extends Game with TapDetector {
     resize(await Flame.util.initialDimensions());
 
     background = Backdrop(this);
-    healthBar = HealthBar(this);
-    score = 0;
-    scoreDisplay = ScoreDisplay(this);
-    highScoreDisplay = HighScoreDisplay(this);
-    startButton = StartButton(this);
-    backButton = BackButton(this);
+    //healthBar = HealthBar(this);
+    //score = 0;
+    //scoreDisplay = ScoreDisplay(this);
+
     musicButton = MusicButton(this);
     soundButton = SoundButton(this);
-    helpButton = HelpButton(this);
-    creditsButton = CreditsButton(this);
+    screenshotButton = ShareButton(this);
 
     rand = Random();
-    player = Player(this);
     enemies = List<Enemy>();
     enemySpawner = EnemySpawner(this);
 
     homeView = HomeView(this);
+    playView = PlayView(this);
+    pauseView = PauseView(this);
     lostView = LostView(this);
+    creditsView = CreditsView(this);
 
     // Play Menu Music
-    BGM.play(BGMType.HOME);
+    if(gameState == GameState.MENU) BGM.play(BGMType.HOME);
+    if(gameState == GameState.PLAYING) BGM.play(BGMType.PLAYING);
   }
 
   void render(Canvas c) {
@@ -97,53 +85,27 @@ class GameController extends Game with TapDetector {
 
     background.render(c);
 
-    if (gameState == GameState.MENU) homeView.render(c);
-
-    if(gameState == GameState.MENU) {
-      startButton.render(c);
-      highScoreDisplay.render(c);
-      helpButton.render(c);
-      creditsButton.render(c);
-    }
-
-    if(gameState == GameState.PLAYING) {
-      // Render Player
-      player.render(c);
-
-      enemies.forEach((Enemy enemy) => enemy.render(c));
-      scoreDisplay.render(c);
-      healthBar.render(c);
-    }
-
-    if (gameState == GameState.GAME_OVER) {
-      lostView.render(c);
-      backButton.render(c);
-    }
+    if(gameState == GameState.MENU) homeView.render(c);
+    if(gameState == GameState.PLAYING) playView.render(c);
+    if(gameState == GameState.PAUSED) pauseView.render(c);
+    if(gameState == GameState.GAME_OVER) lostView.render(c);
+    if(gameState == GameState.CREDITS) creditsView.render(c);
 
     musicButton.render(c);
     // Prevent music from playing if disabled
     if(!musicButton.isEnabled) BGM.pause();
     soundButton.render(c);
+    screenshotButton.render(c);
 
     //if (gameState == GameState.HELP) helpView.render(c);
-    //if (gameState == GameState.CREDITS) creditsView.render(c);
   }
 
   void update(double t) {
-    if(gameState == GameState.MENU) {
-      homeView.update(t);
-      startButton.update(t);
-      highScoreDisplay.update(t);
-    }
-
-    if(gameState == GameState.PLAYING) {
-      enemySpawner.update(t);
-      enemies.forEach((Enemy enemy) => enemy.update(t));
-      enemies.removeWhere((Enemy enemy) => enemy.isDead && enemy.isOffScreen);
-      player.update(t);
-      scoreDisplay.update(t);
-      healthBar.update(t);
-    }
+    if(gameState == GameState.MENU) homeView.update(t);
+    if(gameState == GameState.PLAYING) playView.update(t);
+    if(gameState == GameState.PAUSED) pauseView.update(t);
+    if(gameState == GameState.GAME_OVER) lostView.update(t);
+    if(gameState == GameState.CREDITS) creditsView.update(t);
   }
 
   void resize(Size size) {
@@ -156,128 +118,50 @@ class GameController extends Game with TapDetector {
     //scoreDisplay?.resize();
 
     homeView?.resize();
+    playView?.resize();
+    pauseView?.resize();
     lostView?.resize();
+    creditsView?.resize();
 
-    startButton?.resize();
-    backButton?.resize();
-    helpButton?.resize();
-    creditsButton?.resize();
     musicButton?.resize();
     soundButton?.resize();
+    screenshotButton?.resize();
   }
 
   void onTapDown(TapDownDetails d) {
-    bool isHandled = false;
-
-    // Start Button
-    if (!isHandled && startButton.rect.contains(d.globalPosition)) {
-      if (gameState == GameState.MENU) {
-        startButton.onTapDown();
-        isHandled = true;
-      }
-    }
-
-    // Back Button
-    if (!isHandled && backButton.rect.contains(d.globalPosition)) {
-      if (gameState == GameState.GAME_OVER) {
-        backButton.onTapDown();
-        isHandled = true;
-      }
-    }
-
-    // Help button
-    if (!isHandled && helpButton.rect.contains(d.globalPosition)) {
-      if (gameState == GameState.MENU || gameState == GameState.GAME_OVER) {
-        helpButton.onTapDown();
-        isHandled = true;
-      }
-    }
-
-    // Credits button
-    if (!isHandled && creditsButton.rect.contains(d.globalPosition)) {
-      if (gameState == GameState.MENU || gameState == GameState.GAME_OVER) {
-        creditsButton.onTapDown();
-        isHandled = true;
-      }
-    }
-
-    // Destroying Enemies
-    if(gameState == GameState.PLAYING) {
-      enemies.forEach((Enemy enemy) {
-        if (enemy.enemyRect.contains(d.globalPosition)) {
-          enemy.onTapDown();
-          isHandled = true;
-        }
-      });
-    }
-
-    // Music button
-    if (!isHandled && musicButton.rect.contains(d.globalPosition)) {
-      musicButton.onTapDown();
-      isHandled = true;
-    }
-
-    // Sound button
-    if (!isHandled && soundButton.rect.contains(d.globalPosition)) {
-      soundButton.onTapDown();
-      isHandled = true;
-    }
-
-    // Dialog boxes
-    if (!isHandled) {
-      if (gameState == GameState.HELP || gameState == GameState.CREDITS) {
-        gameState = GameState.MENU;
-        isHandled = true;
-      }
-    }
+    // The PlayView requires input to be registered immediately when playing
+    playView.onTapDown(d);
   }
 
-  void spawnEnemy() {
-    // Set where enemy will spawn from
-    double x,y;
-    switch(rand.nextInt(4)) {
-      case 0:
-      // Top
-        x = rand.nextDouble() * screenSize.width;
-        y = -tileSize * 2.5;
-        break;
-      case 1:
-      // Right
-        x = screenSize.width + tileSize * 2.5;
-        y = rand.nextDouble() * screenSize.height;
-        break;
-      case 2:
-      // Bottom
-        x = rand.nextDouble() * screenSize.width;
-        y = screenSize.height + tileSize * 2.5;
-        break;
-      case 3:
-      // Left
-        x = -tileSize * 2.5;
-        y = rand.nextDouble() * screenSize.height;
-        break;
+  void onTapUp(TapUpDetails d) {
+    bool isHandled = false;
+
+    homeView.onTapUp(d);
+    playView.onTapUp(d);
+    pauseView.onTapUp(d);
+    lostView.onTapUp(d);
+    creditsView.onTapUp(d);
+
+    // Music Button
+    if(!isHandled && musicButton.rect.contains(d.globalPosition)) {
+      musicButton.onTapUp();
+      isHandled = true;
     }
 
-    // Type of enemy spawned
-    switch (rand.nextInt(5)) {
-      case 0:
-        enemies.add(HouseFly(this, x, y));
-        break;
-      case 1:
-        enemies.add(DroolerFly(this, x, y));
-        break;
-      case 2:
-        enemies.add(AgileFly(this, x, y));
-        break;
-      case 3:
-        enemies.add(MachoFly(this, x, y));
-        break;
-      case 4:
-        enemies.add(HungryFly(this, x, y));
-        break;
+    // Sound Button
+    if(!isHandled && soundButton.rect.contains(d.globalPosition)) {
+      soundButton.onTapUp();
+      isHandled = true;
+    }
+
+    // Screenshot Button
+    if(!isHandled && screenshotButton.rect.contains(d.globalPosition)) {
+      screenshotButton.onTapUp();
+      isHandled = true;
     }
   }
 
   Function() showHelp;
   Function() showCredits;
+  Function() shareGame;
 }

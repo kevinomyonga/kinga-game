@@ -2,14 +2,21 @@ import 'dart:ui';
 
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
+import 'package:kinga/components/enemy-health-bar.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/res/Ids.dart';
+import 'package:kinga/game_data.dart';
+import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
 class Enemy {
 
   final GameController gameController;
-  int health;
+
+  int maxHealth;
+  int currentHealth;
+
+  EnemyHealthBar enemyHealthBar;
+
   int damage;
   double speed;
   Rect enemyRect;
@@ -23,9 +30,11 @@ class Enemy {
   bool isOffScreen = false;
 
   Enemy(this.gameController) {
-    health = 3;
+    maxHealth = currentHealth = 3;
     damage = 1;
     speed = gameController.tileSize * 2;
+
+    enemyHealthBar = EnemyHealthBar(this);
 
     deadSprite = Sprite(Assets.enemyDroolerFlyDead);
   }
@@ -33,6 +42,9 @@ class Enemy {
   void render(Canvas c) {
     if(!isDead) {
       flyingSprite[flyingSpriteIndex.toInt()].renderRect(c, enemyRect.inflate(enemyRect.width / 2));
+      if (gameController.gameState == GameState.PLAYING) {
+        enemyHealthBar.render(c);
+      }
     } else {
       deadSprite.renderRect(c, enemyRect.inflate(enemyRect.width / 2));
     }
@@ -48,13 +60,17 @@ class Enemy {
 
       // Move the fly
       double stepDistance = speed * t;
-      Offset toPlayer = gameController.player.playerRect.center  - enemyRect.center;
+      Offset toPlayer = gameController.playView.player.playerRect.center  - enemyRect.center;
 
       if(stepDistance <= toPlayer.distance - gameController.tileSize * 1.25) {
         Offset stepToPlayer = Offset.fromDirection(toPlayer.direction, stepDistance);
         enemyRect = enemyRect.shift(stepToPlayer);
       } else {
         attack();
+      }
+
+      if (gameController.gameState == GameState.PLAYING) {
+        enemyHealthBar.update(t);
       }
     } else {
       // Make the fly fall
@@ -68,22 +84,22 @@ class Enemy {
   void resize() {}
 
   void attack() {
-    if(!gameController.player.isDead) {
-      gameController.player.currentHealth -= damage;
+    if(!gameController.playView.player.isDead) {
+      gameController.playView.player.currentHealth -= damage;
     }
   }
 
   void onTapDown() {
     if(!isDead) {
-      health--;
+      currentHealth--;
 
-      if(health >= 0) {
+      if(currentHealth >= 0) {
         if (gameController.soundButton.isEnabled) {
           Flame.audio.play(Assets.enemyHit);
         }
       }
 
-      if(health <= 0) {
+      if(currentHealth <= 0) {
         if (gameController.soundButton.isEnabled) {
           Flame.audio.play(Assets.enemyOuch);
         }
@@ -91,12 +107,14 @@ class Enemy {
         isDead = true;
 
         // Score
-        gameController.score++;
-        print(gameController.score);
+        gameController.playView.score++;
+        print(gameController.playView.score);
 
-        if(gameController.score > (gameController.storage.getInt(Ids.sharedPrefHighScore) ?? 0)) {
-          gameController.storage.setInt(Ids.sharedPrefHighScore, gameController.score);
-        }
+        GameData.updateScore(gameController.playView.score);
+
+        /*if(gameController.playView.score > (gameController.storage.getInt(Ids.sharedPrefHighScore) ?? 0)) {
+          gameController.storage.setInt(Ids.sharedPrefHighScore, gameController.playView.score);
+        }*/
       }
     }
   }

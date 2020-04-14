@@ -9,18 +9,27 @@ class Assets {
   static const String playing               = "$audioBgmDir/temp_music.aac";
 
   // SFX Audio
+  static const String buttonClick           = "$audioSfxDir/click.wav";
   static const String enemyHaha             = "$audioSfxDir/haha5.mp3";
   static const String enemyHit              = "$audioSfxDir/hit.mp3";
   static const String enemyOuch             = "$audioSfxDir/ouch10.mp3";
 
+  /// Fonts
+  static const String fontEquestria         = "Equestria";
+
   /// Images
+  static const String assetsImageDir        = "assets/images/";
   static const String imageBgDir            = "bg";
   static const String imageBrandingDir      = "branding";
   static const String imageEnemiesDir       = "enemies";
   static const String imagePlayerDir        = "player";
   static const String imageUIDir            = "ui";
 
+  // Splash Screen
+  static const String knoeyesGamesLogo      = "$imageBrandingDir/knoeyes-games-logo-black.gif";
+
   static const String backgroundImg         = "$imageBgDir/background.png";
+  static const String dialogBgImg           = "$imageBgDir/dialog.png";
   static const String gameOverImg           = "$imageBgDir/lose-splash.png";
   static const String titleImg              = "$imageBrandingDir/title.png";
 
@@ -71,11 +80,23 @@ class Assets {
 
   // UI Buttons
   static const String startButtonImg        = "$imageUIDir/start-button.png";
-  static const String backButtonImg         = "$imageUIDir/back-button.gif";
-  static const String musicEnabledImg       = "$imageUIDir/icon-music-enabled.png";
-  static const String musicDisabledImg      = "$imageUIDir/icon-music-disabled.png";
-  static const String soundEnabledImg       = "$imageUIDir/icon-sound-enabled.png";
-  static const String soundDisabledImg      = "$imageUIDir/icon-sound-disabled.png";
-  static const String helpImg               = "$imageUIDir/icon-help.png";
-  static const String creditsImg            = "$imageUIDir/icon-credits.png";
+  static const String playButtonImg         = "$imageUIDir/button-play.png";
+  static const String pauseButtonImg        = "$imageUIDir/button-pause.png";
+  static const String homeButtonImg         = "$imageUIDir/button-home.png";
+  static const String reloadButtonImg       = "$imageUIDir/button-reload.png";
+  static const String menuButtonBg          = "$imageUIDir/menu-button-bg.png";
+
+  static const String backButtonImg         = "$imageUIDir/button-back.png";
+  static const String musicEnabledImg       = "$imageUIDir/button-music-on.png";
+  static const String musicDisabledImg      = "$imageUIDir/button-music-off.png";
+  static const String soundEnabledImg       = "$imageUIDir/button-sound-on.png";
+  static const String soundDisabledImg      = "$imageUIDir/button-sound-off.png";
+  static const String creditsImg            = "$imageUIDir/credits-button.png";
+  static const String helpImg               = "$imageUIDir/button-help.png";
+  static const String screenshotImg         = "$imageUIDir/button-share.png";
+
+  static const String healthBar             = "$imageUIDir/bar-health.png";
+  static const String healthBarEmpty        = "$imageUIDir/bar-health-empty.png";
+  static const String healthBarFull         = "$imageUIDir/bar-health-full.png";
+  static const String heart                 = "$imageUIDir/heart.png";
 }

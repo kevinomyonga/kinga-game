@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:kinga/controllers/game_controller.dart';
+import 'package:kinga/res/assets.dart';
 
 class ScoreDisplay {
 
@@ -22,7 +23,7 @@ class ScoreDisplay {
   }
 
   void update(double t) {
-    if((painter.text ?? '') != gameController.score.toString()) {
+    if((painter.text ?? '') != gameController.playView.score.toString()) {
 
       Shadow shadow = Shadow(
         blurRadius: gameController.tileSize * .0625,
@@ -31,9 +32,10 @@ class ScoreDisplay {
       );
 
       painter.text = TextSpan(
-        text: gameController.score.toString(),
+        text: gameController.playView.score.toString(),
         style: TextStyle(
           color: Colors.white,
+          fontFamily: Assets.fontEquestria,
           fontSize: 70.0,
           shadows: <Shadow>[shadow, shadow, shadow, shadow, shadow, shadow, shadow, shadow],
         ),

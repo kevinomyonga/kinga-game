@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kinga/controllers/game_controller.dart';
@@ -5,6 +7,7 @@ import 'package:kinga/res/strings.dart';
 import 'package:kinga/views/about-view.dart';
 import 'package:kinga/views/help-view.dart';
 import 'package:rate_my_app/rate_my_app.dart';
+import 'package:share/share.dart';
 
 class GameWidget extends StatefulWidget {
   @override
@@ -45,6 +48,9 @@ class _GameWidgetState extends State<GameWidget> {
           builder: (BuildContext buildContext) {
             return AboutGameDialog();
           });
+    };
+    gameController.shareGame = () {
+      _inviteFriend();
     };
 
     showRatingDialog();
@@ -93,5 +99,14 @@ class _GameWidgetState extends State<GameWidget> {
         );
       }
     });
+  }
+
+  // Launch an app selection popup to select the app to be used for sharing a link to KINGA
+  _inviteFriend() {
+    if(Platform.isAndroid) {
+      Share.share('Check out the ${AppStrings.appName} Game here: ${AppStrings.url_play_store}');
+    } else if (Platform.isIOS) {
+      Share.share('Check out the ${AppStrings.appName} Game here: ${AppStrings.url_app_store}');
+    }
   }
 }
