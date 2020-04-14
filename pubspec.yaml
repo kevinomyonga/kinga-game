@@ -35,6 +35,9 @@ dependencies:
   # Style your flame game with a beautiful splash screen.
   flame_splash_screen: ^0.0.1
 
+  # A new Flutter plugin to support game center and google play games services.
+  games_services: ^0.2.6
+
   # Provides an API for querying information about an application package.
   package_info: ^0.4.0+13
 

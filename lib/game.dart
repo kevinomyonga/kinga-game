@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:games_services/games_services.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/res/strings.dart';
 import 'package:kinga/views/about-view.dart';
@@ -35,6 +36,10 @@ class _GameWidgetState extends State<GameWidget> {
   @override
   void initState() {
     super.initState();
+
+    // Sign in the user
+    GamesServices.signIn();
+
     gameController.showHelp = () {
       showDialog(
           context: context,
