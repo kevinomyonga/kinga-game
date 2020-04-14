@@ -69,12 +69,12 @@ class GameData {
   static Future<int> getLastSubmittedScore() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    return prefs.getInt(Ids.sharedPrefCurrentScore) ?? 0;
+    return prefs.getInt(Ids.sharedPrefLastScore) ?? 0;
   }
 
   static Future<void> setLastSubmittedScore(int score) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    await prefs.setInt(Ids.sharedPrefCurrentScore, score);
+    await prefs.setInt(Ids.sharedPrefLastScore, score);
   }
 }

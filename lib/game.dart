@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:games_services/games_services.dart';
 import 'package:kinga/controllers/game_controller.dart';
+import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/strings.dart';
 import 'package:kinga/views/about-view.dart';
 import 'package:kinga/views/help-view.dart';
@@ -28,13 +30,17 @@ class _GameWidgetState extends State<GameWidget> {
     minLaunches: 7,
     remindDays: 2,
     remindLaunches: 5,
-    appStoreIdentifier: '1506422810',
-    googlePlayIdentifier: 'com.knoeyes.games.kinga',
+    appStoreIdentifier: Ids.appStoreIdentifier,
+    googlePlayIdentifier: Ids.googlePlayIdentifier,
   );
 
   @override
   void initState() {
     super.initState();
+
+    // Sign in the user
+    GamesServices.signIn();
+
     gameController.showHelp = () {
       showDialog(
           context: context,
@@ -42,13 +48,13 @@ class _GameWidgetState extends State<GameWidget> {
             return HelpDialog();
           });
     };
-    gameController.showCredits = () {
+    /*gameController.showCredits = () {
       showDialog(
           context: context,
           builder: (BuildContext buildContext) {
             return AboutGameDialog();
           });
-    };
+    };*/
     gameController.shareGame = () {
       _inviteFriend();
     };

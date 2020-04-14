@@ -55,6 +55,7 @@ class LostView {
       gameController.tileSize * 12,
     );
 
+    bestScoreDisplay?.resize();
     backButton?.resize();
   }
 

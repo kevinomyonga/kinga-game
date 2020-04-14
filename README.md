@@ -2,6 +2,8 @@
 
 Kinga - Protect the Cookie. My first game built using Flutter and the Flame engine.
 
+[![Powered by Flame](https://img.shields.io/badge/Powered%20by-%F0%9F%94%A5-orange.svg?style=for-the-badge)](https://flame-engine.org)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

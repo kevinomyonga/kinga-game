@@ -1,8 +1,12 @@
 class Ids {
 
+  // App Identifiers
+  static final String appStoreIdentifier      = "1506422810";
+  static final String googlePlayIdentifier    = "com.knoeyes.games.kinga";
+
   // Shared Prefs Keys
   static final String sharedPrefHighScore     = 'highscore';
-  static final String sharedPrefCurrentScore  = 'lastSubmittedScore';
+  static final String sharedPrefLastScore     = 'lastSubmittedScore';
   static final String sharedPrefMusic         = 'music';
   static final String sharedPrefSound         = 'sound';
 
@@ -12,5 +16,5 @@ class Ids {
 
   // LeaderBoards
   static final String iOSLeaderBoardID        = "kinga_players";
-  static final String androidLeaderBoardID    = "CgkI05XRpZoEEAIQAQ";
+  static final String androidLeaderBoardID    = "CgkI05XRpZoEEAIQBw";
 }

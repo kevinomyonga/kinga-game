@@ -46,6 +46,8 @@ class GameController extends Game with TapDetector {
   LostView lostView;
   CreditsView creditsView;
 
+  bool isNewHighScore = false;
+
   GameController() {
     storage = sharedPrefs;
     initialize();
@@ -161,7 +163,8 @@ class GameController extends Game with TapDetector {
     }
   }
 
+  Function() showLeaderBoard;
   Function() showHelp;
-  Function() showCredits;
+  //Function() showCredits;
   Function() shareGame;
 }

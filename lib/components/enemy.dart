@@ -110,7 +110,7 @@ class Enemy {
         gameController.playView.score++;
         print(gameController.playView.score);
 
-        GameData.updateScore(gameController.playView.score);
+        /*GameData.updateScore(gameController.playView.score);*/
 
         /*if(gameController.playView.score > (gameController.storage.getInt(Ids.sharedPrefHighScore) ?? 0)) {
           gameController.storage.setInt(Ids.sharedPrefHighScore, gameController.playView.score);
