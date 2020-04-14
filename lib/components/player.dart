@@ -2,9 +2,12 @@ import 'dart:ui';
 
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
+import 'package:games_services/games_services.dart';
+import 'package:games_services/score.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_data.dart';
 import 'package:kinga/game_state.dart';
+import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/assets.dart';
 
 class Player {
@@ -36,6 +39,17 @@ class Player {
 
       // Save the current score
       GameData.setLastSubmittedScore(gameController.playView.score);
+
+      /*// Update HighScore
+      GameData.updateScore(gameController.playView.score);
+
+      // Submit HighScore to LeaderBoard
+      GamesServices.submitScore(
+          score: Score(
+              androidLeaderboardID: Ids.androidLeaderBoardID,
+              iOSLeaderboardID: Ids.iOSLeaderBoardID,
+              value: gameController.playView.score)
+      );*/
 
       // Reset game
       gameController.gameState = GameState.GAME_OVER;
