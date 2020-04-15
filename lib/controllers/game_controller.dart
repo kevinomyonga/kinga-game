@@ -14,6 +14,7 @@ import 'package:kinga/components/enemy.dart';
 import 'package:kinga/controllers/enemy_spawner.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/main.dart';
+import 'package:kinga/views/continue-view.dart';
 import 'package:kinga/views/credits-view.dart';
 import 'package:kinga/views/home-view.dart';
 import 'package:kinga/views/lost-view.dart';
@@ -43,6 +44,7 @@ class GameController extends Game with TapDetector {
   HomeView homeView;
   PlayView playView;
   PauseView pauseView;
+  ContinueView continueView;
   LostView lostView;
   CreditsView creditsView;
 
@@ -72,6 +74,7 @@ class GameController extends Game with TapDetector {
     homeView = HomeView(this);
     playView = PlayView(this);
     pauseView = PauseView(this);
+    continueView = ContinueView(this);
     lostView = LostView(this);
     creditsView = CreditsView(this);
 
@@ -90,6 +93,7 @@ class GameController extends Game with TapDetector {
     if(gameState == GameState.MENU) homeView.render(c);
     if(gameState == GameState.PLAYING) playView.render(c);
     if(gameState == GameState.PAUSED) pauseView.render(c);
+    if(gameState == GameState.CONTINUE) continueView.render(c);
     if(gameState == GameState.GAME_OVER) lostView.render(c);
     if(gameState == GameState.CREDITS) creditsView.render(c);
 
@@ -106,6 +110,7 @@ class GameController extends Game with TapDetector {
     if(gameState == GameState.MENU) homeView.update(t);
     if(gameState == GameState.PLAYING) playView.update(t);
     if(gameState == GameState.PAUSED) pauseView.update(t);
+    if(gameState == GameState.CONTINUE) continueView.update(t);
     if(gameState == GameState.GAME_OVER) lostView.update(t);
     if(gameState == GameState.CREDITS) creditsView.update(t);
   }
@@ -122,6 +127,7 @@ class GameController extends Game with TapDetector {
     homeView?.resize();
     playView?.resize();
     pauseView?.resize();
+    continueView?.resize();
     lostView?.resize();
     creditsView?.resize();
 
@@ -141,6 +147,7 @@ class GameController extends Game with TapDetector {
     homeView.onTapUp(d);
     playView.onTapUp(d);
     pauseView.onTapUp(d);
+    continueView.onTapUp(d);
     lostView.onTapUp(d);
     creditsView.onTapUp(d);
 

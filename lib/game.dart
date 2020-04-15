@@ -63,6 +63,8 @@ class _GameWidgetState extends State<GameWidget> {
         setState(() {
           _coins += rewardAmount;
           print("RewardedVideoAd rewardAmount: $_coins");
+
+          gameController.continueView.resumeGame();
         });
       }
     };

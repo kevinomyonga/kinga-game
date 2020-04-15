@@ -18,7 +18,7 @@ class PauseView {
 
   PauseDisplay pauseDisplay;
 
-  ResumeButton playButton;
+  ResumeButton resumeButton;
   ReloadButton reloadButton;
   HomeButton homeButton;
 
@@ -28,7 +28,7 @@ class PauseView {
 
     pauseDisplay = PauseDisplay(gameController);
 
-    playButton = ResumeButton(gameController);
+    resumeButton = ResumeButton(gameController);
     reloadButton = ReloadButton(gameController);
     homeButton = HomeButton(gameController);
   }
@@ -38,7 +38,7 @@ class PauseView {
 
     pauseDisplay.render(c);
 
-    playButton.render(c);
+    resumeButton.render(c);
     reloadButton.render(c);
     homeButton.render(c);
   }
@@ -55,7 +55,7 @@ class PauseView {
       gameController.tileSize * 12,
     );
 
-    playButton?.resize();
+    resumeButton?.resize();
     reloadButton?.resize();
     homeButton?.resize();
   }
@@ -64,9 +64,9 @@ class PauseView {
     bool isHandled = false;
 
     // Play/Resume Button
-    if (!isHandled && playButton.rect.contains(d.globalPosition)) {
+    if (!isHandled && resumeButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.PAUSED) {
-        playButton.onTapUp();
+        resumeButton.onTapUp();
         isHandled = true;
       }
     }

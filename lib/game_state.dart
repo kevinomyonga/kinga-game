@@ -2,6 +2,7 @@ enum GameState {
   MENU,
   PLAYING,
   PAUSED,
+  CONTINUE,
   GAME_OVER,
   HELP,
   CREDITS,

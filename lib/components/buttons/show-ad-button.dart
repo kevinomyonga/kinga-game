@@ -3,16 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kinga/components/buttons/base-button.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
-class ResumeButton extends BaseButton {
+class ShowAdButton extends BaseButton {
 
   final GameController gameController;
   Rect rect;
   Sprite sprite;
 
-  ResumeButton(this.gameController) : super(gameController) {
+  ShowAdButton(this.gameController) : super(gameController) {
     resize();
     sprite = Sprite(Assets.playButtonImg);
   }
@@ -34,6 +33,8 @@ class ResumeButton extends BaseButton {
 
   void onTapUp() {
     super.onTapUp();
-    gameController.gameState = GameState.PLAYING;
+
+    // Show the player a reward video
+    gameController.showRewardVideo();
   }
 }
