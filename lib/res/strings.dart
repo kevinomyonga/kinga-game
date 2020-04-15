@@ -13,6 +13,8 @@ class AppStrings {
   static const String about                     = 'About';
   static const String about_app                 = 'About App';
   static const String continue_game             = 'Continue?';
+  static const String continueRemaining         = 'Continue Remaining';
+  static const String continuesRemaining        = 'Continues Remaining';
   static const String credits                   = 'Credits';
   static const String developerWebsite          = 'Developer\'s Website';
   static const String feedback                  = 'Feedback';
@@ -23,10 +25,12 @@ class AppStrings {
   static const String leaderBoard               = 'Leaderboard';
   static const String invite_friend             = 'Share With A Friend';
   static const String loading                   = 'Loading. Please Wait...';
+  static const String noThanks                  = 'No, I Give Up';
   static const String pause                     = 'Pause';
   static const String play                      = 'Play';
   static const String bestScore                 = 'Best Score';
   static const String yourScore                 = 'Your Score';
+  static const String watchAd                   = 'Yes, Revive Me';
 
   // App Rating Dialog
   static const String ard_title       = 'Enjoying $appName?';

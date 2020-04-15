@@ -52,18 +52,13 @@ class Player {
       );*/
 
       // Only give player continue option if they meet the criteria
-      if(gameController.playView.score > 0) {
+      if(gameController.playView.score > 0 && gameController.continueView.continuesLeft > 0) {
         // Give player a chance to continue
         gameController.gameState = GameState.CONTINUE;
         // Load reward video for user to watch
         gameController.loadRewardVideo();
       } else {
-        // Reset game
-        gameController.gameState = GameState.GAME_OVER;
-        gameController.initialize();
-        if (gameController.soundButton.isEnabled) {
-          Flame.audio.play(Assets.enemyHaha);
-        }
+        gameController.playView.endGame();
       }
     }
   }

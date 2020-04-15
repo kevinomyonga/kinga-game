@@ -33,6 +33,7 @@ class _GameWidgetState extends State<GameWidget> {
   );
 
   int _coins = 0;
+  bool isRewarded = false;
 
   GameController gameController;
 
@@ -60,13 +61,27 @@ class _GameWidgetState extends State<GameWidget> {
         (RewardedVideoAdEvent event, {String rewardType, int rewardAmount}) {
       print("RewardedVideoAd event $event");
       if (event == RewardedVideoAdEvent.rewarded) {
-        setState(() {
+        /*setState(() {
           _coins += rewardAmount;
           print("RewardedVideoAd rewardAmount: $_coins");
 
-          gameController.continueView.resumeGame();
-        });
+          isRewarded = true;
+        });*/
+        isRewarded = true;
       }
+      if (event == RewardedVideoAdEvent.closed && isRewarded) {
+        gameController.continueView.resumeGame();
+        //setState(() {
+          // Reset
+          //isRewarded = false;
+        //});
+        print("RewardedVideoAd Is rewarded event $event");
+      }
+      if (event == RewardedVideoAdEvent.closed && !isRewarded) {
+        gameController.playView.endGame();
+        print("RewardedVideoAd Closed Before Completion event $event");
+      }
+      //print("RewardedVideoAd event $event");
     };
 
     gameController.loadRewardVideo = () {
@@ -125,13 +140,13 @@ class _GameWidgetState extends State<GameWidget> {
           listener: (button) { // The button click listener (useful if you want to cancel the click event).
             switch(button) {
               case RateMyAppDialogButton.rate:
-                //print('Clicked on "Rate".');
+              //print('Clicked on "Rate".');
                 break;
               case RateMyAppDialogButton.later:
-                //print('Clicked on "Later".');
+              //print('Clicked on "Later".');
                 break;
               case RateMyAppDialogButton.no:
-                //print('Clicked on "No".');
+              //print('Clicked on "No".');
                 break;
             }
 

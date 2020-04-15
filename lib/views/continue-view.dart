@@ -3,11 +3,11 @@ import 'dart:ui';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
-import 'package:kinga/components/buttons/back-button.dart';
+import 'package:kinga/components/buttons/no-thanks-button.dart';
 import 'package:kinga/components/buttons/show-ad-button.dart';
 import 'package:kinga/components/player.dart';
 import 'package:kinga/components/text/continue-display.dart';
-import 'package:kinga/components/text/credits-display.dart';
+import 'package:kinga/components/text/continues-left-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
@@ -18,30 +18,40 @@ class ContinueView {
   Rect rect;
   Sprite sprite;
 
+  int continuesLeft;
+
   ContinueDisplay continueDisplay;
+  ContinuesLeftDisplay continuesLeftDisplay;
 
   ShowAdButton showAdButton;
-  BackButton backButton;
+  NoThanksButton noThanksButton;
 
   ContinueView(this.gameController) {
     resize();
     sprite = Sprite(Assets.dialogBgImg);
 
+    continuesLeft = 3;
+
     continueDisplay = ContinueDisplay(gameController);
+    continuesLeftDisplay = ContinuesLeftDisplay(gameController);
     showAdButton = ShowAdButton(gameController);
-    backButton = BackButton(gameController);
+    noThanksButton = NoThanksButton(gameController);
   }
 
   void render(Canvas c) {
     sprite.renderRect(c, rect);
 
     continueDisplay.render(c);
+    continuesLeftDisplay.render(c);
     showAdButton.render(c);
-    backButton.render(c);
+    noThanksButton.render(c);
   }
 
   void update(double t) {
     continueDisplay.update(t);
+    continuesLeftDisplay.update(t);
+    showAdButton.update(t);
+    noThanksButton.update(t);
   }
 
   void resize() {
@@ -53,7 +63,7 @@ class ContinueView {
     );
 
     showAdButton?.resize();
-    backButton?.resize();
+    noThanksButton?.resize();
   }
 
   void onTapUp(TapUpDetails d) {
@@ -67,10 +77,10 @@ class ContinueView {
       }
     }
 
-    // Back Button
-    if (!isHandled && backButton.rect.contains(d.globalPosition)) {
+    // No Thanks Button
+    if (!isHandled && noThanksButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.CONTINUE) {
-        backButton.onTapUp();
+        noThanksButton.onTapUp();
         isHandled = true;
       }
     }
@@ -84,16 +94,8 @@ class ContinueView {
 
     // Resurrect Player
     gameController.playView.player = Player(gameController);
-  }
 
-  void endGame() {
-    // End game
-    gameController.gameState = GameState.GAME_OVER;
-
-    // Reset game
-    gameController.initialize();
-    if (gameController.soundButton.isEnabled) {
-      Flame.audio.play(Assets.enemyHaha);
-    }
+    // Deduct from continues
+    gameController.continueView.continuesLeft--;
   }
 }

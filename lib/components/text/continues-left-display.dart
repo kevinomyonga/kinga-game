@@ -1,24 +1,16 @@
-import 'package:flame/sprite.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kinga/components/buttons/base-button.dart';
+import 'package:flutter/painting.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
 
-class ShowAdButton extends BaseButton {
+class ContinuesLeftDisplay {
 
   final GameController gameController;
-  Rect rect;
-  Sprite sprite;
-
   TextPainter painter;
   Offset position;
 
-  ShowAdButton(this.gameController) : super(gameController) {
-    resize();
-    sprite = Sprite(Assets.menuButtonBg);
-
+  ContinuesLeftDisplay(this.gameController) {
     painter = TextPainter(
       textAlign: TextAlign.center,
       textDirection: TextDirection.ltr,
@@ -28,11 +20,12 @@ class ShowAdButton extends BaseButton {
   }
 
   void render(Canvas c) {
-    sprite.renderRect(c, rect);
     painter.paint(c, position);
   }
 
   void update(double t) {
+
+    int continuesLeft = gameController.continueView.continuesLeft;
 
     Shadow shadow = Shadow(
       blurRadius: gameController.tileSize * .0625,
@@ -41,9 +34,9 @@ class ShowAdButton extends BaseButton {
     );
 
     painter.text = TextSpan(
-      text: AppStrings.watchAd,
+      text: '$continuesLeft ' + (continuesLeft > 1 ? AppStrings.continuesRemaining : AppStrings.continueRemaining),
       style: TextStyle(
-        color: Colors.white,
+        color: Colors.yellow,
         fontFamily: Assets.fontEquestria,
         fontSize: gameController.tileSize * .75,
         shadows: <Shadow>[shadow, shadow, shadow, shadow, shadow, shadow, shadow, shadow],
@@ -53,24 +46,7 @@ class ShowAdButton extends BaseButton {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      ((gameController.screenSize.height * .55) - (gameController.tileSize * 1.5)
-          + (gameController.tileSize * 1.5 / 2)) - (painter.height / 2),
+      (gameController.screenSize.height * 0.4) - (painter.height / 2),
     );
-  }
-
-  void resize() {
-    rect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 3),
-      (gameController.screenSize.height * .55) - (gameController.tileSize * 1.5),
-      gameController.tileSize * 6,
-      gameController.tileSize * 1.5,
-    );
-  }
-
-  void onTapUp() {
-    super.onTapUp();
-
-    // Show the player a reward video
-    gameController.showRewardVideo();
   }
 }

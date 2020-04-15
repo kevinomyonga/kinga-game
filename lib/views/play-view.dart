@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:flame/flame.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kinga/components/buttons/pause-button.dart';
 import 'package:kinga/components/enemy.dart';
@@ -15,6 +16,7 @@ import 'package:kinga/components/text/score-display.dart';
 import 'package:kinga/controllers/enemy_spawner.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
+import 'package:kinga/res/assets.dart';
 
 class PlayView {
 
@@ -156,6 +158,17 @@ class PlayView {
       case 4:
         enemies.add(HungryFly(gameController, x, y));
         break;
+    }
+  }
+
+  void endGame() {
+    // End game
+    gameController.gameState = GameState.GAME_OVER;
+
+    // Reset game
+    gameController.initialize();
+    if (gameController.soundButton.isEnabled) {
+      Flame.audio.play(Assets.enemyHaha);
     }
   }
 }
