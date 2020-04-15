@@ -12,6 +12,7 @@ class AppStrings {
   /// Strings
   static const String about                     = 'About';
   static const String about_app                 = 'About App';
+  static const String continue_game             = 'Continue?';
   static const String credits                   = 'Credits';
   static const String developerWebsite          = 'Developer\'s Website';
   static const String feedback                  = 'Feedback';

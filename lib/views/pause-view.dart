@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kinga/components/buttons/home-button.dart';
-import 'package:kinga/components/buttons/play-button.dart';
+import 'package:kinga/components/buttons/resume-button.dart';
 import 'package:kinga/components/buttons/reload-button.dart';
 import 'package:kinga/components/text/pause-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
@@ -18,7 +18,7 @@ class PauseView {
 
   PauseDisplay pauseDisplay;
 
-  PlayButton playButton;
+  ResumeButton playButton;
   ReloadButton reloadButton;
   HomeButton homeButton;
 
@@ -28,7 +28,7 @@ class PauseView {
 
     pauseDisplay = PauseDisplay(gameController);
 
-    playButton = PlayButton(gameController);
+    playButton = ResumeButton(gameController);
     reloadButton = ReloadButton(gameController);
     homeButton = HomeButton(gameController);
   }

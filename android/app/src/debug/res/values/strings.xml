@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">KINGA-Dev</string>
     <string name="game_app_id">144497199827</string>
+    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
 </resources>

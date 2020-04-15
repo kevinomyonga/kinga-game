@@ -7,13 +7,13 @@ import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
-class PlayButton extends BaseButton {
+class ResumeButton extends BaseButton {
 
   final GameController gameController;
   Rect rect;
   Sprite sprite;
 
-  PlayButton(this.gameController) : super(gameController) {
+  ResumeButton(this.gameController) : super(gameController) {
     resize();
     sprite = Sprite(Assets.playButtonImg);
   }

@@ -167,4 +167,6 @@ class GameController extends Game with TapDetector {
   Function() showHelp;
   //Function() showCredits;
   Function() shareGame;
+  Function() loadRewardVideo;
+  Function() showRewardVideo;
 }

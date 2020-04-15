@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:games_services/games_services.dart';
@@ -11,12 +12,27 @@ import 'package:kinga/views/help-view.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 import 'package:share/share.dart';
 
+// You can also test with your own ad unit IDs by registering your device as a
+// test device. Check the logs for your device's ID value.
+const String testDevice = '135986D75C1D9E9C63566BD16C02DFD7';
+
 class GameWidget extends StatefulWidget {
   @override
   _GameWidgetState createState() => _GameWidgetState();
 }
 
 class _GameWidgetState extends State<GameWidget> {
+
+  // Ad Targeting Info
+  static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
+    testDevices: testDevice != null ? <String>[testDevice] : null,
+    keywords: <String>['foo', 'bar'],
+    contentUrl: 'http://foo.com/bar.html',
+    childDirected: true,
+    nonPersonalizedAds: true,
+  );
+
+  int _coins = 0;
 
   GameController gameController;
 
@@ -37,6 +53,27 @@ class _GameWidgetState extends State<GameWidget> {
   @override
   void initState() {
     super.initState();
+
+    FirebaseAdMob.instance.initialize(appId: Ids.adMobAppID);
+
+    RewardedVideoAd.instance.listener =
+        (RewardedVideoAdEvent event, {String rewardType, int rewardAmount}) {
+      print("RewardedVideoAd event $event");
+      if (event == RewardedVideoAdEvent.rewarded) {
+        setState(() {
+          _coins += rewardAmount;
+          print("RewardedVideoAd rewardAmount: $_coins");
+        });
+      }
+    };
+
+    gameController.loadRewardVideo = () {
+      _loadRewardVideo();
+    };
+
+    gameController.showRewardVideo = () {
+      _showRewardVideo();
+    };
 
     // Sign in the user
     GamesServices.signIn();
@@ -114,5 +151,17 @@ class _GameWidgetState extends State<GameWidget> {
     } else if (Platform.isIOS) {
       Share.share('Check out the ${AppStrings.appName} Game here: ${AppStrings.url_app_store}');
     }
+  }
+
+  _loadRewardVideo() {
+    // Load Video
+    RewardedVideoAd.instance.load(
+        adUnitId: Ids.rewardAdUnitID,
+        targetingInfo: targetingInfo);
+  }
+
+  _showRewardVideo() {
+    // Show Video
+    RewardedVideoAd.instance.show();
   }
 }
