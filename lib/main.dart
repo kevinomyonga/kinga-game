@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kinga/bgm.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/splashscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,9 +22,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      /*theme: ThemeData(
-        fontFamily: Assets.fontEquestria,
-      ),*/
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
     );
@@ -42,7 +38,7 @@ Future setupFlame() async {
   flameUtil.setOrientation(DeviceOrientation.portraitUp); //Force the app to be in this screen mode
 
   await Flame.images.loadAll(<String>[
-    Assets.backgroundImg,
+    Assets.backgroundDayImg,
     Assets.startButtonImg,
     Assets.backButtonImg,
     Assets.enemyAgileFly1,
@@ -75,15 +71,12 @@ Future setupFlame() async {
     Assets.enemyMachoFly1Inverted,
     Assets.enemyMachoFly2Inverted,
     Assets.enemyMachoFlyDeadInverted,
-    Assets.titleImg,
     Assets.playerImg,
-    Assets.gameOverImg,
     Assets.musicEnabledImg,
     Assets.musicDisabledImg,
     Assets.soundEnabledImg,
     Assets.soundDisabledImg,
     Assets.helpImg,
-    Assets.creditsImg,
     Assets.screenshotImg,
   ]);
 

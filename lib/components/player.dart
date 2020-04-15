@@ -1,13 +1,9 @@
 import 'dart:ui';
 
-import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
-import 'package:games_services/games_services.dart';
-import 'package:games_services/score.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_data.dart';
 import 'package:kinga/game_state.dart';
-import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/assets.dart';
 
 class Player {
@@ -27,8 +23,6 @@ class Player {
   }
 
   void render(Canvas c) {
-    /*Paint color = Paint()..color = Color(0xFF0000FF);
-    c.drawRect(playerRect, color);*/
     sprite.renderRect(c, playerRect);
   }
 
@@ -57,6 +51,8 @@ class Player {
         gameController.gameState = GameState.CONTINUE;
         // Load reward video for user to watch
         gameController.loadRewardVideo();
+        // Refresh the Continue View
+        gameController.continueView.startCountdown();
       } else {
         gameController.playView.endGame();
       }

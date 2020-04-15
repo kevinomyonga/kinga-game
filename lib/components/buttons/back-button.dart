@@ -1,7 +1,6 @@
 import 'package:flame/sprite.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kinga/bgm.dart';
 import 'package:kinga/components/buttons/base-button.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
@@ -15,7 +14,7 @@ class BackButton extends BaseButton {
 
   BackButton(this.gameController) : super(gameController) {
     resize();
-    sprite = Sprite(Assets.backButtonImg);
+    sprite = Sprite(Assets.menuButtonImg);
   }
 
   void render(Canvas c) {

@@ -14,6 +14,7 @@ import 'package:kinga/components/enemy.dart';
 import 'package:kinga/controllers/enemy_spawner.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/main.dart';
+import 'package:kinga/views/about-view.dart';
 import 'package:kinga/views/continue-view.dart';
 import 'package:kinga/views/credits-view.dart';
 import 'package:kinga/views/home-view.dart';
@@ -39,13 +40,14 @@ class GameController extends Game with TapDetector {
 
   MusicButton musicButton;
   SoundButton soundButton;
-  ShareButton screenshotButton;
+  ShareButton shareButton;
 
   HomeView homeView;
   PlayView playView;
   PauseView pauseView;
   ContinueView continueView;
   LostView lostView;
+  AboutView aboutView;
   CreditsView creditsView;
 
   bool isNewHighScore = false;
@@ -58,16 +60,13 @@ class GameController extends Game with TapDetector {
   void initialize() async {
     resize(await Flame.util.initialDimensions());
 
+    rand = Random();
     background = Backdrop(this);
-    //healthBar = HealthBar(this);
-    //score = 0;
-    //scoreDisplay = ScoreDisplay(this);
 
     musicButton = MusicButton(this);
     soundButton = SoundButton(this);
-    screenshotButton = ShareButton(this);
+    shareButton = ShareButton(this);
 
-    rand = Random();
     enemies = List<Enemy>();
     enemySpawner = EnemySpawner(this);
 
@@ -76,6 +75,7 @@ class GameController extends Game with TapDetector {
     pauseView = PauseView(this);
     continueView = ContinueView(this);
     lostView = LostView(this);
+    aboutView = AboutView(this);
     creditsView = CreditsView(this);
 
     // Play Menu Music
@@ -84,9 +84,6 @@ class GameController extends Game with TapDetector {
   }
 
   void render(Canvas c) {
-    /*Rect background = Rect.fromLTWH(0, 0, screenSize.width, screenSize.height);
-    Paint backgroundPaint = Paint()..color = Color(0xFFFAFAFA);
-    c.drawRect(background, backgroundPaint);*/
 
     background.render(c);
 
@@ -95,13 +92,14 @@ class GameController extends Game with TapDetector {
     if(gameState == GameState.PAUSED) pauseView.render(c);
     if(gameState == GameState.CONTINUE) continueView.render(c);
     if(gameState == GameState.GAME_OVER) lostView.render(c);
+    if(gameState == GameState.ABOUT) aboutView.render(c);
     if(gameState == GameState.CREDITS) creditsView.render(c);
 
     musicButton.render(c);
     // Prevent music from playing if disabled
     if(!musicButton.isEnabled) BGM.pause();
     soundButton.render(c);
-    screenshotButton.render(c);
+    shareButton.render(c);
 
     //if (gameState == GameState.HELP) helpView.render(c);
   }
@@ -112,6 +110,7 @@ class GameController extends Game with TapDetector {
     if(gameState == GameState.PAUSED) pauseView.update(t);
     if(gameState == GameState.CONTINUE) continueView.update(t);
     if(gameState == GameState.GAME_OVER) lostView.update(t);
+    if(gameState == GameState.ABOUT) aboutView.update(t);
     if(gameState == GameState.CREDITS) creditsView.update(t);
   }
 
@@ -129,11 +128,12 @@ class GameController extends Game with TapDetector {
     pauseView?.resize();
     continueView?.resize();
     lostView?.resize();
+    aboutView?.resize();
     creditsView?.resize();
 
     musicButton?.resize();
     soundButton?.resize();
-    screenshotButton?.resize();
+    shareButton?.resize();
   }
 
   void onTapDown(TapDownDetails d) {
@@ -144,12 +144,13 @@ class GameController extends Game with TapDetector {
   void onTapUp(TapUpDetails d) {
     bool isHandled = false;
 
-    homeView.onTapUp(d);
-    playView.onTapUp(d);
-    pauseView.onTapUp(d);
-    continueView.onTapUp(d);
-    lostView.onTapUp(d);
-    creditsView.onTapUp(d);
+    if(gameState == GameState.MENU) homeView.onTapUp(d);
+    if(gameState == GameState.PLAYING) playView.onTapUp(d);
+    if(gameState == GameState.PAUSED) pauseView.onTapUp(d);
+    if(gameState == GameState.CONTINUE) continueView.onTapUp(d);
+    if(gameState == GameState.GAME_OVER) lostView.onTapUp(d);
+    if(gameState == GameState.ABOUT) aboutView.onTapUp(d);
+    if(gameState == GameState.CREDITS) creditsView.onTapUp(d);
 
     // Music Button
     if(!isHandled && musicButton.rect.contains(d.globalPosition)) {
@@ -164,15 +165,14 @@ class GameController extends Game with TapDetector {
     }
 
     // Screenshot Button
-    if(!isHandled && screenshotButton.rect.contains(d.globalPosition)) {
-      screenshotButton.onTapUp();
+    if(!isHandled && shareButton.rect.contains(d.globalPosition)) {
+      shareButton.onTapUp();
       isHandled = true;
     }
   }
 
   Function() showLeaderBoard;
   Function() showHelp;
-  //Function() showCredits;
   Function() shareGame;
   Function() loadRewardVideo;
   Function() showRewardVideo;

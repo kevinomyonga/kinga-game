@@ -7,7 +7,7 @@ import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
 
-class HomeButton extends BaseButton {
+class RestartButton extends BaseButton {
 
   final GameController gameController;
   Rect rect;
@@ -16,7 +16,7 @@ class HomeButton extends BaseButton {
   TextPainter painter;
   Offset position;
 
-  HomeButton(this.gameController) : super(gameController) {
+  RestartButton(this.gameController) : super(gameController) {
     resize();
     sprite = Sprite(Assets.menuButtonBg);
 
@@ -42,7 +42,7 @@ class HomeButton extends BaseButton {
     );
 
     painter.text = TextSpan(
-      text: AppStrings.quit,
+      text: AppStrings.reload,
       style: TextStyle(
         color: Colors.white,
         fontFamily: Assets.fontEquestria,
@@ -54,7 +54,7 @@ class HomeButton extends BaseButton {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      ((gameController.screenSize.height * .7) - (gameController.tileSize * 1.5)
+      ((gameController.screenSize.height * .6) - (gameController.tileSize * 1.5)
           + (gameController.tileSize * 1.5 / 2)) - (painter.height / 2),
     );
   }
@@ -62,7 +62,7 @@ class HomeButton extends BaseButton {
   void resize() {
     rect = Rect.fromLTWH(
       (gameController.screenSize.width / 2) - (gameController.tileSize * 3),
-      (gameController.screenSize.height * .7) - (gameController.tileSize * 1.5),
+      (gameController.screenSize.height * .6) - (gameController.tileSize * 1.5),
       gameController.tileSize * 6,
       gameController.tileSize * 1.5,
     );
@@ -70,7 +70,7 @@ class HomeButton extends BaseButton {
 
   void onTapUp() {
     super.onTapUp();
-    gameController.gameState = GameState.MENU;
+    gameController.gameState = GameState.PLAYING;
     // Reset game
     gameController.initialize();
   }

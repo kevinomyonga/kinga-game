@@ -4,7 +4,7 @@ import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kinga/components/buttons/home-button.dart';
 import 'package:kinga/components/buttons/resume-button.dart';
-import 'package:kinga/components/buttons/reload-button.dart';
+import 'package:kinga/components/buttons/restart-button.dart';
 import 'package:kinga/components/text/pause-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
@@ -19,7 +19,7 @@ class PauseView {
   PauseDisplay pauseDisplay;
 
   ResumeButton resumeButton;
-  ReloadButton reloadButton;
+  RestartButton restartButton;
   HomeButton homeButton;
 
   PauseView(this.gameController) {
@@ -29,7 +29,7 @@ class PauseView {
     pauseDisplay = PauseDisplay(gameController);
 
     resumeButton = ResumeButton(gameController);
-    reloadButton = ReloadButton(gameController);
+    restartButton = RestartButton(gameController);
     homeButton = HomeButton(gameController);
   }
 
@@ -37,14 +37,16 @@ class PauseView {
     sprite.renderRect(c, rect);
 
     pauseDisplay.render(c);
-
     resumeButton.render(c);
-    reloadButton.render(c);
+    restartButton.render(c);
     homeButton.render(c);
   }
 
   void update(double t) {
     pauseDisplay.update(t);
+    resumeButton.update(t);
+    restartButton.update(t);
+    homeButton.update(t);
   }
 
   void resize() {
@@ -56,7 +58,7 @@ class PauseView {
     );
 
     resumeButton?.resize();
-    reloadButton?.resize();
+    restartButton?.resize();
     homeButton?.resize();
   }
 
@@ -72,9 +74,9 @@ class PauseView {
     }
 
     // Reload Button
-    if (!isHandled && reloadButton.rect.contains(d.globalPosition)) {
+    if (!isHandled && restartButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.PAUSED) {
-        reloadButton.onTapUp();
+        restartButton.onTapUp();
         isHandled = true;
       }
     }

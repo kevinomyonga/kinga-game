@@ -34,9 +34,9 @@ class HomeView {
   TitleDisplay titleDisplay;
 
   StartButton startButton;
-  HelpButton helpButton;
-  CreditsButton creditsButton;
   LeaderBoardButton leaderBoardButton;
+  CreditsButton creditsButton;
+  HelpButton helpButton;
 
   CopyrightDisplay copyrightDisplay;
 
@@ -54,9 +54,9 @@ class HomeView {
     copyrightDisplay = CopyrightDisplay(gameController);
 
     startButton = StartButton(gameController);
-    helpButton = HelpButton(gameController);
     leaderBoardButton = LeaderBoardButton(gameController);
     creditsButton = CreditsButton(gameController);
+    helpButton = HelpButton(gameController);
   }
 
   void render(Canvas c) {
@@ -93,7 +93,7 @@ class HomeView {
 
   void resize() {
     titleRect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 2.3),
+      (gameController.screenSize.width / 2) - (gameController.tileSize * 2.25),
       (gameController.screenSize.height / 2) - (gameController.tileSize * 6),
       gameController.tileSize * 3.5,
       gameController.tileSize * 3.5,
@@ -107,50 +107,6 @@ class HomeView {
     helpButton?.resize();
   }
 
-  /*void onTapDown(TapDownDetails d) {
-    bool isHandled = false;
-
-    // Start Button
-    if (!isHandled && startButton.rect.contains(d.globalPosition)) {
-      if (gameController.gameState == GameState.MENU) {
-        startButton.onTapDown();
-        isHandled = true;
-      }
-    }
-
-    // Help Button
-    if (!isHandled && helpButton.rect.contains(d.globalPosition)) {
-      if (gameController.gameState == GameState.MENU) {
-        helpButton.onTapDown();
-        isHandled = true;
-      }
-    }
-
-    // Credits Button
-    if (!isHandled && creditsButton.rect.contains(d.globalPosition)) {
-      if (gameController.gameState == GameState.MENU) {
-        creditsButton.onTapDown();
-        isHandled = true;
-      }
-    }
-
-    // LeaderBoard Button
-    if (!isHandled && leaderBoardButton.rect.contains(d.globalPosition)) {
-      if (gameController.gameState == GameState.MENU) {
-        leaderBoardButton.onTapDown();
-        isHandled = true;
-      }
-    }
-
-    // Dialog Boxes
-    *//*if (!isHandled) {
-      if (gameController.gameState == GameState.HELP || gameController.gameState == GameState.CREDITS) {
-        //gameController.gameState = GameState.MENU;
-        isHandled = true;
-      }
-    }*//*
-  }*/
-
   void onTapUp(TapUpDetails d) {
     bool isHandled = false;
 
@@ -162,10 +118,10 @@ class HomeView {
       }
     }
 
-    // Help Button
-    if (!isHandled && helpButton.rect.contains(d.globalPosition)) {
+    // LeaderBoard Button
+    if (!isHandled && leaderBoardButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.MENU) {
-        helpButton.onTapUp();
+        leaderBoardButton.onTapUp();
         isHandled = true;
       }
     }
@@ -178,17 +134,17 @@ class HomeView {
       }
     }
 
-    // LeaderBoard Button
-    if (!isHandled && leaderBoardButton.rect.contains(d.globalPosition)) {
+    // Help Button
+    if (!isHandled && helpButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.MENU) {
-        leaderBoardButton.onTapUp();
+        creditsButton.onTapUp();
         isHandled = true;
       }
     }
   }
 
   void titleFly() {
-    // Type of enemy spawned
+    // Type of enemy spawned for the title view
     switch (rand.nextInt(5)) {
       case 0:
         titleSprite.add(Sprite(Assets.enemyAgileFly1));

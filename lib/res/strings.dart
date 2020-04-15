@@ -30,6 +30,9 @@ class AppStrings {
   static const String play                      = 'Play';
   static const String bestScore                 = 'Best Score';
   static const String yourScore                 = 'Your Score';
+  static const String quit                      = 'Quit';
+  static const String reload                    = 'Reload';
+  static const String resume                    = 'Resume';
   static const String watchAd                   = 'Yes, Revive Me';
 
   // App Rating Dialog

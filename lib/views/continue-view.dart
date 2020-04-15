@@ -8,6 +8,7 @@ import 'package:kinga/components/buttons/show-ad-button.dart';
 import 'package:kinga/components/player.dart';
 import 'package:kinga/components/text/continue-display.dart';
 import 'package:kinga/components/text/continues-left-display.dart';
+import 'package:kinga/components/text/countdown-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
@@ -19,9 +20,11 @@ class ContinueView {
   Sprite sprite;
 
   int continuesLeft;
+  int timeLeft;
 
   ContinueDisplay continueDisplay;
   ContinuesLeftDisplay continuesLeftDisplay;
+  CountdownDisplay countdownDisplay;
 
   ShowAdButton showAdButton;
   NoThanksButton noThanksButton;
@@ -31,11 +34,18 @@ class ContinueView {
     sprite = Sprite(Assets.dialogBgImg);
 
     continuesLeft = 3;
+    timeLeft = 10;
 
     continueDisplay = ContinueDisplay(gameController);
     continuesLeftDisplay = ContinuesLeftDisplay(gameController);
+    countdownDisplay = CountdownDisplay(gameController);
     showAdButton = ShowAdButton(gameController);
     noThanksButton = NoThanksButton(gameController);
+  }
+  
+  void startCountdown() {
+    timeLeft = 10;
+    countdownDisplay = CountdownDisplay(gameController);
   }
 
   void render(Canvas c) {
@@ -43,6 +53,7 @@ class ContinueView {
 
     continueDisplay.render(c);
     continuesLeftDisplay.render(c);
+    countdownDisplay.render(c);
     showAdButton.render(c);
     noThanksButton.render(c);
   }
@@ -50,8 +61,13 @@ class ContinueView {
   void update(double t) {
     continueDisplay.update(t);
     continuesLeftDisplay.update(t);
+    countdownDisplay.update(t);
     showAdButton.update(t);
     noThanksButton.update(t);
+
+    if(timeLeft <= 0) {
+      gameController.playView.endGame();
+    }
   }
 
   void resize() {
@@ -83,6 +99,11 @@ class ContinueView {
         noThanksButton.onTapUp();
         isHandled = true;
       }
+    }
+
+    // Stop The Countdown
+    if (isHandled) {
+      gameController.continueView.countdownDisplay.interval.stop();
     }
   }
 

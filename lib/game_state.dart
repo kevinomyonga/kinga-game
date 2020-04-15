@@ -5,5 +5,6 @@ enum GameState {
   CONTINUE,
   GAME_OVER,
   HELP,
+  ABOUT,
   CREDITS,
 }

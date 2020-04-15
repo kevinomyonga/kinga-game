@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flame/sprite.dart';
@@ -10,9 +11,21 @@ class Backdrop {
   Sprite bgSprite;
   Rect bgRect;
 
+  Random rand;
+
   Backdrop(this.gameController) {
-    bgSprite = Sprite(Assets.backgroundImg);
     resize();
+    rand = gameController.rand;
+
+    // Select background image at random
+    switch (rand.nextInt(2)) {
+      case 0:
+        bgSprite = Sprite(Assets.backgroundDayImg);
+        break;
+      case 1:
+        bgSprite = Sprite(Assets.backgroundNightImg);
+        break;
+    }
   }
 
   void render(Canvas c) {
