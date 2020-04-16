@@ -8,7 +8,7 @@ import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
 
-class StartButton extends BaseButton {
+class PlayButton extends BaseButton {
 
   final GameController gameController;
   Rect rect;
@@ -17,7 +17,7 @@ class StartButton extends BaseButton {
   TextPainter painter;
   Offset position;
 
-  StartButton(this.gameController) : super(gameController) {
+  PlayButton(this.gameController) : super(gameController) {
     resize();
     sprite = Sprite(Assets.bgMenuButton);
 
@@ -73,5 +73,7 @@ class StartButton extends BaseButton {
     super.onTapUp();
     gameController.gameState = GameState.PLAYING;
     BGM.play(BGMType.PLAYING);
+    // Reset HighScore Flag
+    gameController.isNewHighScore = false;
   }
 }

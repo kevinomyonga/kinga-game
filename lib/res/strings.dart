@@ -30,6 +30,7 @@ class AppStrings {
   static const String pause                     = 'Pause';
   static const String play                      = 'Play';
   static const String bestScore                 = 'Best Score';
+  static const String newHighScore              = 'Congratulations!\nNew Highscore';
   static const String yourScore                 = 'Your Score';
   static const String quit                      = 'Quit';
   static const String reload                    = 'Reload';

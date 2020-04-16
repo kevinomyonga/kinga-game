@@ -98,4 +98,6 @@ class Assets {
   static const String healthBarEmpty        = "$imageUIDir/bar-health-empty.png";
   static const String healthBarFull         = "$imageUIDir/bar-health-full.png";
   static const String heart                 = "$imageUIDir/heart.png";
+
+  static const String star                  = "$imageUIDir/star.png";
 }

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:kinga/components/buttons/about-button.dart';
 import 'package:kinga/components/buttons/help-button.dart';
 import 'package:kinga/components/buttons/leaderboard-button.dart';
-import 'package:kinga/components/buttons/start-button.dart';
+import 'package:kinga/components/buttons/play-button.dart';
 import 'package:kinga/components/text/copyright-display.dart';
 import 'package:kinga/components/text/highscore_display.dart';
 import 'package:kinga/components/text/title-display.dart';
@@ -33,7 +33,7 @@ class HomeView {
   HighScoreDisplay highScoreDisplay;
   TitleDisplay titleDisplay;
 
-  StartButton startButton;
+  PlayButton playButton;
   LeaderBoardButton leaderBoardButton;
   AboutButton aboutButton;
   HelpButton helpButton;
@@ -53,7 +53,7 @@ class HomeView {
     titleDisplay = TitleDisplay(gameController);
     copyrightDisplay = CopyrightDisplay(gameController);
 
-    startButton = StartButton(gameController);
+    playButton = PlayButton(gameController);
     leaderBoardButton = LeaderBoardButton(gameController);
     aboutButton = AboutButton(gameController);
     helpButton = HelpButton(gameController);
@@ -66,7 +66,7 @@ class HomeView {
     // Menu
     highScoreDisplay.render(c);
     titleDisplay.render(c);
-    startButton.render(c);
+    playButton.render(c);
     leaderBoardButton.render(c);
     aboutButton.render(c);
     helpButton.render(c);
@@ -85,7 +85,7 @@ class HomeView {
     // Menu
     highScoreDisplay.update(t);
     titleDisplay.update(t);
-    startButton.update(t);
+    playButton.update(t);
     leaderBoardButton.update(t);
     aboutButton.update(t);
     copyrightDisplay.update(t);
@@ -101,7 +101,7 @@ class HomeView {
     titleRectOriginalPosition = titleRect.center;
 
     // Menu
-    startButton?.resize();
+    playButton?.resize();
     leaderBoardButton?.resize();
     aboutButton?.resize();
     helpButton?.resize();
@@ -110,9 +110,9 @@ class HomeView {
   void onTapUp(TapUpDetails d) {
 
     // Start Button
-    if (!gameController.isHandled && startButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && playButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.MENU) {
-        startButton.onTapUp();
+        playButton.onTapUp();
         gameController.isHandled = true;
       }
     }

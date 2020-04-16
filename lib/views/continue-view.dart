@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kinga/components/buttons/no-thanks-button.dart';

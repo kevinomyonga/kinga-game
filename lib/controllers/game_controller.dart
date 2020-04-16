@@ -52,7 +52,7 @@ class GameController extends Game with TapDetector {
   CreditsView creditsView;
   TutorialView tutorialView;
 
-  bool isNewHighScore = false;
+  bool isNewHighScore;
 
   bool isHandled;
 

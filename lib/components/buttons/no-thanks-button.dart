@@ -2,11 +2,8 @@ import 'dart:ui';
 
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
-import 'package:games_services/games_services.dart';
 import 'package:kinga/components/buttons/base-button.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
-import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
 
@@ -73,7 +70,6 @@ class NoThanksButton extends BaseButton {
 
   void onTapUp() {
     super.onTapUp();
-
     gameController.playView.endGame();
   }
 }

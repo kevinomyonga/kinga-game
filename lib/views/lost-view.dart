@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:kinga/components/buttons/menu-button.dart';
 import 'package:kinga/components/text/best_score_display.dart';
 import 'package:kinga/components/text/game-over-display.dart';
+import 'package:kinga/components/text/new-highscore-display.dart';
 import 'package:kinga/components/text/your_score_display.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
@@ -19,6 +20,7 @@ class LostView {
   GameOverDisplay gameOverDisplay;
   YourScoreDisplay yourScoreDisplay;
   BestScoreDisplay bestScoreDisplay;
+  NewHighScoreDisplay newHighScoreDisplay;
 
   MenuButton menuButton;
 
@@ -29,6 +31,7 @@ class LostView {
     gameOverDisplay = GameOverDisplay(gameController);
     yourScoreDisplay = YourScoreDisplay(gameController);
     bestScoreDisplay = BestScoreDisplay(gameController);
+    newHighScoreDisplay = NewHighScoreDisplay(gameController);
     menuButton = MenuButton(gameController);
   }
 
@@ -38,6 +41,7 @@ class LostView {
     gameOverDisplay.render(c);
     yourScoreDisplay.render(c);
     bestScoreDisplay.render(c);
+    if(gameController.isNewHighScore) newHighScoreDisplay.render(c);
     menuButton.render(c);
   }
 
@@ -45,6 +49,7 @@ class LostView {
     gameOverDisplay.update(t);
     yourScoreDisplay.update(t);
     bestScoreDisplay.update(t);
+    newHighScoreDisplay.update(t);
   }
 
   void resize() {
@@ -55,7 +60,7 @@ class LostView {
       gameController.tileSize * 12,
     );
 
-    bestScoreDisplay?.resize();
+    newHighScoreDisplay?.resize();
     menuButton?.resize();
   }
 
