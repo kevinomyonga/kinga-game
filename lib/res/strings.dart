@@ -17,7 +17,6 @@ class AppStrings {
   static const String continueRemaining         = 'Continue Remaining';
   static const String continuesRemaining        = 'Continues Remaining';
   static const String credits                   = 'Credits';
-  static const String developerWebsite          = 'Developer\'s Website';
   static const String feedback                  = 'Send Feedback';
   static const String gameOver                  = 'Game Over';
   static const String highScore                 = 'HighScore';
@@ -36,6 +35,7 @@ class AppStrings {
   static const String reload                    = 'Reload';
   static const String resume                    = 'Resume';
   static const String version                   = 'Version';
+  static const String visitWebsite              = 'Visit Website';
   static const String watchAd                   = 'Yes, Revive Me';
   static const String watchDemo                 = 'Watch A Demo';
 

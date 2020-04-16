@@ -42,7 +42,7 @@ class DeveloperWebsiteButton extends BaseButton {
     );
 
     painter.text = TextSpan(
-      text: AppStrings.developerWebsite,
+      text: AppStrings.visitWebsite,
       style: TextStyle(
         color: Colors.white,
         fontFamily: Assets.fontEquestria,
