@@ -126,9 +126,6 @@ class GameController extends Game with TapDetector {
 
     background?.resize();
 
-    //highScoreDisplay?.resize();
-    //scoreDisplay?.resize();
-
     homeView?.resize();
     playView?.resize();
     pauseView?.resize();
@@ -187,4 +184,5 @@ class GameController extends Game with TapDetector {
   Function(String) sendFeedback;
   Function() launchDeveloperWebsite;
   Function() openDemoVideo;
+  Function() resetRewardFlag;
 }

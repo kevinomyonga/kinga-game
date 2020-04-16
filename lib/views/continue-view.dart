@@ -108,6 +108,9 @@ class ContinueView {
   void resumeGame() {
     gameController.gameState = GameState.PLAYING;
 
+    // Reset Reward flag
+    gameController.resetRewardFlag();
+
     // Kill all enemies to clear the screen
     gameController.enemySpawner.killAllEnemies();
 

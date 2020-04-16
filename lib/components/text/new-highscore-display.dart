@@ -57,7 +57,7 @@ class NewHighScoreDisplay {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      gameController.tileSize * 10.5,
+      gameController.tileSize * 10.8,
     );
   }
 

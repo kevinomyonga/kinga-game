@@ -27,23 +27,11 @@ class Player {
   }
 
   void update(double t) {
-    //print(currentHealth);
     if(!isDead && currentHealth <= 0) {
       isDead = true;
 
       // Save the current score
       GameData.setLastSubmittedScore(gameController.playView.score);
-
-      /*// Update HighScore
-      GameData.updateScore(gameController.playView.score);
-
-      // Submit HighScore to LeaderBoard
-      GamesServices.submitScore(
-          score: Score(
-              androidLeaderboardID: Ids.androidLeaderBoardID,
-              iOSLeaderboardID: Ids.iOSLeaderBoardID,
-              value: gameController.playView.score)
-      );*/
 
       // Only give player continue option if they meet the criteria
       if(gameController.playView.score > 0 && gameController.continueView.continuesLeft > 0) {

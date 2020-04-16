@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:games_services/games_services.dart';
 import 'package:kinga/controllers/game_controller.dart';
+import 'package:kinga/game_state.dart';
 import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/strings.dart';
 import 'package:rate_my_app/rate_my_app.dart';
@@ -67,16 +68,22 @@ class _GameWidgetState extends State<GameWidget> {
         (RewardedVideoAdEvent event, {String rewardType, int rewardAmount}) {
       print("RewardedVideoAd event $event");
       if (event == RewardedVideoAdEvent.rewarded) {
-        isRewarded = true;
+        setState(() {
+          isRewarded = true;
+        });
       }
-      if (event == RewardedVideoAdEvent.closed && isRewarded) {
+      if(event == RewardedVideoAdEvent.closed && isRewarded && gameController.gameState == GameState.CONTINUE) {
         gameController.continueView.resumeGame();
-        print("RewardedVideoAd Is rewarded event $event");
       }
-      if (event == RewardedVideoAdEvent.closed && !isRewarded) {
+      if(event == RewardedVideoAdEvent.closed && !isRewarded && gameController.gameState == GameState.CONTINUE) {
         gameController.playView.endGame();
-        print("RewardedVideoAd Closed Before Completion event $event");
       }
+    };
+
+    gameController.resetRewardFlag = () {
+      setState(() {
+        isRewarded = false;
+      });
     };
 
     gameController.loadRewardVideo = () {
