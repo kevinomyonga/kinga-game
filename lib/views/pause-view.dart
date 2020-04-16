@@ -63,29 +63,28 @@ class PauseView {
   }
 
   void onTapUp(TapUpDetails d) {
-    bool isHandled = gameController.isHandled;
 
     // Play/Resume Button
-    if (!isHandled && resumeButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && resumeButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.PAUSED) {
         resumeButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
 
     // Reload Button
-    if (!isHandled && restartButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && restartButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.PAUSED) {
         restartButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
 
     // Back Button
-    if (!isHandled && homeButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && homeButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.PAUSED) {
         homeButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
   }

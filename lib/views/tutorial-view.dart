@@ -62,21 +62,20 @@ class TutorialView {
   }
 
   void onTapUp(TapUpDetails d) {
-    bool isHandled = false;
 
     // Demo Button
-    if (!isHandled && tutorialDemoButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && tutorialDemoButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.HELP) {
         tutorialDemoButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
 
     // Back Button
-    if (!isHandled && menuButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && menuButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.HELP) {
         menuButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
   }

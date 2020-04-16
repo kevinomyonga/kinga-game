@@ -108,37 +108,36 @@ class HomeView {
   }
 
   void onTapUp(TapUpDetails d) {
-    bool isHandled = gameController.isHandled;
 
     // Start Button
-    if (!isHandled && startButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && startButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.MENU) {
         startButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
 
     // LeaderBoard Button
-    if (!isHandled && leaderBoardButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && leaderBoardButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.MENU) {
         leaderBoardButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
 
     // About Button
-    if (!isHandled && aboutButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && aboutButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.MENU) {
         aboutButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
 
     // Help Button
-    if (!isHandled && helpButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && helpButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.MENU) {
         helpButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
   }

@@ -68,21 +68,20 @@ class CreditsView {
   }
 
   void onTapUp(TapUpDetails d) {
-    bool isHandled = gameController.isHandled;
 
     // Developer's Website Button
-    if (!isHandled && developerWebsiteButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && developerWebsiteButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.CREDITS) {
         developerWebsiteButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
 
     // Back Button
-    if (!isHandled && backButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && backButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.CREDITS) {
         backButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
   }

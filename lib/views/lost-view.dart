@@ -60,13 +60,12 @@ class LostView {
   }
 
   void onTapUp(TapUpDetails d) {
-    bool isHandled = gameController.isHandled;
 
     // Back Button
-    if (!isHandled && menuButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && menuButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.CREDITS || gameController.gameState == GameState.GAME_OVER) {
         menuButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
   }

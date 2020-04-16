@@ -73,29 +73,28 @@ class AboutView {
   }
 
   void onTapUp(TapUpDetails d) {
-    bool isHandled = gameController.isHandled;
 
     // FeedBack Button
-    if (!isHandled && feedbackButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && feedbackButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.ABOUT) {
         feedbackButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
 
     // Credits Button
-    if (!isHandled && creditsButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && creditsButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.ABOUT) {
         creditsButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
 
     // Back Button
-    if (!isHandled && menuButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && menuButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.ABOUT) {
         menuButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
   }

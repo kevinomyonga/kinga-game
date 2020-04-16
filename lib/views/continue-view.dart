@@ -83,26 +83,25 @@ class ContinueView {
   }
 
   void onTapUp(TapUpDetails d) {
-    bool isHandled = gameController.isHandled;
 
     // Show Ad Button
-    if (!isHandled && showAdButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && showAdButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.CONTINUE) {
         showAdButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
 
     // No Thanks Button
-    if (!isHandled && noThanksButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && noThanksButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.CONTINUE) {
         noThanksButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
 
     // Stop The Countdown
-    if (isHandled) {
+    if (gameController.isHandled) {
       gameController.continueView.countdownDisplay.interval.stop();
     }
   }
