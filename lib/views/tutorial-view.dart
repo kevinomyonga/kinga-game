@@ -2,7 +2,10 @@ import 'dart:ui';
 
 import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
-import 'package:kinga/components/buttons/back-button.dart';
+import 'package:kinga/components/buttons/menu-button.dart';
+import 'package:kinga/components/buttons/tutorial-demo-button.dart';
+import 'package:kinga/components/text/tutorial-display.dart';
+import 'package:kinga/components/text/tutorial-info-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
@@ -13,22 +16,37 @@ class TutorialView {
   Rect rect;
   Sprite sprite;
 
-  BackButton backButton;
+  TutorialDisplay tutorialDisplay;
+  TutorialInfoDisplay tutorialInfoDisplay;
+
+  TutorialDemoButton tutorialDemoButton;
+  MenuButton menuButton;
 
   TutorialView(this.gameController) {
     resize();
     sprite = Sprite(Assets.dialogBgImg);
 
-    backButton = BackButton(gameController);
+    tutorialDisplay = TutorialDisplay(gameController);
+    tutorialInfoDisplay = TutorialInfoDisplay(gameController);
+    tutorialDemoButton = TutorialDemoButton(gameController);
+    menuButton = MenuButton(gameController);
   }
 
   void render(Canvas c) {
     sprite.renderRect(c, rect);
 
-    backButton.render(c);
+    tutorialDisplay.render(c);
+    tutorialInfoDisplay.render(c);
+
+    tutorialDemoButton.render(c);
+    menuButton.render(c);
   }
 
   void update(double t) {
+    tutorialDisplay.update(t);
+    tutorialInfoDisplay.update(t);
+
+    tutorialDemoButton.update(t);
   }
 
   void resize() {
@@ -39,16 +57,25 @@ class TutorialView {
       gameController.tileSize * 12,
     );
 
-    backButton?.resize();
+    tutorialDemoButton?.resize();
+    menuButton?.resize();
   }
 
   void onTapUp(TapUpDetails d) {
     bool isHandled = false;
 
+    // Demo Button
+    if (!isHandled && tutorialDemoButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.HELP) {
+        tutorialDemoButton.onTapUp();
+        isHandled = true;
+      }
+    }
+
     // Back Button
-    if (!isHandled && backButton.rect.contains(d.globalPosition)) {
-      if (gameController.gameState == GameState.CREDITS) {
-        backButton.onTapUp();
+    if (!isHandled && menuButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.HELP) {
+        menuButton.onTapUp();
         isHandled = true;
       }
     }

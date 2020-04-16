@@ -2,10 +2,12 @@ import 'dart:ui';
 
 import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
-import 'package:kinga/components/buttons/back-button.dart';
+import 'package:kinga/components/buttons/menu-button.dart';
+import 'package:kinga/components/buttons/credits-button.dart';
+import 'package:kinga/components/buttons/feedback-button.dart';
+import 'package:kinga/components/text/about-copyright-display.dart';
 import 'package:kinga/components/text/about-display.dart';
-import 'package:kinga/components/text/credits-display.dart';
-import 'package:kinga/components/text/credits-title-display.dart';
+import 'package:kinga/components/text/version-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
@@ -17,30 +19,44 @@ class AboutView {
   Sprite sprite;
 
   AboutDisplay aboutDisplay;
-  CreditsTitleDisplay creditsTitleDisplay;
+  VersionDisplay versionDisplay;
+  AboutCopyrightDisplay aboutCopyrightDisplay;
 
-  BackButton backButton;
+  FeedbackButton feedbackButton;
+  CreditsButton creditsButton;
+  MenuButton menuButton;
 
   AboutView(this.gameController) {
     resize();
     sprite = Sprite(Assets.dialogBgImg);
 
     aboutDisplay = AboutDisplay(gameController);
-    creditsTitleDisplay = CreditsTitleDisplay(gameController);
-    backButton = BackButton(gameController);
+    versionDisplay = VersionDisplay(gameController);
+    aboutCopyrightDisplay = AboutCopyrightDisplay(gameController);
+
+    feedbackButton = FeedbackButton(gameController);
+    creditsButton = CreditsButton(gameController);
+    menuButton = MenuButton(gameController);
   }
 
   void render(Canvas c) {
     sprite.renderRect(c, rect);
 
     aboutDisplay.render(c);
-    creditsTitleDisplay.render(c);
-    backButton.render(c);
+    versionDisplay.render(c);
+    aboutCopyrightDisplay.render(c);
+    feedbackButton.render(c);
+    creditsButton.render(c);
+    menuButton.render(c);
   }
 
   void update(double t) {
     aboutDisplay.update(t);
-    creditsTitleDisplay.update(t);
+    versionDisplay.update(t);
+    aboutCopyrightDisplay.update(t);
+
+    feedbackButton.update(t);
+    creditsButton.update(t);
   }
 
   void resize() {
@@ -51,16 +67,34 @@ class AboutView {
       gameController.tileSize * 12,
     );
 
-    backButton?.resize();
+    feedbackButton?.resize();
+    creditsButton?.resize();
+    menuButton?.resize();
   }
 
   void onTapUp(TapUpDetails d) {
-    bool isHandled = false;
+    bool isHandled = gameController.isHandled;
+
+    // FeedBack Button
+    if (!isHandled && feedbackButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.ABOUT) {
+        feedbackButton.onTapUp();
+        isHandled = true;
+      }
+    }
+
+    // Credits Button
+    if (!isHandled && creditsButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.ABOUT) {
+        creditsButton.onTapUp();
+        isHandled = true;
+      }
+    }
 
     // Back Button
-    if (!isHandled && backButton.rect.contains(d.globalPosition)) {
+    if (!isHandled && menuButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.ABOUT) {
-        backButton.onTapUp();
+        menuButton.onTapUp();
         isHandled = true;
       }
     }

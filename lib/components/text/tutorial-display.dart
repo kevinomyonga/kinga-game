@@ -4,13 +4,13 @@ import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
 
-class CreditsTitleDisplay {
+class TutorialDisplay {
 
   final GameController gameController;
   TextPainter painter;
   Offset position;
 
-  CreditsTitleDisplay(this.gameController) {
+  TutorialDisplay(this.gameController) {
     painter = TextPainter(
       textAlign: TextAlign.center,
       textDirection: TextDirection.ltr,
@@ -32,11 +32,11 @@ class CreditsTitleDisplay {
     );
 
     painter.text = TextSpan(
-      text: AppStrings.appAuthorRole,
+      text: AppStrings.howToPlay,
       style: TextStyle(
         color: Colors.white,
         fontFamily: Assets.fontEquestria,
-        fontSize: gameController.tileSize * .75,
+        fontSize: gameController.tileSize * 1.3,
         shadows: <Shadow>[shadow, shadow, shadow, shadow, shadow, shadow, shadow, shadow],
       ),
     );
@@ -44,7 +44,7 @@ class CreditsTitleDisplay {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      (gameController.screenSize.height * 0.5) - (painter.height / 2),
+      (gameController.screenSize.height * 0.3) - (painter.height / 2),
     );
   }
 }

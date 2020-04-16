@@ -18,7 +18,7 @@ class RestartButton extends BaseButton {
 
   RestartButton(this.gameController) : super(gameController) {
     resize();
-    sprite = Sprite(Assets.menuButtonBg);
+    sprite = Sprite(Assets.bgMenuButton);
 
     painter = TextPainter(
       textAlign: TextAlign.center,

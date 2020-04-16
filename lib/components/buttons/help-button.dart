@@ -32,6 +32,6 @@ class HelpButton extends BaseButton {
 
   void onTapUp() {
     super.onTapUp();
-    gameController.gameState = GameState.CREDITS;
+    gameController.gameState = GameState.HELP;
   }
 }

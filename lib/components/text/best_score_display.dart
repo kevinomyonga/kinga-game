@@ -28,7 +28,7 @@ class BestScoreDisplay {
 
     position = Offset.zero;
 
-    sprite = Sprite(Assets.menuButtonBg);
+    sprite = Sprite(Assets.bgMenuButton);
   }
 
   void render(Canvas c) {

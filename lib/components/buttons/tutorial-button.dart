@@ -15,7 +15,7 @@ class TutorialButton extends BaseButton {
 
   TutorialButton(this.gameController) : super(gameController) {
     resize();
-    sprite = Sprite(Assets.startButtonImg);
+    sprite = Sprite(Assets.bgMenuButton);
   }
 
   void render(Canvas c) {

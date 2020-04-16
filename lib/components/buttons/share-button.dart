@@ -13,7 +13,7 @@ class ShareButton extends BaseButton {
 
   ShareButton(this.gameController) : super(gameController) {
     resize();
-    sprite = Sprite(Assets.screenshotImg);
+    sprite = Sprite(Assets.shareImg);
   }
 
   void render(Canvas c) {

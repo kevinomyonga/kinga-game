@@ -31,7 +31,8 @@ class Assets {
   // Backgrounds
   static const String backgroundDayImg      = "$imageBgDir/background-day.png";
   static const String backgroundNightImg    = "$imageBgDir/background-night.png";
-  static const String dialogBgImg           = "$imageBgDir/dialog.png";
+  static const String dialogBgImg           = "$imageBgDir/bg-dialog.png";
+  static const String bgMenuButton          = "$imageBgDir/bg-menu-button.png";
 
   /// Enemies
   static const String enemyAgileFly1        = "$imageEnemiesDir/agile-fly-1.png";
@@ -79,13 +80,11 @@ class Assets {
   static const String playerImg             = "$imagePlayerDir/player.png";
 
   // UI Buttons
-  static const String startButtonImg        = "$imageUIDir/start-button.png";
   static const String playButtonImg         = "$imageUIDir/button-play.png";
   static const String pauseButtonImg        = "$imageUIDir/button-pause.png";
   static const String homeButtonImg         = "$imageUIDir/button-home.png";
   static const String menuButtonImg         = "$imageUIDir/button-menu.png";
   static const String reloadButtonImg       = "$imageUIDir/button-reload.png";
-  static const String menuButtonBg          = "$imageUIDir/menu-button-bg.png";
 
   static const String backButtonImg         = "$imageUIDir/button-back.png";
   static const String musicEnabledImg       = "$imageUIDir/button-music-on.png";
@@ -93,7 +92,7 @@ class Assets {
   static const String soundEnabledImg       = "$imageUIDir/button-sound-on.png";
   static const String soundDisabledImg      = "$imageUIDir/button-sound-off.png";
   static const String helpImg               = "$imageUIDir/button-help.png";
-  static const String screenshotImg         = "$imageUIDir/button-share.png";
+  static const String shareImg              = "$imageUIDir/button-share.png";
 
   static const String healthBar             = "$imageUIDir/bar-health.png";
   static const String healthBarEmpty        = "$imageUIDir/bar-health-empty.png";

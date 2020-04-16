@@ -6,15 +6,15 @@ import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
-class BackButton extends BaseButton {
+class MenuButton extends BaseButton {
 
   final GameController gameController;
   Rect rect;
   Sprite sprite;
 
-  BackButton(this.gameController) : super(gameController) {
+  MenuButton(this.gameController) : super(gameController) {
     resize();
-    sprite = Sprite(Assets.backButtonImg);
+    sprite = Sprite(Assets.menuButtonImg);
   }
 
   void render(Canvas c) {
@@ -34,6 +34,8 @@ class BackButton extends BaseButton {
 
   void onTapUp() {
     super.onTapUp();
-    gameController.gameState = GameState.ABOUT;
+    gameController.gameState = GameState.MENU;
+    // Reset game
+    gameController.initialize();
   }
 }

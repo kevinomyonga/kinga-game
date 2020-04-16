@@ -63,7 +63,7 @@ class PauseView {
   }
 
   void onTapUp(TapUpDetails d) {
-    bool isHandled = false;
+    bool isHandled = gameController.isHandled;
 
     // Play/Resume Button
     if (!isHandled && resumeButton.rect.contains(d.globalPosition)) {

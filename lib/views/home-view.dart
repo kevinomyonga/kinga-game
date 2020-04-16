@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
-import 'package:kinga/components/buttons/credits-button.dart';
+import 'package:kinga/components/buttons/about-button.dart';
 import 'package:kinga/components/buttons/help-button.dart';
 import 'package:kinga/components/buttons/leaderboard-button.dart';
 import 'package:kinga/components/buttons/start-button.dart';
@@ -35,7 +35,7 @@ class HomeView {
 
   StartButton startButton;
   LeaderBoardButton leaderBoardButton;
-  CreditsButton creditsButton;
+  AboutButton aboutButton;
   HelpButton helpButton;
 
   CopyrightDisplay copyrightDisplay;
@@ -55,7 +55,7 @@ class HomeView {
 
     startButton = StartButton(gameController);
     leaderBoardButton = LeaderBoardButton(gameController);
-    creditsButton = CreditsButton(gameController);
+    aboutButton = AboutButton(gameController);
     helpButton = HelpButton(gameController);
   }
 
@@ -68,7 +68,7 @@ class HomeView {
     titleDisplay.render(c);
     startButton.render(c);
     leaderBoardButton.render(c);
-    creditsButton.render(c);
+    aboutButton.render(c);
     helpButton.render(c);
     copyrightDisplay.render(c);
   }
@@ -87,7 +87,7 @@ class HomeView {
     titleDisplay.update(t);
     startButton.update(t);
     leaderBoardButton.update(t);
-    creditsButton.update(t);
+    aboutButton.update(t);
     copyrightDisplay.update(t);
   }
 
@@ -103,12 +103,12 @@ class HomeView {
     // Menu
     startButton?.resize();
     leaderBoardButton?.resize();
-    creditsButton?.resize();
+    aboutButton?.resize();
     helpButton?.resize();
   }
 
   void onTapUp(TapUpDetails d) {
-    bool isHandled = false;
+    bool isHandled = gameController.isHandled;
 
     // Start Button
     if (!isHandled && startButton.rect.contains(d.globalPosition)) {
@@ -126,10 +126,10 @@ class HomeView {
       }
     }
 
-    // Credits Button
-    if (!isHandled && creditsButton.rect.contains(d.globalPosition)) {
+    // About Button
+    if (!isHandled && aboutButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.MENU) {
-        creditsButton.onTapUp();
+        aboutButton.onTapUp();
         isHandled = true;
       }
     }
@@ -137,7 +137,7 @@ class HomeView {
     // Help Button
     if (!isHandled && helpButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.MENU) {
-        creditsButton.onTapUp();
+        helpButton.onTapUp();
         isHandled = true;
       }
     }

@@ -17,15 +17,7 @@ class Backdrop {
     resize();
     rand = gameController.rand;
 
-    // Select background image at random
-    switch (rand.nextInt(2)) {
-      case 0:
-        bgSprite = Sprite(Assets.backgroundDayImg);
-        break;
-      case 1:
-        bgSprite = Sprite(Assets.backgroundNightImg);
-        break;
-    }
+    backgroundSelect();
   }
 
   void render(Canvas c) {
@@ -42,4 +34,16 @@ class Backdrop {
   }
 
   void update(double t) {}
+
+  void backgroundSelect() {
+    // Select background image at random
+    switch (rand.nextInt(2)) {
+      case 0:
+        bgSprite = Sprite(Assets.backgroundDayImg);
+        break;
+      case 1:
+        bgSprite = Sprite(Assets.backgroundNightImg);
+        break;
+    }
+  }
 }

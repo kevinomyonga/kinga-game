@@ -21,7 +21,7 @@ class LeaderBoardButton extends BaseButton {
 
   LeaderBoardButton(this.gameController) : super(gameController) {
     resize();
-    sprite = Sprite(Assets.menuButtonBg);
+    sprite = Sprite(Assets.bgMenuButton);
 
     painter = TextPainter(
       textAlign: TextAlign.center,

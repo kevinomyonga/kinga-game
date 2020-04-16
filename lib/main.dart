@@ -39,8 +39,7 @@ Future setupFlame() async {
 
   await Flame.images.loadAll(<String>[
     Assets.backgroundDayImg,
-    Assets.startButtonImg,
-    Assets.backButtonImg,
+    Assets.backgroundNightImg,
     Assets.enemyAgileFly1,
     Assets.enemyAgileFly2,
     Assets.enemyAgileFlyDead,
@@ -77,13 +76,15 @@ Future setupFlame() async {
     Assets.soundEnabledImg,
     Assets.soundDisabledImg,
     Assets.helpImg,
-    Assets.screenshotImg,
+    Assets.shareImg,
+    Assets.backButtonImg,
   ]);
 
   Flame.audio.disableLog();
   await BGM.preload();
 
   await Flame.audio.loadAll(<String>[
+    Assets.buttonClick,
     Assets.enemyHaha,
     Assets.enemyHit,
     Assets.enemyOuch,

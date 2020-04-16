@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
-import 'package:kinga/components/buttons/back-button.dart';
+import 'package:kinga/components/buttons/menu-button.dart';
 import 'package:kinga/components/text/best_score_display.dart';
 import 'package:kinga/components/text/game-over-display.dart';
 import 'package:kinga/components/text/your_score_display.dart';
@@ -20,7 +20,7 @@ class LostView {
   YourScoreDisplay yourScoreDisplay;
   BestScoreDisplay bestScoreDisplay;
 
-  BackButton backButton;
+  MenuButton menuButton;
 
   LostView(this.gameController) {
     resize();
@@ -29,7 +29,7 @@ class LostView {
     gameOverDisplay = GameOverDisplay(gameController);
     yourScoreDisplay = YourScoreDisplay(gameController);
     bestScoreDisplay = BestScoreDisplay(gameController);
-    backButton = BackButton(gameController);
+    menuButton = MenuButton(gameController);
   }
 
   void render(Canvas c) {
@@ -38,7 +38,7 @@ class LostView {
     gameOverDisplay.render(c);
     yourScoreDisplay.render(c);
     bestScoreDisplay.render(c);
-    backButton.render(c);
+    menuButton.render(c);
   }
 
   void update(double t) {
@@ -56,16 +56,16 @@ class LostView {
     );
 
     bestScoreDisplay?.resize();
-    backButton?.resize();
+    menuButton?.resize();
   }
 
   void onTapUp(TapUpDetails d) {
-    bool isHandled = false;
+    bool isHandled = gameController.isHandled;
 
     // Back Button
-    if (!isHandled && backButton.rect.contains(d.globalPosition)) {
+    if (!isHandled && menuButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.CREDITS || gameController.gameState == GameState.GAME_OVER) {
-        backButton.onTapUp();
+        menuButton.onTapUp();
         isHandled = true;
       }
     }

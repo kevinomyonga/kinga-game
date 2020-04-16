@@ -8,7 +8,7 @@ import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
 
-class CreditsButton extends BaseButton {
+class AboutButton extends BaseButton {
 
   final GameController gameController;
   Rect rect;
@@ -17,7 +17,7 @@ class CreditsButton extends BaseButton {
   TextPainter painter;
   Offset position;
 
-  CreditsButton(this.gameController) : super(gameController) {
+  AboutButton(this.gameController) : super(gameController) {
     resize();
     sprite = Sprite(Assets.bgMenuButton);
 
@@ -43,11 +43,11 @@ class CreditsButton extends BaseButton {
     );
 
     painter.text = TextSpan(
-      text: AppStrings.credits,
+      text: AppStrings.about,
       style: TextStyle(
         color: Colors.white,
         fontFamily: Assets.fontEquestria,
-        fontSize: gameController.tileSize * .75,
+        fontSize: gameController.tileSize,
         shadows: <Shadow>[shadow, shadow, shadow, shadow, shadow, shadow, shadow, shadow],
       ),
     );
@@ -55,22 +55,22 @@ class CreditsButton extends BaseButton {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      ((gameController.screenSize.height * .66) - (gameController.tileSize * 1.2)
-          + (gameController.tileSize * 1.2 / 2)) - (painter.height / 2),
+      ((gameController.screenSize.height * .85) - (gameController.tileSize * 1.5)
+          + (gameController.tileSize * 1.5 / 2)) - (painter.height / 2),
     );
   }
 
   void resize() {
     rect = Rect.fromLTWH(
       (gameController.screenSize.width / 2) - (gameController.tileSize * 3),
-      (gameController.screenSize.height * .66) - (gameController.tileSize * 1.2),
+      (gameController.screenSize.height * .85) - (gameController.tileSize * 1.5),
       gameController.tileSize * 6,
-      gameController.tileSize * 1.2,
+      gameController.tileSize * 1.5,
     );
   }
 
   void onTapUp() {
     super.onTapUp();
-    gameController.gameState = GameState.CREDITS;
+    gameController.gameState = GameState.ABOUT;
   }
 }

@@ -83,7 +83,7 @@ class ContinueView {
   }
 
   void onTapUp(TapUpDetails d) {
-    bool isHandled = false;
+    bool isHandled = gameController.isHandled;
 
     // Show Ad Button
     if (!isHandled && showAdButton.rect.contains(d.globalPosition)) {

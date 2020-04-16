@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:device_info/device_info.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,10 +8,9 @@ import 'package:games_services/games_services.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/strings.dart';
-import 'package:kinga/views/about-view.dart';
-import 'package:kinga/views/help-view.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // You can also test with your own ad unit IDs by registering your device as a
 // test device. Check the logs for your device's ID value.
@@ -23,6 +23,13 @@ class GameWidget extends StatefulWidget {
 
 class _GameWidgetState extends State<GameWidget> {
 
+  static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+  String appVersion;
+
+  String deviceMake;
+  String deviceModel;
+  String deviceOSVersion;
+
   // Ad Targeting Info
   static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
     testDevices: testDevice != null ? <String>[testDevice] : null,
@@ -32,7 +39,6 @@ class _GameWidgetState extends State<GameWidget> {
     nonPersonalizedAds: true,
   );
 
-  int _coins = 0;
   bool isRewarded = false;
 
   GameController gameController;
@@ -61,27 +67,16 @@ class _GameWidgetState extends State<GameWidget> {
         (RewardedVideoAdEvent event, {String rewardType, int rewardAmount}) {
       print("RewardedVideoAd event $event");
       if (event == RewardedVideoAdEvent.rewarded) {
-        /*setState(() {
-          _coins += rewardAmount;
-          print("RewardedVideoAd rewardAmount: $_coins");
-
-          isRewarded = true;
-        });*/
         isRewarded = true;
       }
       if (event == RewardedVideoAdEvent.closed && isRewarded) {
         gameController.continueView.resumeGame();
-        //setState(() {
-          // Reset
-          //isRewarded = false;
-        //});
         print("RewardedVideoAd Is rewarded event $event");
       }
       if (event == RewardedVideoAdEvent.closed && !isRewarded) {
         gameController.playView.endGame();
         print("RewardedVideoAd Closed Before Completion event $event");
       }
-      //print("RewardedVideoAd event $event");
     };
 
     gameController.loadRewardVideo = () {
@@ -95,22 +90,22 @@ class _GameWidgetState extends State<GameWidget> {
     // Sign in the user
     GamesServices.signIn();
 
-    gameController.showHelp = () {
-      showDialog(
-          context: context,
-          builder: (BuildContext buildContext) {
-            return HelpDialog();
-          });
-    };
-    /*gameController.showCredits = () {
-      showDialog(
-          context: context,
-          builder: (BuildContext buildContext) {
-            return AboutGameDialog();
-          });
-    };*/
     gameController.shareGame = () {
       _inviteFriend();
+    };
+
+    gameController.launchDeveloperWebsite = () {
+      _launchDeveloperWebsite();
+    };
+
+    gameController.openDemoVideo = () {
+      _launchDemoOnYoutube();
+    };
+
+    initPlatformState();
+    gameController.sendFeedback = (appVersion) {
+      this.appVersion = appVersion;
+      _sendFeedback();
     };
 
     showRatingDialog();
@@ -180,5 +175,67 @@ class _GameWidgetState extends State<GameWidget> {
   _showRewardVideo() {
     // Show Video
     RewardedVideoAd.instance.show();
+  }
+
+  // Launch a mail application to be used to send feedback to the developer
+  _sendFeedback() {
+    String subject = '${AppStrings.appName} Game Feedback';
+
+    String body = "\bFeedback:\b  \n\n" +
+        "\n\bApp Version:\b $appVersion " +
+        "\n\bManufacturer:\b $deviceMake " +
+        "\n\bDevice:\b $deviceModel " +
+        "\n\bOS Version:\b $deviceOSVersion ";
+
+    if(Platform.isAndroid) {
+      _launchURL('mailto:${AppStrings.companyEmail}?subject=$subject&body=$body');
+    } else if (Platform.isIOS) {
+      _launchURL('mailto:${AppStrings.companyEmail}?subject=${Uri.encodeComponent(subject)}&body=${Uri.encodeComponent(body)}');
+    }
+  }
+
+  Future<AndroidDeviceInfo> getAndroidDeviceInfo(deviceInfo) async {
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    return androidInfo;
+  }
+
+  Future<IosDeviceInfo> getIosInfo(deviceInfo) async {
+    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+    return iosInfo;
+  }
+
+  Future<void> initPlatformState() async {
+
+    if(Platform.isAndroid) {
+      getAndroidDeviceInfo(deviceInfoPlugin).then((androidInfo) {
+        deviceMake = androidInfo.manufacturer;
+        deviceModel = androidInfo.model;
+        deviceOSVersion = androidInfo.version.sdkInt.toString();
+      });
+    } else if (Platform.isIOS) {
+      getIosInfo(deviceInfoPlugin).then((iosInfo) {
+        deviceMake = 'Apple';
+        deviceModel = iosInfo.utsname.machine;
+        deviceOSVersion = iosInfo.utsname.version;
+      });
+    }
+  }
+
+  // Launch a developer website
+  _launchDeveloperWebsite() {
+    _launchURL(AppStrings.url_my_website);
+  }
+
+  // Launch a developer website
+  _launchDemoOnYoutube() {
+    _launchURL(AppStrings.url_youtube_demo);
+  }
+
+  _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

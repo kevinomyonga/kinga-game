@@ -21,6 +21,7 @@ import 'package:kinga/views/home-view.dart';
 import 'package:kinga/views/lost-view.dart';
 import 'package:kinga/views/pause-view.dart';
 import 'package:kinga/views/play-view.dart';
+import 'package:kinga/views/tutorial-view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GameController extends Game with TapDetector {
@@ -49,8 +50,11 @@ class GameController extends Game with TapDetector {
   LostView lostView;
   AboutView aboutView;
   CreditsView creditsView;
+  TutorialView tutorialView;
 
   bool isNewHighScore = false;
+
+  bool isHandled;
 
   GameController() {
     storage = sharedPrefs;
@@ -77,6 +81,7 @@ class GameController extends Game with TapDetector {
     lostView = LostView(this);
     aboutView = AboutView(this);
     creditsView = CreditsView(this);
+    tutorialView = TutorialView(this);
 
     // Play Menu Music
     if(gameState == GameState.MENU) BGM.play(BGMType.HOME);
@@ -94,14 +99,14 @@ class GameController extends Game with TapDetector {
     if(gameState == GameState.GAME_OVER) lostView.render(c);
     if(gameState == GameState.ABOUT) aboutView.render(c);
     if(gameState == GameState.CREDITS) creditsView.render(c);
+    if(gameState == GameState.HELP) tutorialView.render(c);
 
     musicButton.render(c);
     // Prevent music from playing if disabled
     if(!musicButton.isEnabled) BGM.pause();
     soundButton.render(c);
-    shareButton.render(c);
 
-    //if (gameState == GameState.HELP) helpView.render(c);
+    if(gameState != GameState.PLAYING) shareButton.render(c);
   }
 
   void update(double t) {
@@ -112,6 +117,7 @@ class GameController extends Game with TapDetector {
     if(gameState == GameState.GAME_OVER) lostView.update(t);
     if(gameState == GameState.ABOUT) aboutView.update(t);
     if(gameState == GameState.CREDITS) creditsView.update(t);
+    if(gameState == GameState.HELP) tutorialView.update(t);
   }
 
   void resize(Size size) {
@@ -130,6 +136,7 @@ class GameController extends Game with TapDetector {
     lostView?.resize();
     aboutView?.resize();
     creditsView?.resize();
+    tutorialView?.resize();
 
     musicButton?.resize();
     soundButton?.resize();
@@ -142,7 +149,7 @@ class GameController extends Game with TapDetector {
   }
 
   void onTapUp(TapUpDetails d) {
-    bool isHandled = false;
+    isHandled = false;
 
     if(gameState == GameState.MENU) homeView.onTapUp(d);
     if(gameState == GameState.PLAYING) playView.onTapUp(d);
@@ -151,6 +158,7 @@ class GameController extends Game with TapDetector {
     if(gameState == GameState.GAME_OVER) lostView.onTapUp(d);
     if(gameState == GameState.ABOUT) aboutView.onTapUp(d);
     if(gameState == GameState.CREDITS) creditsView.onTapUp(d);
+    if(gameState == GameState.HELP) tutorialView.onTapUp(d);
 
     // Music Button
     if(!isHandled && musicButton.rect.contains(d.globalPosition)) {
@@ -176,4 +184,7 @@ class GameController extends Game with TapDetector {
   Function() shareGame;
   Function() loadRewardVideo;
   Function() showRewardVideo;
+  Function(String) sendFeedback;
+  Function() launchDeveloperWebsite;
+  Function() openDemoVideo;
 }

@@ -4,11 +4,10 @@ import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import 'package:kinga/components/buttons/base-button.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
 
-class CreditsButton extends BaseButton {
+class TutorialDemoButton extends BaseButton {
 
   final GameController gameController;
   Rect rect;
@@ -17,7 +16,7 @@ class CreditsButton extends BaseButton {
   TextPainter painter;
   Offset position;
 
-  CreditsButton(this.gameController) : super(gameController) {
+  TutorialDemoButton(this.gameController) : super(gameController) {
     resize();
     sprite = Sprite(Assets.bgMenuButton);
 
@@ -43,7 +42,7 @@ class CreditsButton extends BaseButton {
     );
 
     painter.text = TextSpan(
-      text: AppStrings.credits,
+      text: AppStrings.watchDemo,
       style: TextStyle(
         color: Colors.white,
         fontFamily: Assets.fontEquestria,
@@ -55,7 +54,7 @@ class CreditsButton extends BaseButton {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      ((gameController.screenSize.height * .66) - (gameController.tileSize * 1.2)
+      ((gameController.screenSize.height * .64) - (gameController.tileSize * 1.2)
           + (gameController.tileSize * 1.2 / 2)) - (painter.height / 2),
     );
   }
@@ -63,7 +62,7 @@ class CreditsButton extends BaseButton {
   void resize() {
     rect = Rect.fromLTWH(
       (gameController.screenSize.width / 2) - (gameController.tileSize * 3),
-      (gameController.screenSize.height * .66) - (gameController.tileSize * 1.2),
+      (gameController.screenSize.height * .64) - (gameController.tileSize * 1.2),
       gameController.tileSize * 6,
       gameController.tileSize * 1.2,
     );
@@ -71,6 +70,6 @@ class CreditsButton extends BaseButton {
 
   void onTapUp() {
     super.onTapUp();
-    gameController.gameState = GameState.CREDITS;
+    gameController.openDemoVideo();
   }
 }
