@@ -74,7 +74,9 @@ class LeaderBoardButton extends BaseButton {
   void onTapUp() {
     super.onTapUp();
 
-    // Show the leaderboard screen
+    // Sign in the user just in case the first call failed.
+    GamesServices.signIn();
+    // Show the leaderBoard screen
     GamesServices.showLeaderboards(
         iOSLeaderboardID: Ids.iOSLeaderBoardID
     );

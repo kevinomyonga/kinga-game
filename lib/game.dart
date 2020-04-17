@@ -62,6 +62,7 @@ class _GameWidgetState extends State<GameWidget> {
   void initState() {
     super.initState();
 
+    // Set up Firebase AdMob
     FirebaseAdMob.instance.initialize(appId: Ids.adMobAppID);
 
     RewardedVideoAd.instance.listener =
@@ -94,8 +95,9 @@ class _GameWidgetState extends State<GameWidget> {
       _showRewardVideo();
     };
 
-    // Sign in the user
-    GamesServices.signIn();
+    // Sign in the user to the Service
+    //GamesServices.signIn();
+    GamesServices.signIn().then((value) => print('Game Service Sign In Response: $value'));
 
     gameController.shareGame = () {
       _inviteFriend();

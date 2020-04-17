@@ -101,6 +101,7 @@ class HomeView {
     titleRectOriginalPosition = titleRect.center;
 
     // Menu
+    highScoreDisplay?.resize();
     playButton?.resize();
     leaderBoardButton?.resize();
     aboutButton?.resize();

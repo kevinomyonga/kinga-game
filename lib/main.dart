@@ -40,6 +40,8 @@ Future setupFlame() async {
   await Flame.images.loadAll(<String>[
     Assets.backgroundDayImg,
     Assets.backgroundNightImg,
+    Assets.dialogBgImg,
+    Assets.dialogHeaderBgImg,
     Assets.enemyAgileFly1,
     Assets.enemyAgileFly2,
     Assets.enemyAgileFlyDead,

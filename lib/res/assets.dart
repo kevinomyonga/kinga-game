@@ -32,6 +32,7 @@ class Assets {
   static const String backgroundDayImg      = "$imageBgDir/background-day.png";
   static const String backgroundNightImg    = "$imageBgDir/background-night.png";
   static const String dialogBgImg           = "$imageBgDir/bg-dialog.png";
+  static const String dialogHeaderBgImg     = "$imageBgDir/bg-dialog-header.png";
   static const String bgMenuButton          = "$imageBgDir/bg-menu-button.png";
 
   /// Enemies
