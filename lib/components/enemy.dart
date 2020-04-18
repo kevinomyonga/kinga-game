@@ -4,8 +4,8 @@ import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:kinga/components/enemy-health-bar.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_data.dart';
-import 'package:kinga/game_state.dart';
+import 'package:kinga/helpers/game_data.dart';
+import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
 class Enemy {

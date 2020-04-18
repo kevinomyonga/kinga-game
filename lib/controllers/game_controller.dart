@@ -5,14 +5,15 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flutter/widgets.dart';
-import 'package:kinga/bgm.dart';
+import 'package:kinga/helpers/bgm.dart';
 import 'package:kinga/components/backdrop.dart';
 import 'package:kinga/components/buttons/music-button.dart';
 import 'package:kinga/components/buttons/share-button.dart';
 import 'package:kinga/components/buttons/sound-button.dart';
 import 'package:kinga/components/enemy.dart';
 import 'package:kinga/controllers/enemy_spawner.dart';
-import 'package:kinga/game_state.dart';
+import 'package:kinga/helpers/game_data.dart';
+import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/main.dart';
 import 'package:kinga/views/about-view.dart';
 import 'package:kinga/views/continue-view.dart';
@@ -22,11 +23,10 @@ import 'package:kinga/views/lost-view.dart';
 import 'package:kinga/views/pause-view.dart';
 import 'package:kinga/views/play-view.dart';
 import 'package:kinga/views/tutorial-view.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class GameController extends Game with TapDetector {
 
-  SharedPreferences storage;
+  GameData gameData;
 
   Size screenSize;
   double tileSize;
@@ -43,6 +43,7 @@ class GameController extends Game with TapDetector {
   SoundButton soundButton;
   ShareButton shareButton;
 
+  // Game Views
   HomeView homeView;
   PlayView playView;
   PauseView pauseView;
@@ -52,12 +53,14 @@ class GameController extends Game with TapDetector {
   CreditsView creditsView;
   TutorialView tutorialView;
 
+  // New HighScore Flag
   bool isNewHighScore;
 
+  // Tap Detection Flag
   bool isHandled;
 
   GameController() {
-    storage = sharedPrefs;
+    gameData = gameDataStorage;
     initialize();
   }
 
@@ -176,13 +179,17 @@ class GameController extends Game with TapDetector {
     }
   }
 
+  // LeaderBoard
   Function() showLeaderBoard;
-  Function() showHelp;
+  // Share
   Function() shareGame;
+  // RewardAds
   Function() loadRewardVideo;
   Function() showRewardVideo;
+  Function() resetRewardFlag;
+  // Feedback
   Function(String) sendFeedback;
   Function() launchDeveloperWebsite;
+  // Tutorial/Demo
   Function() openDemoVideo;
-  Function() resetRewardFlag;
 }

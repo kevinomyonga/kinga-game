@@ -2,14 +2,16 @@ import 'package:flame/flame.dart';
 import 'package:flame/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kinga/bgm.dart';
+import 'package:kinga/helpers/bgm.dart';
 import 'package:kinga/controllers/game_controller.dart';
+import 'package:kinga/helpers/game_data.dart';
 import 'package:kinga/res/assets.dart';
-import 'package:kinga/splashscreen.dart';
+import 'package:kinga/screens/splashscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 SharedPreferences sharedPrefs;
 GameController gameController;
+GameData gameDataStorage;
 
 void main() async {
   //Make sure flame is ready before we launch our game
@@ -33,6 +35,7 @@ Future setupFlame() async {
   WidgetsFlutterBinding.ensureInitialized(); //Since flutter upgrade this is required
 
   sharedPrefs = await SharedPreferences.getInstance();
+  gameDataStorage = GameData(sharedPrefs);
   Util flameUtil = Util();
   flameUtil.fullScreen();
   flameUtil.setOrientation(DeviceOrientation.portraitUp); //Force the app to be in this screen mode

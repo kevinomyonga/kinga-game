@@ -9,7 +9,7 @@ import 'package:kinga/components/text/about-copyright-display.dart';
 import 'package:kinga/components/text/about-display.dart';
 import 'package:kinga/components/text/version-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
+import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
 class AboutView {

@@ -11,7 +11,7 @@ import 'package:kinga/components/text/copyright-display.dart';
 import 'package:kinga/components/text/highscore_display.dart';
 import 'package:kinga/components/text/title-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
+import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
 class HomeView {

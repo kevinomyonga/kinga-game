@@ -2,8 +2,7 @@ import 'dart:ui';
 
 import 'package:flame/sprite.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_data.dart';
-import 'package:kinga/game_state.dart';
+import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
 class Player {
@@ -33,7 +32,7 @@ class Player {
       isDead = true;
 
       // Save the current score
-      GameData.setLastSubmittedScore(gameController.playView.score);
+      gameController.gameData.setLastSubmittedScore(gameController.playView.score);
 
       // Only give player continue option if they meet the criteria
       if(gameController.playView.score > 0 && gameController.continueView.continuesLeft > 0) {

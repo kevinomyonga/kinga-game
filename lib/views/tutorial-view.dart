@@ -7,7 +7,7 @@ import 'package:kinga/components/buttons/tutorial-demo-button.dart';
 import 'package:kinga/components/text/tutorial-display.dart';
 import 'package:kinga/components/text/tutorial-info-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
+import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
 class TutorialView {

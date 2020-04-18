@@ -1,6 +1,6 @@
 import 'package:flame_splash_screen/flame_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:kinga/game.dart';
+import 'package:kinga/screens/game.dart';
 import 'package:kinga/res/assets.dart';
 
 class SplashScreen extends StatefulWidget {

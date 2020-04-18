@@ -3,7 +3,6 @@ import 'package:flutter/painting.dart';
 import 'package:games_services/games_services.dart';
 import 'package:games_services/score.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_data.dart';
 import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
@@ -28,15 +27,15 @@ class BestScoreDisplay {
     painter.paint(c, position);
   }
 
-  Future<void> update(double t) async {
-    int currentScore = await GameData.getLastSubmittedScore();
-    int highScore = await GameData.getScore();
+  void update(double t) {
+    int currentScore = gameController.gameData.getLastSubmittedScore();
+    int highScore = gameController.gameData.getHighScore();
 
     if(currentScore > highScore) {
       gameController.isNewHighScore = true;
 
       // Update HighScore
-      GameData.updateScore(currentScore);
+      gameController.gameData.updateHighScore(currentScore);
 
       // Submit HighScore to LeaderBoard
       GamesServices.submitScore(

@@ -9,7 +9,7 @@ import 'package:kinga/components/text/continue-display.dart';
 import 'package:kinga/components/text/continues-left-display.dart';
 import 'package:kinga/components/text/countdown-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
+import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
 class ContinueView {

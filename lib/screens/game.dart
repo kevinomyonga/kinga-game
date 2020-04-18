@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:games_services/games_services.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
+import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/strings.dart';
 import 'package:rate_my_app/rate_my_app.dart';
@@ -36,8 +36,6 @@ class _GameWidgetState extends State<GameWidget> {
   // Ad Targeting Info
   static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
     testDevices: testDevice != null ? <String>[testDevice] : null,
-    keywords: <String>['foo', 'bar'],
-    contentUrl: 'http://foo.com/bar.html',
     childDirected: true,
     nonPersonalizedAds: true,
   );
@@ -90,10 +88,6 @@ class _GameWidgetState extends State<GameWidget> {
       if(event == RewardedVideoAdEvent.closed && !isRewarded && gameController.gameState == GameState.CONTINUE) {
         gameController.playView.endGame();
       }
-      // Check if the reward has failed to load
-      /*if(event == RewardedVideoAdEvent.failedToLoad && !isRewarded && gameController.gameState == GameState.CONTINUE) {
-        gameController.playView.endGame();
-      }*/
     };
 
     gameController.resetRewardFlag = () {
@@ -206,6 +200,8 @@ class _GameWidgetState extends State<GameWidget> {
     RewardedVideoAd.instance.show().catchError((e) {
       _loadRewardVideo();
       gameController.playView.player.showContinue(false);
+      // Remove Current SnackBar (if any) to avoid having multiple popping up.
+      scaffold.removeCurrentSnackBar();
       // Find the Scaffold in the widget tree and use
       // it to show a SnackBar.
       scaffold.showSnackBar(

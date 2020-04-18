@@ -15,7 +15,7 @@ import 'package:kinga/components/player.dart';
 import 'package:kinga/components/text/score-display.dart';
 import 'package:kinga/controllers/enemy_spawner.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
+import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
 class PlayView {

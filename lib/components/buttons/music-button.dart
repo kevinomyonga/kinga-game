@@ -1,9 +1,9 @@
 import 'dart:ui';
+
 import 'package:flame/sprite.dart';
-import 'package:kinga/bgm.dart';
+import 'package:kinga/helpers/bgm.dart';
 import 'package:kinga/components/buttons/base-button.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/assets.dart';
 
 class MusicButton extends BaseButton {
@@ -20,7 +20,7 @@ class MusicButton extends BaseButton {
     disabledSprite = Sprite(Assets.musicDisabledImg);
 
     // Load Pref
-    isEnabled = gameController.storage.getBool(Ids.sharedPrefMusic) ?? true;
+    isEnabled = gameController.gameData.isMusicEnabled();
   }
 
   void render(Canvas c) {
@@ -49,7 +49,7 @@ class MusicButton extends BaseButton {
       isEnabled = true;
       BGM.resume();
     }
-    // Save Pref
-    gameController.storage.setBool(Ids.sharedPrefMusic, isEnabled);
+    // Update Pref
+    gameController.gameData.setMusicEnabled(isEnabled);
   }
 }

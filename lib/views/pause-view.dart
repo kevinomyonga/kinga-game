@@ -7,7 +7,7 @@ import 'package:kinga/components/buttons/resume-button.dart';
 import 'package:kinga/components/buttons/restart-button.dart';
 import 'package:kinga/components/text/pause-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
+import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
 class PauseView {

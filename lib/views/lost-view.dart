@@ -8,7 +8,7 @@ import 'package:kinga/components/text/game-over-display.dart';
 import 'package:kinga/components/text/new-highscore-display.dart';
 import 'package:kinga/components/text/your_score_display.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
+import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
 class LostView {
