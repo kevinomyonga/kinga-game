@@ -49,7 +49,7 @@ class YourScoreDisplay {
     );*/
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      gameController.tileSize * 8,
+      (gameController.screenSize.height * .42) - (painter.height / 2),
     );
   }
 }

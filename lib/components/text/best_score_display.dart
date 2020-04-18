@@ -65,7 +65,7 @@ class BestScoreDisplay {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      gameController.tileSize * 9,
+      (gameController.screenSize.height * .50) - (painter.height / 2),
     );
   }
 }
