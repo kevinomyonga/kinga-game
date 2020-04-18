@@ -24,6 +24,8 @@ class GameWidget extends StatefulWidget {
 
 class _GameWidgetState extends State<GameWidget> {
 
+  ScaffoldState scaffold;
+
   static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   String appVersion;
 
@@ -40,7 +42,9 @@ class _GameWidgetState extends State<GameWidget> {
     nonPersonalizedAds: true,
   );
 
+  // Reward Ad Flags
   bool isRewarded = false;
+  bool isVideoLoaded = false;
 
   GameController gameController;
 
@@ -73,17 +77,29 @@ class _GameWidgetState extends State<GameWidget> {
           isRewarded = true;
         });
       }
+      if (event == RewardedVideoAdEvent.loaded) {
+        setState(() {
+          isVideoLoaded = true;
+        });
+      }
+      // Resume the game if the reward has been issued
       if(event == RewardedVideoAdEvent.closed && isRewarded && gameController.gameState == GameState.CONTINUE) {
         gameController.continueView.resumeGame();
       }
+      // End the game if the reward has been issued
       if(event == RewardedVideoAdEvent.closed && !isRewarded && gameController.gameState == GameState.CONTINUE) {
         gameController.playView.endGame();
       }
+      // Check if the reward has failed to load
+      /*if(event == RewardedVideoAdEvent.failedToLoad && !isRewarded && gameController.gameState == GameState.CONTINUE) {
+        gameController.playView.endGame();
+      }*/
     };
 
     gameController.resetRewardFlag = () {
       setState(() {
         isRewarded = false;
+        isVideoLoaded = false;
       });
     };
 
@@ -96,8 +112,7 @@ class _GameWidgetState extends State<GameWidget> {
     };
 
     // Sign in the user to the Service
-    //GamesServices.signIn();
-    GamesServices.signIn().then((value) => print('Game Service Sign In Response: $value'));
+    GamesServices.signIn();
 
     gameController.shareGame = () {
       _inviteFriend();
@@ -124,10 +139,15 @@ class _GameWidgetState extends State<GameWidget> {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
-      body: Stack(children: <Widget>[
-        gameController.widget,
-      ]),
+        resizeToAvoidBottomPadding: false,
+        body: Builder(
+          builder: (BuildContext buildContext) {
+            scaffold = Scaffold.of(buildContext);
+            return Stack(children: <Widget>[
+              gameController.widget,
+            ]);
+          },
+        )
     );
   }
 
@@ -174,16 +194,27 @@ class _GameWidgetState extends State<GameWidget> {
     }
   }
 
+  // Load Video
   _loadRewardVideo() {
-    // Load Video
     RewardedVideoAd.instance.load(
         adUnitId: Ids.rewardAdUnitID,
         targetingInfo: targetingInfo);
   }
 
+  // Show Video
   _showRewardVideo() {
-    // Show Video
-    RewardedVideoAd.instance.show();
+    RewardedVideoAd.instance.show().catchError((e) {
+      _loadRewardVideo();
+      gameController.playView.player.showContinue(false);
+      // Find the Scaffold in the widget tree and use
+      // it to show a SnackBar.
+      scaffold.showSnackBar(
+          SnackBar(
+            content: Text(AppStrings.internetErrorMsg),
+            backgroundColor: Colors.red,
+          )
+      );
+    });
   }
 
   // Launch a mail application to be used to send feedback to the developer
@@ -235,7 +266,7 @@ class _GameWidgetState extends State<GameWidget> {
     _launchURL(AppStrings.url_my_website);
   }
 
-  // Launch a developer website
+  // Launch demo video on YouTube
   _launchDemoOnYoutube() {
     _launchURL(AppStrings.url_youtube_demo);
   }

@@ -43,7 +43,7 @@ class ContinueView {
   }
   
   void startCountdown() {
-    timeLeft = 10;
+    //timeLeft = 10;
     countdownDisplay = CountdownDisplay(gameController);
   }
 
