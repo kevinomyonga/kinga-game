@@ -45,6 +45,7 @@ Future setupFlame() async {
     Assets.backgroundNightImg,
     Assets.dialogBgImg,
     Assets.dialogHeaderBgImg,
+    Assets.bgMenuButton,
     Assets.enemyAgileFly1,
     Assets.enemyAgileFly2,
     Assets.enemyAgileFlyDead,
@@ -83,6 +84,16 @@ Future setupFlame() async {
     Assets.helpImg,
     Assets.shareImg,
     Assets.backButtonImg,
+    Assets.playButtonImg,
+    Assets.pauseButtonImg,
+    Assets.homeButtonImg,
+    Assets.menuButtonImg,
+    Assets.reloadButtonImg,
+    Assets.healthBar,
+    Assets.healthBarEmpty,
+    Assets.healthBarFull,
+    Assets.heart,
+    Assets.star,
   ]);
 
   Flame.audio.disableLog();
