@@ -1,6 +1,7 @@
 import 'package:flame_splash_screen/flame_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:kinga/game.dart';
+import 'package:flutter/services.dart';
+import 'package:kinga/screens/game.dart';
 import 'package:kinga/res/assets.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -31,7 +32,9 @@ class _SplashScreenGameState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: FlameSplashScreen(
         theme: FlameSplashTheme(
           backgroundDecoration: const BoxDecoration(color: Color(0xFF000000)),

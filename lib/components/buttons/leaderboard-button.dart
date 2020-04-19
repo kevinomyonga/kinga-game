@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:games_services/games_services.dart';
 import 'package:kinga/components/buttons/base-button.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
+import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
@@ -21,7 +21,7 @@ class LeaderBoardButton extends BaseButton {
 
   LeaderBoardButton(this.gameController) : super(gameController) {
     resize();
-    sprite = Sprite(Assets.menuButtonBg);
+    sprite = Sprite(Assets.bgMenuButton);
 
     painter = TextPainter(
       textAlign: TextAlign.center,
@@ -49,7 +49,7 @@ class LeaderBoardButton extends BaseButton {
       style: TextStyle(
         color: Colors.white,
         fontFamily: Assets.fontEquestria,
-        fontSize: gameController.tileSize,
+        fontSize: gameController.tileSize * .85,
         shadows: <Shadow>[shadow, shadow, shadow, shadow, shadow, shadow, shadow, shadow],
       ),
     );
@@ -57,26 +57,29 @@ class LeaderBoardButton extends BaseButton {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      ((gameController.screenSize.height * .75) - (gameController.tileSize * 1.5)
-          + (gameController.tileSize * 1.5 / 2)) - (painter.height / 2),
+      ((gameController.screenSize.height * .75) - (gameController.tileSize * 1.2)
+          + (gameController.tileSize * 1.2 / 2)) - (painter.height / 2),
     );
   }
 
   void resize() {
     rect = Rect.fromLTWH(
       (gameController.screenSize.width / 2) - (gameController.tileSize * 3),
-      (gameController.screenSize.height * .75) - (gameController.tileSize * 1.5),
+      (gameController.screenSize.height * .75) - (gameController.tileSize * 1.2),
       gameController.tileSize * 6,
-      gameController.tileSize * 1.5,
+      gameController.tileSize * 1.2,
     );
   }
 
   void onTapUp() {
     super.onTapUp();
 
-    // Show the leaderboard screen
+    // Show the leaderBoard screen
     GamesServices.showLeaderboards(
         iOSLeaderboardID: Ids.iOSLeaderBoardID
-    );
+    ).catchError((e) {
+      // Sign in the user just in case the first call failed.
+      GamesServices.signIn();
+    });
   }
 }

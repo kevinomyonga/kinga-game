@@ -3,6 +3,7 @@ import 'package:flutter/painting.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
+import 'package:package_info/package_info.dart';
 
 class VersionDisplay {
 
@@ -23,7 +24,9 @@ class VersionDisplay {
     painter.paint(c, position);
   }
 
-  void update(double t) {
+  Future<void> update(double t) async {
+
+    String appVersion = await getVersionNumber();
 
     Shadow shadow = Shadow(
       blurRadius: gameController.tileSize * .0625,
@@ -32,11 +35,11 @@ class VersionDisplay {
     );
 
     painter.text = TextSpan(
-      text: AppStrings.pause,
+      text: '${AppStrings.version}: $appVersion',
       style: TextStyle(
-        color: Colors.white,
+        color: Colors.yellow,
         fontFamily: Assets.fontEquestria,
-        fontSize: gameController.tileSize * .55,
+        fontSize: gameController.tileSize * .65,
         shadows: <Shadow>[shadow, shadow, shadow, shadow, shadow, shadow, shadow, shadow],
       ),
     );
@@ -44,7 +47,13 @@ class VersionDisplay {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      (gameController.screenSize.height * 0.3) - (painter.height / 2),
+      (gameController.screenSize.height * 0.38) - (painter.height / 2),
     );
+  }
+
+  Future<String> getVersionNumber() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    String version = packageInfo.version + ' (' + packageInfo.buildNumber + ')';
+    return version;
   }
 }

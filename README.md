@@ -4,6 +4,10 @@ Kinga - Protect the Cookie. My first game built using Flutter and the Flame engi
 
 [![Powered by Flame](https://img.shields.io/badge/Powered%20by-%F0%9F%94%A5-orange.svg?style=for-the-badge)](https://flame-engine.org)
 
+Game is available on:
+- [Apple App Store](https://apps.apple.com/ke/app/kinga/id1506422810)
+- [Google Play Store](https://play.google.com/store/apps/details?id=com.knoeyes.games.kinga)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

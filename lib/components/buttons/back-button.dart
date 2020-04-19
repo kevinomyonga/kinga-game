@@ -1,10 +1,9 @@
 import 'package:flame/sprite.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kinga/bgm.dart';
 import 'package:kinga/components/buttons/base-button.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
+import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
 class BackButton extends BaseButton {
@@ -27,16 +26,14 @@ class BackButton extends BaseButton {
   void resize() {
     rect = Rect.fromLTWH(
       (gameController.screenSize.width / 2) - (gameController.tileSize * 0.75),
-      (gameController.screenSize.height * .75) - (gameController.tileSize * 1.5),
-      gameController.tileSize * 1.5,
-      gameController.tileSize * 1.5,
+      (gameController.screenSize.height * .77) - (gameController.tileSize * 1.2),
+      gameController.tileSize * 1.2,
+      gameController.tileSize * 1.2,
     );
   }
 
   void onTapUp() {
     super.onTapUp();
-    gameController.gameState = GameState.MENU;
-    // Reset game
-    gameController.initialize();
+    gameController.gameState = GameState.ABOUT;
   }
 }

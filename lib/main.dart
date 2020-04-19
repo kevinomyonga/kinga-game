@@ -2,15 +2,16 @@ import 'package:flame/flame.dart';
 import 'package:flame/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kinga/bgm.dart';
+import 'package:kinga/helpers/bgm.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game.dart';
+import 'package:kinga/helpers/game_data.dart';
 import 'package:kinga/res/assets.dart';
-import 'package:kinga/splashscreen.dart';
+import 'package:kinga/screens/splashscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 SharedPreferences sharedPrefs;
 GameController gameController;
+GameData gameDataStorage;
 
 void main() async {
   //Make sure flame is ready before we launch our game
@@ -23,9 +24,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      /*theme: ThemeData(
-        fontFamily: Assets.fontEquestria,
-      ),*/
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
     );
@@ -37,14 +35,16 @@ Future setupFlame() async {
   WidgetsFlutterBinding.ensureInitialized(); //Since flutter upgrade this is required
 
   sharedPrefs = await SharedPreferences.getInstance();
+  gameDataStorage = GameData(sharedPrefs);
   Util flameUtil = Util();
   flameUtil.fullScreen();
   flameUtil.setOrientation(DeviceOrientation.portraitUp); //Force the app to be in this screen mode
 
   await Flame.images.loadAll(<String>[
-    Assets.backgroundImg,
-    Assets.startButtonImg,
-    Assets.backButtonImg,
+    Assets.backgroundDayImg,
+    Assets.backgroundNightImg,
+    Assets.dialogBgImg,
+    Assets.dialogHeaderBgImg,
     Assets.enemyAgileFly1,
     Assets.enemyAgileFly2,
     Assets.enemyAgileFlyDead,
@@ -75,22 +75,21 @@ Future setupFlame() async {
     Assets.enemyMachoFly1Inverted,
     Assets.enemyMachoFly2Inverted,
     Assets.enemyMachoFlyDeadInverted,
-    Assets.titleImg,
     Assets.playerImg,
-    Assets.gameOverImg,
     Assets.musicEnabledImg,
     Assets.musicDisabledImg,
     Assets.soundEnabledImg,
     Assets.soundDisabledImg,
     Assets.helpImg,
-    Assets.creditsImg,
-    Assets.screenshotImg,
+    Assets.shareImg,
+    Assets.backButtonImg,
   ]);
 
   Flame.audio.disableLog();
   await BGM.preload();
 
   await Flame.audio.loadAll(<String>[
+    Assets.buttonClick,
     Assets.enemyHaha,
     Assets.enemyHit,
     Assets.enemyOuch,

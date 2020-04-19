@@ -1,207 +1,99 @@
-import 'dart:io';
+import 'dart:ui';
 
-import 'package:device_info/device_info.dart';
-import 'package:flutter/material.dart';
-import 'package:kinga/res/Ids.dart';
-import 'package:kinga/res/strings.dart';
-import 'package:package_info/package_info.dart';
-import 'package:share/share.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flame/sprite.dart';
+import 'package:flutter/widgets.dart';
+import 'package:kinga/components/buttons/menu-button.dart';
+import 'package:kinga/components/buttons/credits-button.dart';
+import 'package:kinga/components/buttons/feedback-button.dart';
+import 'package:kinga/components/dialog-backdrop.dart';
+import 'package:kinga/components/text/about-copyright-display.dart';
+import 'package:kinga/components/text/about-display.dart';
+import 'package:kinga/components/text/version-display.dart';
+import 'package:kinga/controllers/game_controller.dart';
+import 'package:kinga/helpers/game_state.dart';
+import 'package:kinga/res/assets.dart';
 
-class AboutGameDialog extends StatefulWidget {
+class AboutView {
 
-  @override
-  _AboutGameDialogState createState() => _AboutGameDialogState();
-}
+  final GameController gameController;
 
-class _AboutGameDialogState extends State<AboutGameDialog> {
+  DialogBackdrop dialogBackdrop;
 
-  static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
-  String appVersion;
+  AboutDisplay aboutDisplay;
+  VersionDisplay versionDisplay;
+  AboutCopyrightDisplay aboutCopyrightDisplay;
 
-  String deviceMake;
-  String deviceModel;
-  String deviceOSVersion;
+  FeedbackButton feedbackButton;
+  CreditsButton creditsButton;
+  MenuButton menuButton;
 
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
+  AboutView(this.gameController) {
+    resize();
+    dialogBackdrop = DialogBackdrop(gameController);
+
+    aboutDisplay = AboutDisplay(gameController);
+    versionDisplay = VersionDisplay(gameController);
+    aboutCopyrightDisplay = AboutCopyrightDisplay(gameController);
+
+    feedbackButton = FeedbackButton(gameController);
+    creditsButton = CreditsButton(gameController);
+    menuButton = MenuButton(gameController);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(25),
-        ),
-      ),
-      title: Text(
-        AppStrings.appName,
-        textAlign: TextAlign.center,
-        style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24.0),
-      ),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          new FutureBuilder(
-            future: getVersionNumber(),
-            builder: (BuildContext context, AsyncSnapshot<String> snapshot) =>
-                Text(
-                  snapshot.hasData ? snapshot.data : AppStrings.loading,
-                ),
-          ),
+  void render(Canvas c) {
+    dialogBackdrop.render(c);
 
-          SizedBox(
-            height: 15,
-          ),
-
-          Text(
-            "Made by ${AppStrings.appAuthor}",
-            textAlign: TextAlign.center,
-          ),
-
-          SizedBox(
-            height: 15,
-          ),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(10.0),
-                child: FloatingActionButton(
-                  heroTag: Ids.feedbackHeroTag,
-                  child: const Icon(
-                    Icons.feedback,
-                    color: Colors.white,
-                  ),
-                  backgroundColor: Colors.red,
-                  onPressed: _sendFeedback,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10.0),
-                child: FloatingActionButton(
-                  heroTag: Ids.shareAppHeroTag,
-                  child: const Icon(
-                    Icons.share,
-                    color: Colors.white,
-                  ),
-                  backgroundColor: Colors.green,
-                  onPressed: _inviteFriend,
-                ),
-              ),
-            ],
-          ),
-
-          SizedBox(
-            height: 15.0,
-          ),
-
-          Divider(),
-
-          InkWell(
-            onTap: _launchDevWebsite,
-            child: ListTile(
-              leading: Icon(
-                Icons.account_circle,
-              ),
-              title: Text(AppStrings.developerWebsite),
-              trailing: Icon(Icons.arrow_right),
-            ),
-          ),
-
-          Divider(),
-
-          new SizedBox(
-            height: 25.0,
-          ),
-
-          new Text(
-              AppStrings.appLegalese,
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.w600,
-              )
-          ),
-        ],
-      ),
-    );
+    aboutDisplay.render(c);
+    versionDisplay.render(c);
+    aboutCopyrightDisplay.render(c);
+    feedbackButton.render(c);
+    creditsButton.render(c);
+    menuButton.render(c);
   }
 
-  // Launch a mail application to be used to send feedback to the developer
-  _sendFeedback() {
-    String subject = '${AppStrings.appName} Game Feedback';
+  void update(double t) {
+    dialogBackdrop.update(t);
 
-    String body = "\bFeedback:\b  \n\n" +
-        "\n\bApp Version:\b $appVersion " +
-        "\n\bManufacturer:\b $deviceMake " +
-        "\n\bDevice:\b $deviceModel " +
-        "\n\bOS Version:\b $deviceOSVersion ";
+    aboutDisplay.update(t);
+    versionDisplay.update(t);
+    aboutCopyrightDisplay.update(t);
 
-    if(Platform.isAndroid) {
-      _launchURL('mailto:${AppStrings.companyEmail}?subject=$subject&body=$body');
-    } else if (Platform.isIOS) {
-      _launchURL('mailto:${AppStrings.companyEmail}?subject=${Uri.encodeComponent(subject)}&body=${Uri.encodeComponent(body)}');
+    feedbackButton.update(t);
+    creditsButton.update(t);
+  }
+
+  void resize() {
+    dialogBackdrop?.resize();
+
+    feedbackButton?.resize();
+    creditsButton?.resize();
+    menuButton?.resize();
+  }
+
+  void onTapUp(TapUpDetails d) {
+
+    // FeedBack Button
+    if (!gameController.isHandled && feedbackButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.ABOUT) {
+        feedbackButton.onTapUp();
+        gameController.isHandled = true;
+      }
     }
-  }
 
-  Future<AndroidDeviceInfo> getAndroidDeviceInfo(deviceInfo) async {
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    return androidInfo;
-  }
-
-  Future<IosDeviceInfo> getIosInfo(deviceInfo) async {
-    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-    return iosInfo;
-  }
-
-  Future<void> initPlatformState() async {
-
-    if(Platform.isAndroid) {
-      getAndroidDeviceInfo(deviceInfoPlugin).then((androidInfo) {
-        deviceMake = androidInfo.manufacturer;
-        deviceModel = androidInfo.model;
-        deviceOSVersion = androidInfo.version.sdkInt.toString();
-      });
-    } else if (Platform.isIOS) {
-      getIosInfo(deviceInfoPlugin).then((iosInfo) {
-        deviceMake = 'Apple';
-        deviceModel = iosInfo.utsname.machine;
-        deviceOSVersion = iosInfo.utsname.version;
-      });
+    // Credits Button
+    if (!gameController.isHandled && creditsButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.ABOUT) {
+        creditsButton.onTapUp();
+        gameController.isHandled = true;
+      }
     }
-  }
 
-  // Launch an app selection popup to select the app to be used for sharing a link to KINGA
-  _inviteFriend() {
-    if(Platform.isAndroid) {
-      Share.share('Check out the ${AppStrings.appName} Game here: ${AppStrings.url_play_store}');
-    } else if (Platform.isIOS) {
-      Share.share('Check out the ${AppStrings.appName} Game here: ${AppStrings.url_app_store}');
+    // Back Button
+    if (!gameController.isHandled && menuButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.ABOUT) {
+        menuButton.onTapUp();
+        gameController.isHandled = true;
+      }
     }
-  }
-
-  // Launch a developer website
-  _launchDevWebsite() {
-    _launchURL(AppStrings.url_my_website);
-  }
-
-  _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  Future<String> getVersionNumber() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    String version = packageInfo.version + ' (' + packageInfo.buildNumber + ')';
-    appVersion = version;
-    return version;
   }
 }

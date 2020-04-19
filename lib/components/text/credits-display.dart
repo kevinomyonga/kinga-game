@@ -44,7 +44,7 @@ class CreditsDisplay {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      (gameController.screenSize.height * 0.3) - (painter.height / 2),
+      (gameController.screenSize.height * 0.27) - (painter.height / 2),
     );
   }
 }

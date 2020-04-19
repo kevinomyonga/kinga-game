@@ -1,14 +1,14 @@
+import 'dart:ui';
+
 import 'package:flame/sprite.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kinga/bgm.dart';
 import 'package:kinga/components/buttons/base-button.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
+import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
 
-class StartButton extends BaseButton {
+class AboutButton extends BaseButton {
 
   final GameController gameController;
   Rect rect;
@@ -17,9 +17,9 @@ class StartButton extends BaseButton {
   TextPainter painter;
   Offset position;
 
-  StartButton(this.gameController) : super(gameController) {
+  AboutButton(this.gameController) : super(gameController) {
     resize();
-    sprite = Sprite(Assets.menuButtonBg);
+    sprite = Sprite(Assets.bgMenuButton);
 
     painter = TextPainter(
       textAlign: TextAlign.center,
@@ -43,11 +43,11 @@ class StartButton extends BaseButton {
     );
 
     painter.text = TextSpan(
-      text: AppStrings.play,
+      text: AppStrings.about,
       style: TextStyle(
         color: Colors.white,
         fontFamily: Assets.fontEquestria,
-        fontSize: gameController.tileSize,
+        fontSize: gameController.tileSize * .85,
         shadows: <Shadow>[shadow, shadow, shadow, shadow, shadow, shadow, shadow, shadow],
       ),
     );
@@ -55,23 +55,22 @@ class StartButton extends BaseButton {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      ((gameController.screenSize.height * .65) - (gameController.tileSize * 1.5)
-          + (gameController.tileSize * 1.5 / 2)) - (painter.height / 2),
+      ((gameController.screenSize.height * .85) - (gameController.tileSize * 1.2)
+          + (gameController.tileSize * 1.2 / 2)) - (painter.height / 2),
     );
   }
 
   void resize() {
     rect = Rect.fromLTWH(
       (gameController.screenSize.width / 2) - (gameController.tileSize * 3),
-      (gameController.screenSize.height * .65) - (gameController.tileSize * 1.5),
+      (gameController.screenSize.height * .85) - (gameController.tileSize * 1.2),
       gameController.tileSize * 6,
-      gameController.tileSize * 1.5,
+      gameController.tileSize * 1.2,
     );
   }
 
   void onTapUp() {
     super.onTapUp();
-    gameController.gameState = GameState.PLAYING;
-    BGM.play(BGMType.PLAYING);
+    gameController.gameState = GameState.ABOUT;
   }
 }

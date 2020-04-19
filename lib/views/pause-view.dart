@@ -1,89 +1,86 @@
 import 'dart:ui';
 
-import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kinga/components/buttons/home-button.dart';
-import 'package:kinga/components/buttons/play-button.dart';
-import 'package:kinga/components/buttons/reload-button.dart';
+import 'package:kinga/components/buttons/restart-button.dart';
+import 'package:kinga/components/buttons/resume-button.dart';
+import 'package:kinga/components/dialog-backdrop.dart';
 import 'package:kinga/components/text/pause-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
-import 'package:kinga/res/assets.dart';
+import 'package:kinga/helpers/game_state.dart';
 
 class PauseView {
 
   final GameController gameController;
-  Rect rect;
-  Sprite sprite;
+
+  DialogBackdrop dialogBackdrop;
 
   PauseDisplay pauseDisplay;
 
-  PlayButton playButton;
-  ReloadButton reloadButton;
+  ResumeButton resumeButton;
+  RestartButton restartButton;
   HomeButton homeButton;
 
   PauseView(this.gameController) {
     resize();
-    sprite = Sprite(Assets.dialogBgImg);
+    dialogBackdrop = DialogBackdrop(gameController);
 
     pauseDisplay = PauseDisplay(gameController);
 
-    playButton = PlayButton(gameController);
-    reloadButton = ReloadButton(gameController);
+    resumeButton = ResumeButton(gameController);
+    restartButton = RestartButton(gameController);
     homeButton = HomeButton(gameController);
   }
 
   void render(Canvas c) {
-    sprite.renderRect(c, rect);
+    dialogBackdrop.render(c);
 
     pauseDisplay.render(c);
-
-    playButton.render(c);
-    reloadButton.render(c);
+    resumeButton.render(c);
+    restartButton.render(c);
     homeButton.render(c);
   }
 
   void update(double t) {
+    dialogBackdrop.update(t);
+
     pauseDisplay.update(t);
+    resumeButton.update(t);
+    restartButton.update(t);
+    homeButton.update(t);
   }
 
   void resize() {
-    rect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 4),
-      (gameController.screenSize.height / 2) - (gameController.tileSize * 6),
-      gameController.tileSize * 8,
-      gameController.tileSize * 12,
-    );
+    dialogBackdrop?.resize();
 
-    playButton?.resize();
-    reloadButton?.resize();
+    resumeButton?.resize();
+    restartButton?.resize();
     homeButton?.resize();
   }
 
   void onTapUp(TapUpDetails d) {
-    bool isHandled = false;
 
     // Play/Resume Button
-    if (!isHandled && playButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && resumeButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.PAUSED) {
-        playButton.onTapUp();
-        isHandled = true;
+        resumeButton.onTapUp();
+        gameController.isHandled = true;
       }
     }
 
     // Reload Button
-    if (!isHandled && reloadButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && restartButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.PAUSED) {
-        reloadButton.onTapUp();
-        isHandled = true;
+        restartButton.onTapUp();
+        gameController.isHandled = true;
       }
     }
 
     // Back Button
-    if (!isHandled && homeButton.rect.contains(d.globalPosition)) {
+    if (!gameController.isHandled && homeButton.rect.contains(d.globalPosition)) {
       if (gameController.gameState == GameState.PAUSED) {
         homeButton.onTapUp();
-        isHandled = true;
+        gameController.isHandled = true;
       }
     }
   }

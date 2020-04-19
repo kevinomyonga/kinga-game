@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_data.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
 
@@ -24,8 +23,8 @@ class YourScoreDisplay {
     painter.paint(c, position);
   }
 
-  Future<void> update(double t) async {
-    int yourScore = await GameData.getLastSubmittedScore();
+  void update(double t) {
+    int yourScore = gameController.gameData.getLastSubmittedScore();
 
     Shadow shadow = Shadow(
       blurRadius: gameController.tileSize * .0625,
@@ -50,7 +49,7 @@ class YourScoreDisplay {
     );*/
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      gameController.tileSize * 8,
+      (gameController.screenSize.height * .42) - (painter.height / 2),
     );
   }
 }

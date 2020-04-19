@@ -1,55 +1,76 @@
 import 'dart:ui';
 
-import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
-import 'package:kinga/components/buttons/back-button.dart';
+import 'package:kinga/components/buttons/menu-button.dart';
+import 'package:kinga/components/buttons/tutorial-demo-button.dart';
+import 'package:kinga/components/dialog-backdrop.dart';
+import 'package:kinga/components/text/tutorial-display.dart';
+import 'package:kinga/components/text/tutorial-info-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
-import 'package:kinga/res/assets.dart';
+import 'package:kinga/helpers/game_state.dart';
 
 class TutorialView {
 
   final GameController gameController;
-  Rect rect;
-  Sprite sprite;
 
-  BackButton backButton;
+  DialogBackdrop dialogBackdrop;
+
+  TutorialDisplay tutorialDisplay;
+  TutorialInfoDisplay tutorialInfoDisplay;
+
+  TutorialDemoButton tutorialDemoButton;
+  MenuButton menuButton;
 
   TutorialView(this.gameController) {
     resize();
-    sprite = Sprite(Assets.dialogBgImg);
+    dialogBackdrop = DialogBackdrop(gameController);
 
-    backButton = BackButton(gameController);
+    tutorialDisplay = TutorialDisplay(gameController);
+    tutorialInfoDisplay = TutorialInfoDisplay(gameController);
+    tutorialDemoButton = TutorialDemoButton(gameController);
+    menuButton = MenuButton(gameController);
   }
 
   void render(Canvas c) {
-    sprite.renderRect(c, rect);
+    dialogBackdrop.render(c);
 
-    backButton.render(c);
+    tutorialDisplay.render(c);
+    tutorialInfoDisplay.render(c);
+
+    tutorialDemoButton.render(c);
+    menuButton.render(c);
   }
 
   void update(double t) {
+    dialogBackdrop.update(t);
+
+    tutorialDisplay.update(t);
+    tutorialInfoDisplay.update(t);
+
+    tutorialDemoButton.update(t);
   }
 
   void resize() {
-    rect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 4),
-      (gameController.screenSize.height / 2) - (gameController.tileSize * 6),
-      gameController.tileSize * 8,
-      gameController.tileSize * 12,
-    );
-
-    backButton?.resize();
+    dialogBackdrop?.resize();
+    tutorialDemoButton?.resize();
+    menuButton?.resize();
   }
 
   void onTapUp(TapUpDetails d) {
-    bool isHandled = false;
+
+    // Demo Button
+    if (!gameController.isHandled && tutorialDemoButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.HELP) {
+        tutorialDemoButton.onTapUp();
+        gameController.isHandled = true;
+      }
+    }
 
     // Back Button
-    if (!isHandled && backButton.rect.contains(d.globalPosition)) {
-      if (gameController.gameState == GameState.CREDITS) {
-        backButton.onTapUp();
-        isHandled = true;
+    if (!gameController.isHandled && menuButton.rect.contains(d.globalPosition)) {
+      if (gameController.gameState == GameState.HELP) {
+        menuButton.onTapUp();
+        gameController.isHandled = true;
       }
     }
   }

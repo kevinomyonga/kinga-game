@@ -4,7 +4,7 @@ import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import 'package:kinga/components/buttons/base-button.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/game_state.dart';
+import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
 
@@ -19,7 +19,7 @@ class CreditsButton extends BaseButton {
 
   CreditsButton(this.gameController) : super(gameController) {
     resize();
-    sprite = Sprite(Assets.menuButtonBg);
+    sprite = Sprite(Assets.bgMenuButton);
 
     painter = TextPainter(
       textAlign: TextAlign.center,
@@ -47,7 +47,7 @@ class CreditsButton extends BaseButton {
       style: TextStyle(
         color: Colors.white,
         fontFamily: Assets.fontEquestria,
-        fontSize: gameController.tileSize,
+        fontSize: gameController.tileSize * .75,
         shadows: <Shadow>[shadow, shadow, shadow, shadow, shadow, shadow, shadow, shadow],
       ),
     );
@@ -55,17 +55,17 @@ class CreditsButton extends BaseButton {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      ((gameController.screenSize.height * .85) - (gameController.tileSize * 1.5)
-          + (gameController.tileSize * 1.5 / 2)) - (painter.height / 2),
+      ((gameController.screenSize.height * .66) - (gameController.tileSize * 1.2)
+          + (gameController.tileSize * 1.2 / 2)) - (painter.height / 2),
     );
   }
 
   void resize() {
     rect = Rect.fromLTWH(
       (gameController.screenSize.width / 2) - (gameController.tileSize * 3),
-      (gameController.screenSize.height * .85) - (gameController.tileSize * 1.5),
+      (gameController.screenSize.height * .66) - (gameController.tileSize * 1.2),
       gameController.tileSize * 6,
-      gameController.tileSize * 1.5,
+      gameController.tileSize * 1.2,
     );
   }
 
