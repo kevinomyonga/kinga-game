@@ -52,5 +52,5 @@ class AppStrings {
   static const String url_my_website            = 'https://www.kevinomyonga.com';
   static const String url_app_store             = 'https://apps.apple.com/ke/app/kinga/id1506422810';
   static const String url_play_store            = 'https://play.google.com/store/apps/details?id=com.knoeyes.games.kinga';
-  static const String url_youtube_demo          = 'https://www.youtube.com/watch?v=nN_7V9qk_Yk';
+  static const String url_youtube_demo          = 'https://youtu.be/wnAMt-X1-ig';
 }
