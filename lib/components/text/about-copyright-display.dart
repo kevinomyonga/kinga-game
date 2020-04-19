@@ -44,7 +44,7 @@ class AboutCopyrightDisplay {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      (gameController.screenSize.height * 0.46) - (painter.height / 2),
+      (gameController.screenSize.height * 0.44) - (painter.height / 2),
     );
   }
 }

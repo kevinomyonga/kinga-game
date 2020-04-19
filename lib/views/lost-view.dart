@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kinga/components/buttons/menu-button.dart';
+import 'package:kinga/components/dialog-backdrop.dart';
 import 'package:kinga/components/text/best_score_display.dart';
 import 'package:kinga/components/text/game-over-display.dart';
 import 'package:kinga/components/text/new-highscore-display.dart';
@@ -14,8 +15,8 @@ import 'package:kinga/res/assets.dart';
 class LostView {
 
   final GameController gameController;
-  Rect rect;
-  Sprite sprite;
+
+  DialogBackdrop dialogBackdrop;
 
   GameOverDisplay gameOverDisplay;
   YourScoreDisplay yourScoreDisplay;
@@ -26,7 +27,7 @@ class LostView {
 
   LostView(this.gameController) {
     resize();
-    sprite = Sprite(Assets.dialogBgImg);
+    dialogBackdrop = DialogBackdrop(gameController);
 
     gameOverDisplay = GameOverDisplay(gameController);
     yourScoreDisplay = YourScoreDisplay(gameController);
@@ -36,7 +37,7 @@ class LostView {
   }
 
   void render(Canvas c) {
-    sprite.renderRect(c, rect);
+    dialogBackdrop.render(c);
 
     gameOverDisplay.render(c);
     yourScoreDisplay.render(c);
@@ -46,6 +47,8 @@ class LostView {
   }
 
   void update(double t) {
+    dialogBackdrop.update(t);
+
     gameOverDisplay.update(t);
     yourScoreDisplay.update(t);
     bestScoreDisplay.update(t);
@@ -53,12 +56,7 @@ class LostView {
   }
 
   void resize() {
-    rect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 4),
-      (gameController.screenSize.height / 2) - (gameController.tileSize * 6),
-      gameController.tileSize * 8,
-      gameController.tileSize * 12,
-    );
+    dialogBackdrop?.resize();
 
     newHighScoreDisplay?.resize();
     menuButton?.resize();

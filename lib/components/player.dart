@@ -34,8 +34,8 @@ class Player {
       // Save the current score
       gameController.gameData.setLastSubmittedScore(gameController.playView.score);
 
-      // Only give player continue option if they meet the criteria
-      if(gameController.playView.score > 0 && gameController.continueView.continuesLeft > 0) {
+      // Only give player continue option if they have continues left
+      if(gameController.continueView.continuesLeft > 0) {
         showContinue(true);
       } else {
         gameController.playView.endGame();

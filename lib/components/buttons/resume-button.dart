@@ -54,17 +54,17 @@ class ResumeButton extends BaseButton {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      ((gameController.screenSize.height * .5) - (gameController.tileSize * 1.5)
-          + (gameController.tileSize * 1.5 / 2)) - (painter.height / 2),
+      ((gameController.screenSize.height * .5) - (gameController.tileSize * 1.2)
+          + (gameController.tileSize * 1.2 / 2)) - (painter.height / 2),
     );
   }
 
   void resize() {
     rect = Rect.fromLTWH(
       (gameController.screenSize.width / 2) - (gameController.tileSize * 3),
-      (gameController.screenSize.height * .5) - (gameController.tileSize * 1.5),
+      (gameController.screenSize.height * .5) - (gameController.tileSize * 1.2),
       gameController.tileSize * 6,
-      gameController.tileSize * 1.5,
+      gameController.tileSize * 1.2,
     );
   }
 

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "144497199827",
+    "firebase_url": "https://kinga-30007344.firebaseio.com",
+    "project_id": "kinga-30007344",
+    "storage_bucket": "kinga-30007344.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144497199827:android:5d5527f882aab3d6cae226",
+        "android_client_info": {
+          "package_name": "com.knoeyes.games.kinga.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144497199827-t51l3k5q7ipvltu2qo68ui7msu196ped.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2KnO_IKulPypPsr2jd7tUGUYoIjwme_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144497199827-t51l3k5q7ipvltu2qo68ui7msu196ped.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "144497199827-ror8ddke2lun9u69fsam8gvrcseo6798.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.knoeyes.games.kinga"
+              }
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-9277082169404949~9918933766"
+    }
+  ],
+  "configuration_version": "1"
+}

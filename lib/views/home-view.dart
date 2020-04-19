@@ -20,13 +20,15 @@ class HomeView {
   Rect titleRect;
 
   Offset titleRectOriginalPosition;
-  bool isHoveringDown = true;
 
   Random rand;
 
-  //Sprite titleSprite;
   List<Sprite> titleSprite;
   double flyingSpriteIndex = 0;
+
+  Offset toTop;
+  Offset toBottom;
+  bool isHoveringDown = true;
 
   double speed;
 
@@ -43,9 +45,11 @@ class HomeView {
   HomeView(this.gameController) {
     resize();
     rand = gameController.rand;
-    //titleSprite = Sprite(Assets.enemyAgileFly1);
     titleSprite = List<Sprite>();
     titleFly();
+    
+    toTop = titleRect.topCenter;
+    toBottom = titleRect.bottomCenter;
 
     speed = gameController.tileSize * 1;
 
@@ -60,7 +64,6 @@ class HomeView {
   }
 
   void render(Canvas c) {
-    //titleSprite.renderRect(c, titleRect);
     titleSprite[flyingSpriteIndex.toInt()].renderRect(c, titleRect.inflate(titleRect.width / 2));
 
     // Menu
@@ -81,6 +84,26 @@ class HomeView {
     }
 
     // Move the fly (Hover)
+    double stepDistance = (speed * 0.2) * t;
+    Offset toPlayer = toTop - titleRect.center;
+    Offset fromPlayer = toBottom - titleRect.center;
+    if(isHoveringDown) {
+      if (stepDistance <= toPlayer.distance - gameController.tileSize * 1.25) {
+        Offset stepToPlayer = Offset.fromDirection(
+            toPlayer.direction, stepDistance);
+        titleRect = titleRect.shift(stepToPlayer);
+      } else {
+        isHoveringDown = false;
+      }
+    } else {
+      if (stepDistance <= fromPlayer.distance - gameController.tileSize * 1.25) {
+        Offset stepFromPlayer = Offset.fromDirection(
+            fromPlayer.direction, stepDistance);
+        titleRect = titleRect.shift(stepFromPlayer);
+      } else {
+        isHoveringDown = true;
+      }
+    }
 
     // Menu
     highScoreDisplay.update(t);
@@ -93,10 +116,10 @@ class HomeView {
 
   void resize() {
     titleRect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 2.25),
-      (gameController.screenSize.height / 2) - (gameController.tileSize * 6),
-      gameController.tileSize * 3.5,
-      gameController.tileSize * 3.5,
+      (gameController.screenSize.width / 2) - (gameController.tileSize * 3 / 2),
+      (gameController.screenSize.height * 0.53) - (gameController.tileSize * 6),
+      gameController.tileSize * 2.7,
+      gameController.tileSize * 2.7,
     );
     titleRectOriginalPosition = titleRect.center;
 

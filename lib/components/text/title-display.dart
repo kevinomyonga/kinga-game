@@ -44,7 +44,7 @@ class TitleDisplay {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      (gameController.screenSize.height * 0.5) - (painter.height / 2),
+      (gameController.screenSize.height * 0.45) - (painter.height / 2),
     );
   }
 }

@@ -15,7 +15,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 // You can also test with your own ad unit IDs by registering your device as a
 // test device. Check the logs for your device's ID value.
-const String testDevice = '135986D75C1D9E9C63566BD16C02DFD7';
+const String testDevice = '135986D75C1D9E9C63566BD16C02DFD7D';
 
 class GameWidget extends StatefulWidget {
   @override

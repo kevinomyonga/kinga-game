@@ -26,9 +26,9 @@ class BackButton extends BaseButton {
   void resize() {
     rect = Rect.fromLTWH(
       (gameController.screenSize.width / 2) - (gameController.tileSize * 0.75),
-      (gameController.screenSize.height * .77) - (gameController.tileSize * 1.5),
-      gameController.tileSize * 1.5,
-      gameController.tileSize * 1.5,
+      (gameController.screenSize.height * .77) - (gameController.tileSize * 1.2),
+      gameController.tileSize * 1.2,
+      gameController.tileSize * 1.2,
     );
   }
 

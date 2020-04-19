@@ -4,6 +4,7 @@ import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kinga/components/buttons/back-button.dart';
 import 'package:kinga/components/buttons/developer-website-button.dart';
+import 'package:kinga/components/dialog-backdrop.dart';
 import 'package:kinga/components/text/credits-display.dart';
 import 'package:kinga/components/text/credits-name-display.dart';
 import 'package:kinga/components/text/credits-title-display.dart';
@@ -14,8 +15,8 @@ import 'package:kinga/res/assets.dart';
 class CreditsView {
 
   final GameController gameController;
-  Rect rect;
-  Sprite sprite;
+
+  DialogBackdrop dialogBackdrop;
 
   CreditsDisplay creditsDisplay;
   CreditsNameDisplay creditsNameDisplay;
@@ -26,7 +27,7 @@ class CreditsView {
 
   CreditsView(this.gameController) {
     resize();
-    sprite = Sprite(Assets.dialogBgImg);
+    dialogBackdrop = DialogBackdrop(gameController);
 
     creditsDisplay = CreditsDisplay(gameController);
     creditsNameDisplay = CreditsNameDisplay(gameController);
@@ -37,7 +38,7 @@ class CreditsView {
   }
 
   void render(Canvas c) {
-    sprite.renderRect(c, rect);
+    dialogBackdrop.render(c);
 
     creditsDisplay.render(c);
     creditsNameDisplay.render(c);
@@ -48,6 +49,8 @@ class CreditsView {
   }
 
   void update(double t) {
+    dialogBackdrop.update(t);
+
     creditsDisplay.update(t);
     creditsNameDisplay.update(t);
     creditsTitleDisplay.update(t);
@@ -56,12 +59,7 @@ class CreditsView {
   }
 
   void resize() {
-    rect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 4),
-      (gameController.screenSize.height / 2) - (gameController.tileSize * 6),
-      gameController.tileSize * 8,
-      gameController.tileSize * 12,
-    );
+    dialogBackdrop?.resize();
 
     developerWebsiteButton?.resize();
     backButton?.resize();

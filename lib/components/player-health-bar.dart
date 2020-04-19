@@ -28,7 +28,7 @@ class HealthBar {
     );
 
     heartRect = Rect.fromLTWH(
-        (gameController.screenSize.width / 2) - (barWidth / 2.05),
+        (gameController.screenSize.width / 2) - (barWidth * 0.97 / 2),
         gameController.screenSize.height - (gameController.tileSize * 1.25),
         gameController.tileSize,
         gameController.tileSize,
@@ -59,10 +59,6 @@ class HealthBar {
     spriteHeart.renderRect(c, heartRect);
     spriteEmpty.renderRect(c, emptyHealthRect);
     spriteFull.renderRect(c, remainingHealthRect);
-    //Paint healthBarColor = Paint()..color = Color(0xFFFF0000);
-    //Paint remainingBarColor = Paint()..color = Color(0xFF00FF00);
-    //c.drawRect(healthBarRect, healthBarColor);
-    //c.drawRect(remainingHealthRect, remainingBarColor);
   }
 
   void update(double t) {

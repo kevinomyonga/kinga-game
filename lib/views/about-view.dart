@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:kinga/components/buttons/menu-button.dart';
 import 'package:kinga/components/buttons/credits-button.dart';
 import 'package:kinga/components/buttons/feedback-button.dart';
+import 'package:kinga/components/dialog-backdrop.dart';
 import 'package:kinga/components/text/about-copyright-display.dart';
 import 'package:kinga/components/text/about-display.dart';
 import 'package:kinga/components/text/version-display.dart';
@@ -15,8 +16,8 @@ import 'package:kinga/res/assets.dart';
 class AboutView {
 
   final GameController gameController;
-  Rect rect;
-  Sprite sprite;
+
+  DialogBackdrop dialogBackdrop;
 
   AboutDisplay aboutDisplay;
   VersionDisplay versionDisplay;
@@ -28,7 +29,7 @@ class AboutView {
 
   AboutView(this.gameController) {
     resize();
-    sprite = Sprite(Assets.dialogBgImg);
+    dialogBackdrop = DialogBackdrop(gameController);
 
     aboutDisplay = AboutDisplay(gameController);
     versionDisplay = VersionDisplay(gameController);
@@ -40,7 +41,7 @@ class AboutView {
   }
 
   void render(Canvas c) {
-    sprite.renderRect(c, rect);
+    dialogBackdrop.render(c);
 
     aboutDisplay.render(c);
     versionDisplay.render(c);
@@ -51,6 +52,8 @@ class AboutView {
   }
 
   void update(double t) {
+    dialogBackdrop.update(t);
+
     aboutDisplay.update(t);
     versionDisplay.update(t);
     aboutCopyrightDisplay.update(t);
@@ -60,12 +63,7 @@ class AboutView {
   }
 
   void resize() {
-    rect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 4),
-      (gameController.screenSize.height / 2) - (gameController.tileSize * 6),
-      gameController.tileSize * 8,
-      gameController.tileSize * 12,
-    );
+    dialogBackdrop?.resize();
 
     feedbackButton?.resize();
     creditsButton?.resize();

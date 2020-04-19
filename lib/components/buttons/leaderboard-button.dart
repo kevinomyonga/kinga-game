@@ -49,7 +49,7 @@ class LeaderBoardButton extends BaseButton {
       style: TextStyle(
         color: Colors.white,
         fontFamily: Assets.fontEquestria,
-        fontSize: gameController.tileSize,
+        fontSize: gameController.tileSize * .85,
         shadows: <Shadow>[shadow, shadow, shadow, shadow, shadow, shadow, shadow, shadow],
       ),
     );
@@ -57,28 +57,29 @@ class LeaderBoardButton extends BaseButton {
 
     position = Offset(
       (gameController.screenSize.width / 2) - (painter.width / 2),
-      ((gameController.screenSize.height * .75) - (gameController.tileSize * 1.5)
-          + (gameController.tileSize * 1.5 / 2)) - (painter.height / 2),
+      ((gameController.screenSize.height * .75) - (gameController.tileSize * 1.2)
+          + (gameController.tileSize * 1.2 / 2)) - (painter.height / 2),
     );
   }
 
   void resize() {
     rect = Rect.fromLTWH(
       (gameController.screenSize.width / 2) - (gameController.tileSize * 3),
-      (gameController.screenSize.height * .75) - (gameController.tileSize * 1.5),
+      (gameController.screenSize.height * .75) - (gameController.tileSize * 1.2),
       gameController.tileSize * 6,
-      gameController.tileSize * 1.5,
+      gameController.tileSize * 1.2,
     );
   }
 
   void onTapUp() {
     super.onTapUp();
 
-    // Sign in the user just in case the first call failed.
-    GamesServices.signIn();
     // Show the leaderBoard screen
     GamesServices.showLeaderboards(
         iOSLeaderboardID: Ids.iOSLeaderBoardID
-    );
+    ).catchError((e) {
+      // Sign in the user just in case the first call failed.
+      GamesServices.signIn();
+    });
   }
 }

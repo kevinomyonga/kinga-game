@@ -1,20 +1,19 @@
 import 'dart:ui';
 
-import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kinga/components/buttons/menu-button.dart';
 import 'package:kinga/components/buttons/tutorial-demo-button.dart';
+import 'package:kinga/components/dialog-backdrop.dart';
 import 'package:kinga/components/text/tutorial-display.dart';
 import 'package:kinga/components/text/tutorial-info-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/helpers/game_state.dart';
-import 'package:kinga/res/assets.dart';
 
 class TutorialView {
 
   final GameController gameController;
-  Rect rect;
-  Sprite sprite;
+
+  DialogBackdrop dialogBackdrop;
 
   TutorialDisplay tutorialDisplay;
   TutorialInfoDisplay tutorialInfoDisplay;
@@ -24,7 +23,7 @@ class TutorialView {
 
   TutorialView(this.gameController) {
     resize();
-    sprite = Sprite(Assets.dialogBgImg);
+    dialogBackdrop = DialogBackdrop(gameController);
 
     tutorialDisplay = TutorialDisplay(gameController);
     tutorialInfoDisplay = TutorialInfoDisplay(gameController);
@@ -33,7 +32,7 @@ class TutorialView {
   }
 
   void render(Canvas c) {
-    sprite.renderRect(c, rect);
+    dialogBackdrop.render(c);
 
     tutorialDisplay.render(c);
     tutorialInfoDisplay.render(c);
@@ -43,6 +42,8 @@ class TutorialView {
   }
 
   void update(double t) {
+    dialogBackdrop.update(t);
+
     tutorialDisplay.update(t);
     tutorialInfoDisplay.update(t);
 
@@ -50,13 +51,7 @@ class TutorialView {
   }
 
   void resize() {
-    rect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 4),
-      (gameController.screenSize.height / 2) - (gameController.tileSize * 6),
-      gameController.tileSize * 8,
-      gameController.tileSize * 12,
-    );
-
+    dialogBackdrop?.resize();
     tutorialDemoButton?.resize();
     menuButton?.resize();
   }

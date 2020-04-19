@@ -1,20 +1,19 @@
 import 'dart:ui';
 
-import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kinga/components/buttons/home-button.dart';
-import 'package:kinga/components/buttons/resume-button.dart';
 import 'package:kinga/components/buttons/restart-button.dart';
+import 'package:kinga/components/buttons/resume-button.dart';
+import 'package:kinga/components/dialog-backdrop.dart';
 import 'package:kinga/components/text/pause-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/helpers/game_state.dart';
-import 'package:kinga/res/assets.dart';
 
 class PauseView {
 
   final GameController gameController;
-  Rect rect;
-  Sprite sprite;
+
+  DialogBackdrop dialogBackdrop;
 
   PauseDisplay pauseDisplay;
 
@@ -24,7 +23,7 @@ class PauseView {
 
   PauseView(this.gameController) {
     resize();
-    sprite = Sprite(Assets.dialogBgImg);
+    dialogBackdrop = DialogBackdrop(gameController);
 
     pauseDisplay = PauseDisplay(gameController);
 
@@ -34,7 +33,7 @@ class PauseView {
   }
 
   void render(Canvas c) {
-    sprite.renderRect(c, rect);
+    dialogBackdrop.render(c);
 
     pauseDisplay.render(c);
     resumeButton.render(c);
@@ -43,6 +42,8 @@ class PauseView {
   }
 
   void update(double t) {
+    dialogBackdrop.update(t);
+
     pauseDisplay.update(t);
     resumeButton.update(t);
     restartButton.update(t);
@@ -50,12 +51,7 @@ class PauseView {
   }
 
   void resize() {
-    rect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 4),
-      (gameController.screenSize.height / 2) - (gameController.tileSize * 6),
-      gameController.tileSize * 8,
-      gameController.tileSize * 12,
-    );
+    dialogBackdrop?.resize();
 
     resumeButton?.resize();
     restartButton?.resize();
