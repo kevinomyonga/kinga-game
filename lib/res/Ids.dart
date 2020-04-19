@@ -19,7 +19,7 @@ class Ids {
   static final String shareAppHeroTag         = "ShareTag";
 
   // LeaderBoards
-  static final String iOSLeaderBoardID        = "kinga_players";
+  static final String iOSLeaderBoardID        = "kinga_top_scorers";
   static final String androidLeaderBoardID    = "CgkI05XRpZoEEAIQBw";
 
   // Ad Mob
