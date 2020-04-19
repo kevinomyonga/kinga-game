@@ -8,7 +8,7 @@ class AppStrings {
   static const String appTagline                = 'Fight The Outbreak.';
   static const String appLegalese               = '© 2020 ' + companyName;
   static const String companyName               = 'KNOEYES Games';
-  static const String companyEmail              = 'komyonga@gmail.com';
+  static const String companyEmail              = 'info@kevinomyonga.com';
 
   /// Strings
   static const String about                     = 'About';
