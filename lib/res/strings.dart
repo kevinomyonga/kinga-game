@@ -22,7 +22,7 @@ class AppStrings {
   static const String highScore                 = 'HighScore';
   static const String howToPlay                 = 'How To Play';
   static const String howToPlayExplanation      = 'Protect The Cookie.\nTap 3 Times\nTo Destroy A Fly.';
-  static const String internetErrorMsg          = 'Internet Error. Please Check Your Network And Try Again';
+  static const String continueErrorMsg          = 'Unable To Load This Feature At This Time. Please Check Your Network And Try Again Later.';
   static const String invite_friend             = 'Share With A Friend';
   static const String leaderBoard               = 'Leaderboard';
   static const String loading                   = 'Loading. Please Wait...';

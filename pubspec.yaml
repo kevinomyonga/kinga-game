@@ -30,7 +30,7 @@ dependencies:
   device_info: ^0.4.2+1
 
   # Flutter plugin for Firebase AdMob, supporting banner, interstitial (full-screen), and rewarded video ads
-  firebase_admob: ^0.9.3+1
+  firebase_admob: ^0.9.3+2
 
   # A minimalist Flutter game engine.
   flame: ^0.18.2
