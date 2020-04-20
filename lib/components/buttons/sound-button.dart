@@ -33,7 +33,7 @@ class SoundButton extends BaseButton {
   void resize() {
     rect = Rect.fromLTWH(
       gameController.tileSize * 1.5,
-      gameController.tileSize * .25,
+      gameController.tileSize * .85,
       gameController.tileSize,
       gameController.tileSize,
     );

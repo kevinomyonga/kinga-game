@@ -8,7 +8,7 @@ import 'package:kinga/components/buttons/help-button.dart';
 import 'package:kinga/components/buttons/leaderboard-button.dart';
 import 'package:kinga/components/buttons/play-button.dart';
 import 'package:kinga/components/text/copyright-display.dart';
-import 'package:kinga/components/text/highscore_display.dart';
+import 'package:kinga/components/text/highscore-display.dart';
 import 'package:kinga/components/text/title-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/helpers/game_state.dart';
