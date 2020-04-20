@@ -2,11 +2,11 @@ import 'package:flame/flame.dart';
 import 'package:flame/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kinga/helpers/bgm.dart';
 import 'package:kinga/controllers/game_controller.dart';
+import 'package:kinga/helpers/bgm.dart';
 import 'package:kinga/helpers/game_data.dart';
 import 'package:kinga/res/assets.dart';
-import 'package:kinga/screens/splashscreen.dart';
+import 'package:kinga/screens/game.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 SharedPreferences sharedPrefs;
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: GameWidget(),
     );
   }
 }

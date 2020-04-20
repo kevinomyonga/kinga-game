@@ -18,7 +18,6 @@ class Assets {
   static const String fontEquestria         = "Equestria";
 
   /// Images
-  static const String assetsImageDir        = "assets/images/";
   static const String imageBgDir            = "bg";
   static const String imageBrandingDir      = "branding";
   static const String imageEnemiesDir       = "enemies";
@@ -26,7 +25,7 @@ class Assets {
   static const String imageUIDir            = "ui";
 
   // Splash Screen
-  static const String knoeyesGamesLogo      = "$imageBrandingDir/knoeyes-games-logo-black.gif";
+  static const String knoeyesGamesLogo      = "assets/images/branding/knoeyes-games-logo-black.gif";
 
   // Backgrounds
   static const String backgroundDayImg      = "$imageBgDir/background-day.png";
