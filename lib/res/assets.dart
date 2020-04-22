@@ -5,14 +5,15 @@ class Assets {
   static const String audioSfxDir           = "sfx";
 
   // Background Audio
-  static const String bgm                   = "$audioBgmDir/music_intro.mp3";
-  static const String playing               = "$audioBgmDir/temp_music.aac";
+  static const String bgmMenu               = "$audioBgmDir/bgm-menu.mp3";
+  static const String bgmPlay               = "$audioBgmDir/bgm-play.aac";
 
   // SFX Audio
-  static const String buttonClick           = "$audioSfxDir/click.wav";
-  static const String enemyHaha             = "$audioSfxDir/haha5.mp3";
-  static const String enemyHit              = "$audioSfxDir/hit.mp3";
-  static const String enemyOuch             = "$audioSfxDir/ouch10.mp3";
+  static const String buttonClick           = "$audioSfxDir/sfx-click.wav";
+  static const String gameOver              = "$audioSfxDir/sfx-game-over.wav";
+  static const String wellDone              = "$audioSfxDir/sfx-well-done.mp3";
+  static const String enemyHit              = "$audioSfxDir/sfx-hit.mp3";
+  static const String enemyDefeated         = "$audioSfxDir/sfx-enemy-die.mp3";
 
   /// Fonts
   static const String fontEquestria         = "Equestria";
@@ -35,46 +36,46 @@ class Assets {
   static const String bgMenuButton          = "$imageBgDir/bg-menu-button.png";
 
   /// Enemies
-  static const String enemyAgileFly1        = "$imageEnemiesDir/agile-fly-1.png";
-  static const String enemyAgileFly2        = "$imageEnemiesDir/agile-fly-2.png";
-  static const String enemyAgileFlyDead     = "$imageEnemiesDir/agile-fly-dead.png";
+  static const String enemyAgileFly1        = "$imageEnemiesDir/red-fly-1.png";
+  static const String enemyAgileFly2        = "$imageEnemiesDir/red-fly-2.png";
+  static const String enemyAgileFlyDead     = "$imageEnemiesDir/red-fly-dead.png";
 
-  static const String enemyDroolerFly1      = "$imageEnemiesDir/drooler-fly-1.png";
-  static const String enemyDroolerFly2      = "$imageEnemiesDir/drooler-fly-2.png";
-  static const String enemyDroolerFlyDead   = "$imageEnemiesDir/drooler-fly-dead.png";
+  static const String enemyDroolerFly1      = "$imageEnemiesDir/happy-fly-1.png";
+  static const String enemyDroolerFly2      = "$imageEnemiesDir/happy-fly-2.png";
+  static const String enemyDroolerFlyDead   = "$imageEnemiesDir/happy-fly-dead.png";
 
-  static const String enemyHouseFly1        = "$imageEnemiesDir/house-fly-1.png";
-  static const String enemyHouseFly2        = "$imageEnemiesDir/house-fly-2.png";
-  static const String enemyHouseFlyDead     = "$imageEnemiesDir/house-fly-dead.png";
+  static const String enemyHouseFly1        = "$imageEnemiesDir/green-fly-1.png";
+  static const String enemyHouseFly2        = "$imageEnemiesDir/green-fly-2.png";
+  static const String enemyHouseFlyDead     = "$imageEnemiesDir/green-fly-dead.png";
 
-  static const String enemyHungryFly1       = "$imageEnemiesDir/hungry-fly-1.png";
-  static const String enemyHungryFly2       = "$imageEnemiesDir/hungry-fly-2.png";
-  static const String enemyHungryFlyDead    = "$imageEnemiesDir/hungry-fly-dead.png";
+  static const String enemyHungryFly1       = "$imageEnemiesDir/goggle-eyed-bee-1.png";
+  static const String enemyHungryFly2       = "$imageEnemiesDir/goggle-eyed-bee-2.png";
+  static const String enemyHungryFlyDead    = "$imageEnemiesDir/goggle-eyed-bee-dead.png";
 
-  static const String enemyMachoFly1        = "$imageEnemiesDir/macho-fly-1.png";
-  static const String enemyMachoFly2        = "$imageEnemiesDir/macho-fly-2.png";
-  static const String enemyMachoFlyDead     = "$imageEnemiesDir/macho-fly-dead.png";
+  static const String enemyMachoFly1        = "$imageEnemiesDir/grumpy-bee-1.png";
+  static const String enemyMachoFly2        = "$imageEnemiesDir/grumpy-bee-2.png";
+  static const String enemyMachoFlyDead     = "$imageEnemiesDir/grumpy-bee-dead.png";
 
   /// Enemies Inverted
-  static const String enemyAgileFly1Inverted        = "$imageEnemiesDir/agile-fly-1-inverted.png";
-  static const String enemyAgileFly2Inverted        = "$imageEnemiesDir/agile-fly-2-inverted.png";
-  static const String enemyAgileFlyDeadInverted     = "$imageEnemiesDir/agile-fly-dead-inverted.png";
+  static const String enemyAgileFly1Inverted        = "$imageEnemiesDir/red-fly-1-inverted.png";
+  static const String enemyAgileFly2Inverted        = "$imageEnemiesDir/red-fly-2-inverted.png";
+  static const String enemyAgileFlyDeadInverted     = "$imageEnemiesDir/red-fly-dead-inverted.png";
 
-  static const String enemyDroolerFly1Inverted      = "$imageEnemiesDir/drooler-fly-1-inverted.png";
-  static const String enemyDroolerFly2Inverted      = "$imageEnemiesDir/drooler-fly-2-inverted.png";
-  static const String enemyDroolerFlyDeadInverted   = "$imageEnemiesDir/drooler-fly-dead-inverted.png";
+  static const String enemyDroolerFly1Inverted      = "$imageEnemiesDir/happy-fly-1-inverted.png";
+  static const String enemyDroolerFly2Inverted      = "$imageEnemiesDir/happy-fly-2-inverted.png";
+  static const String enemyDroolerFlyDeadInverted   = "$imageEnemiesDir/happy-fly-dead-inverted.png";
 
-  static const String enemyHouseFly1Inverted        = "$imageEnemiesDir/house-fly-1-inverted.png";
-  static const String enemyHouseFly2Inverted        = "$imageEnemiesDir/house-fly-2-inverted.png";
-  static const String enemyHouseFlyDeadInverted     = "$imageEnemiesDir/house-fly-dead-inverted.png";
+  static const String enemyHouseFly1Inverted        = "$imageEnemiesDir/green-fly-1-inverted.png";
+  static const String enemyHouseFly2Inverted        = "$imageEnemiesDir/green-fly-2-inverted.png";
+  static const String enemyHouseFlyDeadInverted     = "$imageEnemiesDir/green-fly-dead-inverted.png";
 
-  static const String enemyHungryFly1Inverted       = "$imageEnemiesDir/hungry-fly-1-inverted.png";
-  static const String enemyHungryFly2Inverted       = "$imageEnemiesDir/hungry-fly-2-inverted.png";
-  static const String enemyHungryFlyDeadInverted    = "$imageEnemiesDir/hungry-fly-dead-inverted.png";
+  static const String enemyHungryFly1Inverted       = "$imageEnemiesDir/goggle-eyed-bee-1-inverted.png";
+  static const String enemyHungryFly2Inverted       = "$imageEnemiesDir/goggle-eyed-bee-2-inverted.png";
+  static const String enemyHungryFlyDeadInverted    = "$imageEnemiesDir/goggle-eyed-bee-dead-inverted.png";
 
-  static const String enemyMachoFly1Inverted        = "$imageEnemiesDir/macho-fly-1-inverted.png";
-  static const String enemyMachoFly2Inverted        = "$imageEnemiesDir/macho-fly-2-inverted.png";
-  static const String enemyMachoFlyDeadInverted     = "$imageEnemiesDir/macho-fly-dead-inverted.png";
+  static const String enemyMachoFly1Inverted        = "$imageEnemiesDir/grumpy-bee-1-inverted.png";
+  static const String enemyMachoFly2Inverted        = "$imageEnemiesDir/grumpy-bee-2-inverted.png";
+  static const String enemyMachoFlyDeadInverted     = "$imageEnemiesDir/grumpy-bee-dead-inverted.png";
 
   // Player
   static const String playerImg             = "$imagePlayerDir/player.png";

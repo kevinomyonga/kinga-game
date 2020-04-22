@@ -9,14 +9,15 @@ import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/strings.dart';
+import 'package:play_games/play_games.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // You can also test with your own ad unit IDs by registering your device as a
 // test device. Check the logs for your device's ID value.
-/*const String testDevice = '135986D75C1D9E9C63566BD16C02DFD7';
-const String testDevice2 = 'F37D4C1F59184DB1B44E9759A01795EA';*/
+const String testDevice = '135986D75C1D9E9C63566BD16C02DFD7';
+const String testDevice2 = 'F37D4C1F59184DB1B44E9759A01795EA';
 
 class GameWidget extends StatefulWidget {
   @override
@@ -107,7 +108,11 @@ class _GameWidgetState extends State<GameWidget> {
     };
 
     // Sign in the user to the Service
-    GamesServices.signIn();
+    _signInToGameService();
+
+    gameController.showLeaderBoard = () {
+      _showLeaderBoard();
+    };
 
     gameController.shareGame = () {
       _inviteFriend();
@@ -146,6 +151,36 @@ class _GameWidgetState extends State<GameWidget> {
     );
   }
 
+  // Sign in the user to the Service
+  _signInToGameService() async {
+    if(Platform.isAndroid) {
+      SigninResult result = await PlayGames.signIn();
+      if (result.success) {
+        await PlayGames.setPopupOptions();
+        print('Play Games Success: ${result.account}');
+      } else {
+        print('Play Games Fail: ${result.message}');
+      }
+    } else if (Platform.isIOS) {
+      GamesServices.signIn();
+    }
+  }
+
+  _showLeaderBoard() {
+    if(Platform.isAndroid) {
+      PlayGames.showLeaderboard(Ids.androidLeaderBoardID).catchError((e) {
+        _signInToGameService();
+      });
+    } else if (Platform.isIOS) {
+      GamesServices.showLeaderboards(
+          iOSLeaderboardID: Ids.iOSLeaderBoardID
+      ).catchError((e) {
+        // Sign in the user just in case the first call failed.
+        GamesServices.signIn();
+      });
+    }
+  }
+
   void showRatingDialog() {
     _rateMyApp.init().then((_) {
       if(_rateMyApp.shouldOpenDialog) {
@@ -181,12 +216,29 @@ class _GameWidgetState extends State<GameWidget> {
   }
 
   // Launch an app selection popup to select the app to be used for sharing a link to KINGA
-  _inviteFriend() {
+  _inviteFriend() async {
     if(Platform.isAndroid) {
       Share.share('Check out the ${AppStrings.appName} Game here: ${AppStrings.url_play_store}');
     } else if (Platform.isIOS) {
-      Share.share('Check out the ${AppStrings.appName} Game here: ${AppStrings.url_app_store}');
+      String shareText = 'Check out the ${AppStrings.appName} Game here: ${AppStrings.url_app_store}';
+      bool isIpad = await _isIpad();
+      if(isIpad) {
+        // iPad
+        Share.share(
+          shareText,
+          sharePositionOrigin: Rect.fromCenter(center: Offset(1000, 1000), width: 100, height: 100),
+        );
+      } else {
+        // iPhone
+        Share.share(shareText);
+      }
     }
+  }
+
+  // Check if app is running on iPad
+  Future<bool> _isIpad() async {
+    final iosInfo = await DeviceInfoPlugin().iosInfo;
+    return iosInfo.name.toLowerCase().contains('ipad');
   }
 
   // Load Video

@@ -14,7 +14,7 @@ class DroolerFly extends Enemy {
     flyingSprite = List<Sprite>();
 
     // Determine which side the fly is coming from
-    if(x > gameController.screenSize.width / 2) {
+    if(x < gameController.screenSize.width / 2) {
       flyingSprite.add(Sprite(Assets.enemyDroolerFly1));
       flyingSprite.add(Sprite(Assets.enemyDroolerFly2));
       deadSprite = Sprite(Assets.enemyDroolerFlyDead);
@@ -28,7 +28,7 @@ class DroolerFly extends Enemy {
   void resize({double x, double y}) {
     x ??= (enemyRect?.left) ?? 0;
     y ??= (enemyRect?.top) ?? 0;
-    enemyRect = Rect.fromLTWH(x, y, gameController.tileSize * 1, gameController.tileSize * 1);
+    enemyRect = Rect.fromLTWH(x, y, gameController.tileSize * 1, gameController.tileSize * 0.5);
     super.resize();
   }
 }

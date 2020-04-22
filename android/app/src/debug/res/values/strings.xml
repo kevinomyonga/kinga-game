@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">KINGA-Dev</string>
-    <string name="game_app_id" translatable="false">144497199827</string>
+    <string name="game_app_id" translatable="false">664332076611</string>
     <!--<string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>-->
     <string name="admob_app_id" translatable="false">ca-app-pub-9277082169404949~9918933766</string>
 </resources>

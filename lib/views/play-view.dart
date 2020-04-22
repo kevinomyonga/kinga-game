@@ -163,11 +163,15 @@ class PlayView {
   void endGame() {
     // End game
     gameController.gameState = GameState.GAME_OVER;
-
+    // Play sound
+    if (gameController.soundButton.isEnabled) {
+      if(gameController.isNewHighScore) {
+        Flame.audio.play(Assets.wellDone);
+      } else {
+        Flame.audio.play(Assets.gameOver);
+      }
+    }
     // Reset game
     gameController.initialize();
-    if (gameController.soundButton.isEnabled) {
-      Flame.audio.play(Assets.enemyHaha);
-    }
   }
 }
