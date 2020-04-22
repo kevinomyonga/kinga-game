@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "144497199827",
-    "firebase_url": "https://kinga-30007344.firebaseio.com",
-    "project_id": "kinga-30007344",
-    "storage_bucket": "kinga-30007344.appspot.com"
+    "project_number": "664332076611",
+    "firebase_url": "https://kinga-26749748.firebaseio.com",
+    "project_id": "kinga-26749748",
+    "storage_bucket": "kinga-26749748.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:144497199827:android:5d5527f882aab3d6cae226",
+        "mobilesdk_app_id": "1:664332076611:android:456fae87de2062d94ab6f6",
         "android_client_info": {
           "package_name": "com.knoeyes.games.kinga"
         }
       },
       "oauth_client": [
         {
-          "client_id": "144497199827-c1nrh1apc4b8r1h4kls6aeag55gtuga9.apps.googleusercontent.com",
+          "client_id": "664332076611-mb3cibjchpcggad90nje3sob1hgp9a47.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.knoeyes.games.kinga",
@@ -23,32 +23,24 @@
           }
         },
         {
-          "client_id": "144497199827-rn3ifbj8l5lop2l597t33sl5ib5tb0oj.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.knoeyes.games.kinga",
-            "certificate_hash": "4637928c2a07fbe8a244eeff5801ac72c4747f41"
-          }
-        },
-        {
-          "client_id": "144497199827-t51l3k5q7ipvltu2qo68ui7msu196ped.apps.googleusercontent.com",
+          "client_id": "664332076611-l1uvngjp39vuqnmg007h3muq92biilho.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC2KnO_IKulPypPsr2jd7tUGUYoIjwme_k"
+          "current_key": "AIzaSyC87O1CKptdgus_gKnBXzs2_b-B7cDwddg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "144497199827-t51l3k5q7ipvltu2qo68ui7msu196ped.apps.googleusercontent.com",
+              "client_id": "664332076611-l1uvngjp39vuqnmg007h3muq92biilho.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "144497199827-ror8ddke2lun9u69fsam8gvrcseo6798.apps.googleusercontent.com",
+              "client_id": "664332076611-tdmjk1nl50at6jca10bp67jv8s2gkea0.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.knoeyes.games.kinga",

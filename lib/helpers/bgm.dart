@@ -13,11 +13,11 @@ class BGM {
 
   static Future<void> preload() async {
     home = AudioCache(prefix: 'audio/', fixedPlayer: AudioPlayer());
-    await home.load(Assets.bgm);
+    await home.load(Assets.bgmMenu);
     await home.fixedPlayer.setReleaseMode(ReleaseMode.LOOP);
 
     playing = AudioCache(prefix: 'audio/', fixedPlayer: AudioPlayer());
-    await playing.load(Assets.playing);
+    await playing.load(Assets.bgmPlay);
     await playing.fixedPlayer.setReleaseMode(ReleaseMode.LOOP);
 
     isInitialized = true;
@@ -41,12 +41,12 @@ class BGM {
       if (what == BGMType.HOME) {
         current = BGMType.HOME;
         await playing.fixedPlayer.stop();
-        await home.loop(Assets.bgm, volume: .25);
+        await home.loop(Assets.bgmMenu, volume: .25);
       }
       if (what == BGMType.PLAYING) {
         current = BGMType.PLAYING;
         await playing.fixedPlayer.stop();
-        await home.loop(Assets.playing, volume: .25);
+        await home.loop(Assets.bgmPlay, volume: .25);
       }
     }
     _update();

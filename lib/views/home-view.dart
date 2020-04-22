@@ -27,6 +27,7 @@ class HomeView {
   double flyingSpriteIndex = 0;
 
   Offset toTop;
+  Offset toCenter;
   Offset toBottom;
   bool isHoveringDown = true;
 
@@ -84,11 +85,11 @@ class HomeView {
     }
 
     // Move the fly (Hover)
-    double stepDistance = (speed * 0.2) * t;
+    double stepDistance = (speed * 0.3) * t;
     Offset toPlayer = toTop - titleRect.center;
     Offset fromPlayer = toBottom - titleRect.center;
     if(isHoveringDown) {
-      if (stepDistance <= toPlayer.distance - gameController.tileSize * 1.25) {
+      if (stepDistance <= toPlayer.distance - gameController.tileSize * 0.3) {
         Offset stepToPlayer = Offset.fromDirection(
             toPlayer.direction, stepDistance);
         titleRect = titleRect.shift(stepToPlayer);
@@ -96,7 +97,7 @@ class HomeView {
         isHoveringDown = false;
       }
     } else {
-      if (stepDistance <= fromPlayer.distance - gameController.tileSize * 1.25) {
+      if (stepDistance <= fromPlayer.distance - gameController.tileSize * 0.3) {
         Offset stepFromPlayer = Offset.fromDirection(
             fromPlayer.direction, stepDistance);
         titleRect = titleRect.shift(stepFromPlayer);
@@ -116,10 +117,10 @@ class HomeView {
 
   void resize() {
     titleRect = Rect.fromLTWH(
-      (gameController.screenSize.width / 2) - (gameController.tileSize * 3 / 2),
-      (gameController.screenSize.height * 0.53) - (gameController.tileSize * 6),
-      gameController.tileSize * 2.7,
-      gameController.tileSize * 2.7,
+      (gameController.screenSize.width / 2) - (gameController.tileSize),
+      (gameController.screenSize.height * 0.53) - (gameController.tileSize * 5),
+      gameController.tileSize * 2,
+      gameController.tileSize * 1,
     );
     titleRectOriginalPosition = titleRect.center;
 

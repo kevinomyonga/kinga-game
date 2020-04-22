@@ -165,7 +165,7 @@ class _GameWidgetState extends State<GameWidget> {
       GamesServices.signIn();
     }
   }
-  
+
   _showLeaderBoard() {
     if(Platform.isAndroid) {
       PlayGames.showLeaderboard(Ids.androidLeaderBoardID).catchError((e) {
@@ -216,12 +216,29 @@ class _GameWidgetState extends State<GameWidget> {
   }
 
   // Launch an app selection popup to select the app to be used for sharing a link to KINGA
-  _inviteFriend() {
+  _inviteFriend() async {
     if(Platform.isAndroid) {
       Share.share('Check out the ${AppStrings.appName} Game here: ${AppStrings.url_play_store}');
     } else if (Platform.isIOS) {
-      Share.share('Check out the ${AppStrings.appName} Game here: ${AppStrings.url_app_store}');
+      String shareText = 'Check out the ${AppStrings.appName} Game here: ${AppStrings.url_app_store}';
+      bool isIpad = await _isIpad();
+      if(isIpad) {
+        // iPad
+        Share.share(
+          shareText,
+          sharePositionOrigin: Rect.fromCenter(center: Offset(1000, 1000), width: 100, height: 100),
+        );
+      } else {
+        // iPhone
+        Share.share(shareText);
+      }
     }
+  }
+
+  // Check if app is running on iPad
+  Future<bool> _isIpad() async {
+    final iosInfo = await DeviceInfoPlugin().iosInfo;
+    return iosInfo.name.toLowerCase().contains('ipad');
   }
 
   // Load Video

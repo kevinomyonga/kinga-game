@@ -103,7 +103,7 @@ Future setupFlame() async {
     Assets.buttonClick,
     Assets.wellDone,
     Assets.enemyHit,
-    Assets.enemyOuch,
+    Assets.enemyDefeated,
   ]);
 
   WidgetsBinding.instance.addObserver(BGMHandler());

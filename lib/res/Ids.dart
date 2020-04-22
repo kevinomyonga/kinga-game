@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:firebase_admob/firebase_admob.dart';
-
 class Ids {
 
   // App Identifiers
@@ -20,7 +18,7 @@ class Ids {
 
   // LeaderBoards
   static final String iOSLeaderBoardID        = "kinga_top_scorers";
-  static final String androidLeaderBoardID    = "CgkI05XRpZoEEAIQBw";
+  static final String androidLeaderBoardID    = "CgkIw4yc6qoTEAIQAg";
 
   // Ad Mob
   //static final String adMobAppID              = FirebaseAdMob.testAppId;

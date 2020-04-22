@@ -4,7 +4,6 @@ import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:kinga/components/enemy-health-bar.dart';
 import 'package:kinga/controllers/game_controller.dart';
-import 'package:kinga/helpers/game_data.dart';
 import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/assets.dart';
 
@@ -101,7 +100,7 @@ class Enemy {
 
       if(currentHealth <= 0) {
         if (gameController.soundButton.isEnabled) {
-          Flame.audio.play(Assets.enemyOuch);
+          Flame.audio.play(Assets.enemyDefeated);
         }
 
         isDead = true;
@@ -109,12 +108,6 @@ class Enemy {
         // Score
         gameController.playView.score++;
         print(gameController.playView.score);
-
-        /*GameData.updateScore(gameController.playView.score);*/
-
-        /*if(gameController.playView.score > (gameController.storage.getInt(Ids.sharedPrefHighScore) ?? 0)) {
-          gameController.storage.setInt(Ids.sharedPrefHighScore, gameController.playView.score);
-        }*/
       }
     }
   }
