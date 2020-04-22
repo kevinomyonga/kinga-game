@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:games_services/games_services.dart';
@@ -6,6 +8,7 @@ import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
+import 'package:play_games/play_games.dart';
 
 class BestScoreDisplay {
 
@@ -38,12 +41,16 @@ class BestScoreDisplay {
       gameController.gameData.updateHighScore(currentScore);
 
       // Submit HighScore to LeaderBoard
-      GamesServices.submitScore(
-          score: Score(
-              androidLeaderboardID: Ids.androidLeaderBoardID,
-              iOSLeaderboardID: Ids.iOSLeaderBoardID,
-              value: currentScore)
-      );
+      if(Platform.isAndroid) {
+        PlayGames.submitScoreById(Ids.androidLeaderBoardID, currentScore);
+      } else if (Platform.isIOS) {
+        GamesServices.submitScore(
+            score: Score(
+                androidLeaderboardID: Ids.androidLeaderBoardID,
+                iOSLeaderboardID: Ids.iOSLeaderBoardID,
+                value: currentScore)
+        );
+      }
     }
 
     Shadow shadow = Shadow(

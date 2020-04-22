@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flame/sprite.dart';
@@ -9,6 +10,7 @@ import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/assets.dart';
 import 'package:kinga/res/strings.dart';
+import 'package:play_games/play_games.dart';
 
 class LeaderBoardButton extends BaseButton {
 
@@ -73,13 +75,7 @@ class LeaderBoardButton extends BaseButton {
 
   void onTapUp() {
     super.onTapUp();
-
     // Show the leaderBoard screen
-    GamesServices.showLeaderboards(
-        iOSLeaderboardID: Ids.iOSLeaderBoardID
-    ).catchError((e) {
-      // Sign in the user just in case the first call failed.
-      GamesServices.signIn();
-    });
+    gameController.showLeaderBoard();
   }
 }

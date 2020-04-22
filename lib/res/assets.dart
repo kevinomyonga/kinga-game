@@ -10,7 +10,8 @@ class Assets {
 
   // SFX Audio
   static const String buttonClick           = "$audioSfxDir/click.wav";
-  static const String enemyHaha             = "$audioSfxDir/haha5.mp3";
+  static const String gameOver              = "$audioSfxDir/game-over.wav";
+  static const String wellDone              = "$audioSfxDir/well-done.mp3";
   static const String enemyHit              = "$audioSfxDir/hit.mp3";
   static const String enemyOuch             = "$audioSfxDir/ouch10.mp3";
 

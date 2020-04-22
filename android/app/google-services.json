@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "144497199827-c1nrh1apc4b8r1h4kls6aeag55gtuga9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.knoeyes.games.kinga",
+            "certificate_hash": "c6322d384e687fcb01c7d157a7bede87c55250b0"
+          }
+        },
+        {
+          "client_id": "144497199827-rn3ifbj8l5lop2l597t33sl5ib5tb0oj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.knoeyes.games.kinga",
+            "certificate_hash": "4637928c2a07fbe8a244eeff5801ac72c4747f41"
+          }
+        },
+        {
           "client_id": "144497199827-t51l3k5q7ipvltu2qo68ui7msu196ped.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -35,7 +51,8 @@
               "client_id": "144497199827-ror8ddke2lun9u69fsam8gvrcseo6798.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.knoeyes.games.kinga"
+                "bundle_id": "com.knoeyes.games.kinga",
+                "app_store_id": "1506422810"
               }
             }
           ]

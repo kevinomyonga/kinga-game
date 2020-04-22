@@ -101,7 +101,7 @@ Future setupFlame() async {
 
   await Flame.audio.loadAll(<String>[
     Assets.buttonClick,
-    Assets.enemyHaha,
+    Assets.wellDone,
     Assets.enemyHit,
     Assets.enemyOuch,
   ]);
