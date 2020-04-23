@@ -224,13 +224,15 @@ class _GameWidgetState extends State<GameWidget> {
       bool isIpad = await _isIpad();
       if(isIpad) {
         // iPad
-        Share.share(
+        // To be returned after testing on physical iPad
+        /*Share.share(
           shareText,
           sharePositionOrigin: Rect.fromLTWH(
               MediaQuery.of(context).size.width,
               MediaQuery.of(context).size.height,
               100, 100),
-        );
+        );*/
+        _launchURL('mailto:?subject=${Uri.encodeComponent('KINGA Game')}&body=${Uri.encodeComponent(shareText)}');
       } else {
         // iPhone
         Share.share(shareText);
