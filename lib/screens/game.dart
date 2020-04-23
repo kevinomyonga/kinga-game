@@ -226,7 +226,10 @@ class _GameWidgetState extends State<GameWidget> {
         // iPad
         Share.share(
           shareText,
-          sharePositionOrigin: Rect.fromCenter(center: Offset(1000, 1000), width: 100, height: 100),
+          sharePositionOrigin: Rect.fromLTWH(
+              MediaQuery.of(context).size.width,
+              MediaQuery.of(context).size.height,
+              100, 100),
         );
       } else {
         // iPhone
