@@ -232,7 +232,7 @@ class _GameWidgetState extends State<GameWidget> {
               MediaQuery.of(context).size.height,
               100, 100),
         );*/
-        _launchURL('mailto:?subject=${Uri.encodeComponent('KINGA Game')}&body=${Uri.encodeComponent(shareText)}');
+        _launchURL(AppStrings.url_app_store);
       } else {
         // iPhone
         Share.share(shareText);
