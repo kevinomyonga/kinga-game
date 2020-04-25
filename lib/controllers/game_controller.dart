@@ -5,13 +5,14 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flutter/widgets.dart';
-import 'package:kinga/helpers/bgm.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:kinga/components/backdrop.dart';
 import 'package:kinga/components/buttons/music-button.dart';
 import 'package:kinga/components/buttons/share-button.dart';
 import 'package:kinga/components/buttons/sound-button.dart';
 import 'package:kinga/components/enemy.dart';
 import 'package:kinga/controllers/enemy_spawner.dart';
+import 'package:kinga/helpers/bgm.dart';
 import 'package:kinga/helpers/game_data.dart';
 import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/main.dart';
@@ -109,7 +110,11 @@ class GameController extends Game with TapDetector {
     if(!musicButton.isEnabled) BGM.pause();
     soundButton.render(c);
 
-    if(gameState != GameState.PLAYING) shareButton.render(c);
+    if(Device.get().isIos && Device.get().isTablet){
+      // Remove share button
+    } else {
+      if (gameState != GameState.PLAYING) shareButton.render(c);
+    }
   }
 
   void update(double t) {

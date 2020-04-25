@@ -11,7 +11,7 @@ description: Kinga - Fight The Outbreak. My first game built using Flutter and t
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.11+12
+version: 1.0.12+13
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -34,6 +34,9 @@ dependencies:
 
   # A minimalist Flutter game engine.
   flame: ^0.18.2
+
+  # Determine the type of handheld device on Flutter.
+  flutter_device_type: ^0.2.0
 
   # A new Flutter plugin to support game center and google play games services.
   games_services: ^0.2.6

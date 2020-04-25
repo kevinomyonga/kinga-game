@@ -4,6 +4,7 @@ import 'package:device_info/device_info.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:games_services/games_services.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/helpers/game_state.dart';
@@ -221,8 +222,8 @@ class _GameWidgetState extends State<GameWidget> {
       Share.share('Check out the ${AppStrings.appName} Game here: ${AppStrings.url_play_store}');
     } else if (Platform.isIOS) {
       String shareText = 'Check out the ${AppStrings.appName} Game here: ${AppStrings.url_app_store}';
-      bool isIpad = await _isIpad();
-      if(isIpad) {
+
+      if(Device.get().isIos && Device.get().isTablet) {
         // iPad
         // To be returned after testing on physical iPad
         /*Share.share(
@@ -238,12 +239,6 @@ class _GameWidgetState extends State<GameWidget> {
         Share.share(shareText);
       }
     }
-  }
-
-  // Check if app is running on iPad
-  Future<bool> _isIpad() async {
-    final iosInfo = await DeviceInfoPlugin().iosInfo;
-    return iosInfo.name.toLowerCase().contains('ipad');
   }
 
   // Load Video
