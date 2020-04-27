@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flame/sprite.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/res/assets.dart';
 
@@ -28,7 +29,7 @@ class HealthBar {
     );
 
     heartRect = Rect.fromLTWH(
-        (gameController.screenSize.width / 2) - (barWidth * 0.97 / 2),
+        (gameController.screenSize.width / 2) - (barWidth / 2 * (Device.get().isTablet ? 0.93 : 0.98)),
         gameController.screenSize.height - (gameController.tileSize * 1.25),
         gameController.tileSize,
         gameController.tileSize,

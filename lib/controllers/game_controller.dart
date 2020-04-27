@@ -130,7 +130,12 @@ class GameController extends Game with TapDetector {
 
   void resize(Size size) {
     screenSize = size;
-    tileSize = screenSize.width / 10;
+
+    if(Device.get().isTablet) {
+      tileSize = screenSize.width / 14;
+    } else {
+      tileSize = screenSize.width / 10;
+    }
 
     background?.resize();
 

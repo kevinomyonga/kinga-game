@@ -80,7 +80,11 @@ class Enemy {
     }
   }
 
-  void resize() {}
+  void resize({double x, double y}) {
+    x ??= (enemyRect?.left) ?? 0;
+    y ??= (enemyRect?.top) ?? 0;
+    enemyRect = Rect.fromLTWH(x, y, gameController.tileSize * 1, gameController.tileSize * 0.5);
+  }
 
   void attack() {
     if(!gameController.playView.player.isDead) {

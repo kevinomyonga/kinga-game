@@ -36,7 +36,7 @@ class ScoreDisplay {
         style: TextStyle(
           color: Colors.white,
           fontFamily: Assets.fontEquestria,
-          fontSize: 70.0,
+          fontSize: gameController.tileSize * 1.5,
           shadows: <Shadow>[shadow, shadow, shadow, shadow, shadow, shadow, shadow, shadow],
         ),
       );

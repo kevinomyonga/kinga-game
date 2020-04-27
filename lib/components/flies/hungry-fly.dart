@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flame/sprite.dart';
 import 'package:kinga/components/enemy.dart';
 import 'package:kinga/controllers/game_controller.dart';
@@ -8,7 +6,8 @@ import 'package:kinga/res/assets.dart';
 class HungryFly extends Enemy {
 
   HungryFly(GameController gameController, double x, double y) : super(gameController) {
-    resize(x: x, y: y);
+    //resize(x: x, y: y);
+    super.resize(x: x, y: y);
     flyingSprite = List<Sprite>();
 
     // Determine which side the fly is coming from
@@ -23,10 +22,10 @@ class HungryFly extends Enemy {
     }
   }
 
-  void resize({double x, double y}) {
+  /*void resize({double x, double y}) {
     x ??= (enemyRect?.left) ?? 0;
     y ??= (enemyRect?.top) ?? 0;
     enemyRect = Rect.fromLTWH(x, y, gameController.tileSize * 1, gameController.tileSize * 0.5);
     super.resize();
-  }
+  }*/
 }
