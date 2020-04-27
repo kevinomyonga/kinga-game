@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
+import 'package:kinga/components/backdrops/dialog-backdrop.dart';
 import 'package:kinga/components/buttons/menu-button.dart';
-import 'package:kinga/components/dialog-backdrop.dart';
 import 'package:kinga/components/text/best_score_display.dart';
 import 'package:kinga/components/text/game-over-display.dart';
 import 'package:kinga/components/text/new-highscore-display.dart';

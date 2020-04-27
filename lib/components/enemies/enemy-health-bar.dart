@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flame/sprite.dart';
-import 'package:kinga/components/enemy.dart';
+import 'package:kinga/components/enemies/enemy.dart';
 import 'package:kinga/res/assets.dart';
 
 class EnemyHealthBar {
@@ -15,20 +15,6 @@ class EnemyHealthBar {
   Sprite spriteEmpty;
 
   EnemyHealthBar(this.enemy) {
-    /*emptyHealthRect = Rect.fromLTWH(
-        enemy.enemyRect.left - (enemy.gameController.tileSize * .75),
-        enemy.enemyRect.top - (enemy.gameController.tileSize * .625),
-        enemy.gameController.tileSize * .75,
-        enemy.gameController.tileSize * 0.5
-    );*/
-
-    /*remainingHealthRect = Rect.fromLTWH(
-        enemy.enemyRect.left - (enemy.gameController.tileSize * .75),
-        enemy.enemyRect.top - (enemy.gameController.tileSize * .625),
-        enemy.gameController.tileSize * .75,
-        enemy.gameController.tileSize * 0.5
-    );*/
-
     spriteEmpty = Sprite(Assets.healthBarEmpty);
     spriteFull = Sprite(Assets.healthBarFull);
   }

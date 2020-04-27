@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
+import 'package:kinga/components/backdrops/dialog-backdrop.dart';
 import 'package:kinga/components/buttons/home-button.dart';
 import 'package:kinga/components/buttons/restart-button.dart';
 import 'package:kinga/components/buttons/resume-button.dart';
-import 'package:kinga/components/dialog-backdrop.dart';
 import 'package:kinga/components/text/pause-display.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/helpers/game_state.dart';

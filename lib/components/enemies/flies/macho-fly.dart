@@ -1,5 +1,5 @@
 import 'package:flame/sprite.dart';
-import 'package:kinga/components/enemy.dart';
+import 'package:kinga/components/enemies/enemy.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/res/assets.dart';
 

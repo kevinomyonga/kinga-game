@@ -1,4 +1,4 @@
-import 'package:kinga/components/enemy.dart';
+import 'package:kinga/components/enemies/enemy.dart';
 import 'package:kinga/controllers/game_controller.dart';
 
 class EnemySpawner {

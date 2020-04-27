@@ -1,9 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
+import 'package:kinga/components/backdrops/dialog-backdrop.dart';
 import 'package:kinga/components/buttons/menu-button.dart';
 import 'package:kinga/components/buttons/tutorial-demo-button.dart';
-import 'package:kinga/components/dialog-backdrop.dart';
 import 'package:kinga/components/text/tutorial-display.dart';
 import 'package:kinga/components/text/tutorial-info-display.dart';
 import 'package:kinga/controllers/game_controller.dart';

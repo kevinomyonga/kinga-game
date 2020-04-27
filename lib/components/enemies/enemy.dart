@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
-import 'package:kinga/components/enemy-health-bar.dart';
+import 'package:kinga/components/enemies/enemy-health-bar.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/helpers/game_state.dart';
 import 'package:kinga/res/assets.dart';

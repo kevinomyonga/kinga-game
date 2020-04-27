@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
+import 'package:kinga/components/backdrops/dialog-backdrop.dart';
 import 'package:kinga/components/buttons/no-thanks-button.dart';
 import 'package:kinga/components/buttons/show-ad-button.dart';
-import 'package:kinga/components/dialog-backdrop.dart';
-import 'package:kinga/components/player.dart';
+import 'package:kinga/components/player/player.dart';
 import 'package:kinga/components/text/continue-display.dart';
 import 'package:kinga/components/text/continues-left-display.dart';
 import 'package:kinga/components/text/countdown-display.dart';

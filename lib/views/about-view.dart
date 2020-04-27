@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
+import 'package:kinga/components/backdrops/dialog-backdrop.dart';
 import 'package:kinga/components/buttons/credits-button.dart';
 import 'package:kinga/components/buttons/feedback-button.dart';
 import 'package:kinga/components/buttons/menu-button.dart';
-import 'package:kinga/components/dialog-backdrop.dart';
 import 'package:kinga/components/text/about-copyright-display.dart';
 import 'package:kinga/components/text/about-display.dart';
 import 'package:kinga/components/text/version-display.dart';

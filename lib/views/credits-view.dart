@@ -1,9 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
+import 'package:kinga/components/backdrops/dialog-backdrop.dart';
 import 'package:kinga/components/buttons/back-button.dart';
 import 'package:kinga/components/buttons/developer-website-button.dart';
-import 'package:kinga/components/dialog-backdrop.dart';
 import 'package:kinga/components/text/credits-display.dart';
 import 'package:kinga/components/text/credits-name-display.dart';
 import 'package:kinga/components/text/credits-title-display.dart';
