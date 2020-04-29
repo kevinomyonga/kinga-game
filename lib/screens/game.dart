@@ -221,7 +221,6 @@ class _GameWidgetState extends State<GameWidget> {
     if(Platform.isAndroid) {
       Share.share(AppStrings.android_share_text);
     } else if (Platform.isIOS) {
-
       if(Device.get().isIos && Device.get().isTablet) {
         // iPad
         Share.share(
