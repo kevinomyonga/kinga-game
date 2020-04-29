@@ -27,13 +27,13 @@ dependencies:
 
   # Flutter plugin providing detailed information about the device (make, model, etc.),
   # and Android or iOS version the app is running on.
-  device_info: ^0.4.2+1
+  device_info: ^0.4.2+2
 
   # Flutter plugin for Firebase AdMob, supporting banner, interstitial (full-screen), and rewarded video ads
   firebase_admob: ^0.9.3+2
 
   # A minimalist Flutter game engine.
-  flame: ^0.18.2
+  flame: ^0.19.1
 
   # Determine the type of handheld device on Flutter.
   flutter_device_type: ^0.2.0
@@ -42,7 +42,7 @@ dependencies:
   games_services: ^0.2.6
 
   # Provides an API for querying information about an application package.
-  package_info: ^0.4.0+13
+  package_info: ^0.4.0+17
 
   # A simple wrapper on top of Google Play Games Services (GPGS), including auth, achievement, and more.
   play_games: ^0.5.3
@@ -55,10 +55,10 @@ dependencies:
 
   # Flutter plugin for reading and writing simple key-value pairs.
   # Wraps NSUserDefaults on iOS and SharedPreferences on Android.
-  shared_preferences: ^0.5.6+3
+  shared_preferences: ^0.5.7
 
   # Flutter plugin for launching a URL on Android and iOS.
-  url_launcher: ^5.4.2
+  url_launcher: ^5.4.5
 
 dev_dependencies:
   flutter_test:

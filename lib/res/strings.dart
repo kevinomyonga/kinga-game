@@ -53,4 +53,8 @@ class AppStrings {
   static const String url_app_store             = 'https://apps.apple.com/ke/app/kinga/id1506422810';
   static const String url_play_store            = 'https://play.google.com/store/apps/details?id=com.knoeyes.games.kinga';
   static const String url_youtube_demo          = 'https://youtu.be/cOm8L0AVqM4';
+
+  //Share
+  static const String android_share_text  = 'Check out the ${AppStrings.appName} Game For Android here: ${AppStrings.url_play_store}';
+  static const String ios_share_text      = 'Check out the ${AppStrings.appName} Game For iOS here: ${AppStrings.url_app_store}';
 }

@@ -219,24 +219,21 @@ class _GameWidgetState extends State<GameWidget> {
   // Launch an app selection popup to select the app to be used for sharing a link to KINGA
   _inviteFriend() async {
     if(Platform.isAndroid) {
-      Share.share('Check out the ${AppStrings.appName} Game here: ${AppStrings.url_play_store}');
+      Share.share(AppStrings.android_share_text);
     } else if (Platform.isIOS) {
-      String shareText = 'Check out the ${AppStrings.appName} Game here: ${AppStrings.url_app_store}';
 
       if(Device.get().isIos && Device.get().isTablet) {
         // iPad
-        // To be returned after testing on physical iPad
-        /*Share.share(
-          shareText,
+        Share.share(
+          AppStrings.ios_share_text,
           sharePositionOrigin: Rect.fromLTWH(
               MediaQuery.of(context).size.width,
               MediaQuery.of(context).size.height,
               100, 100),
-        );*/
-        _launchURL(AppStrings.url_app_store);
+        );
       } else {
         // iPhone
-        Share.share(shareText);
+        Share.share(AppStrings.ios_share_text);
       }
     }
   }
