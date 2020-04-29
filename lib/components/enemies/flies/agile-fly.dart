@@ -9,6 +9,7 @@ class AgileFly extends Enemy {
 
   AgileFly(GameController gameController, double x, double y) : super(gameController) {
     super.resize(x: x, y: y);
+    flyingSprite = List<Sprite>();
 
     // Determine which side the fly is coming from
     if(x < gameController.screenSize.width / 2) {

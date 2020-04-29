@@ -143,19 +143,19 @@ class PlayView {
     // Type of enemy spawned
     switch (rand.nextInt(5)) {
       case 0:
-        enemies.add(HouseFly(gameController, x, y));
+        enemies.add(AgileFly(gameController, x, y));
         break;
       case 1:
         enemies.add(DroolerFly(gameController, x, y));
         break;
       case 2:
-        enemies.add(AgileFly(gameController, x, y));
+        enemies.add(HouseFly(gameController, x, y));
         break;
       case 3:
-        enemies.add(MachoFly(gameController, x, y));
+        enemies.add(HungryFly(gameController, x, y));
         break;
       case 4:
-        enemies.add(HungryFly(gameController, x, y));
+        enemies.add(MachoFly(gameController, x, y));
         break;
     }
   }
