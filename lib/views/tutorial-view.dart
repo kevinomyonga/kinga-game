@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
@@ -37,7 +38,7 @@ class TutorialView {
     tutorialDisplay.render(c);
     tutorialInfoDisplay.render(c);
 
-    tutorialDemoButton.render(c);
+    if(Platform.isAndroid) tutorialDemoButton.render(c);
     menuButton.render(c);
   }
 

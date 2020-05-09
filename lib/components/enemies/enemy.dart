@@ -83,7 +83,7 @@ class Enemy {
   void resize({double x, double y}) {
     x ??= (enemyRect?.left) ?? 0;
     y ??= (enemyRect?.top) ?? 0;
-    enemyRect = Rect.fromLTWH(x, y, gameController.tileSize * 1, gameController.tileSize * 0.5);
+    enemyRect = Rect.fromLTWH(x, y, gameController.tileSize * 1, gameController.tileSize * 1);
   }
 
   void attack() {
