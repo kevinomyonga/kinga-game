@@ -195,19 +195,16 @@ class _GameWidgetState extends State<GameWidget> {
           listener: (button) { // The button click listener (useful if you want to cancel the click event).
             switch(button) {
               case RateMyAppDialogButton.rate:
-              //print('Clicked on "Rate".');
                 break;
               case RateMyAppDialogButton.later:
-              //print('Clicked on "Later".');
                 break;
               case RateMyAppDialogButton.no:
-              //print('Clicked on "No".');
                 break;
             }
 
             return true; // Return false if you want to cancel the click event.
           },
-          ignoreIOS: false, // Set to false if you want to show the native Apple app rating dialog on iOS.
+          ignoreNativeDialog: false, // Set to false if you want to show the Apple's native app rating dialog on iOS or Google's native app rating dialog (depends on the current Platform).
           dialogStyle: DialogStyle(), // Custom dialog styles.
           onDismissed: () => _rateMyApp.callEvent(RateMyAppEventType.laterButtonPressed), // Called when the user dismissed the dialog (either by taping outside or by pressing the "back" button).
           // actionsBuilder: (_) => [], // This one allows you to use your own buttons.

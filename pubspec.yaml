@@ -11,7 +11,7 @@ description: Kinga - Fight The Outbreak. My first game built using Flutter and t
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.15+16
+version: 1.0.16+17
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -23,42 +23,42 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.3
+  cupertino_icons: ^1.0.0
 
   # Flutter plugin providing detailed information about the device (make, model, etc.),
   # and Android or iOS version the app is running on.
-  device_info: ^0.4.2+2
+  device_info: ^1.0.0
 
   # Flutter plugin for Firebase AdMob, supporting banner, interstitial (full-screen), and rewarded video ads
-  firebase_admob: ^0.9.3+2
+  firebase_admob: ^0.10.2
 
   # A minimalist Flutter game engine.
-  flame: ^0.19.1
+  flame: ^0.28.0
 
   # Determine the type of handheld device on Flutter.
-  flutter_device_type: ^0.2.0
+  flutter_device_type: ^0.3.2
 
   # A new Flutter plugin to support game center and google play games services.
-  games_services: ^0.2.6
+  games_services: ^1.0.0
 
   # Provides an API for querying information about an application package.
-  package_info: ^0.4.0+17
+  package_info: ^0.4.3+2
 
   # A simple wrapper on top of Google Play Games Services (GPGS), including auth, achievement, and more.
-  play_games: ^0.5.3
+  play_games: ^0.5.5
 
   # Allows to kindly ask users to rate your app if custom conditions are met
-  rate_my_app: ^0.6.0+2
+  rate_my_app: ^0.7.2
 
   # A Flutter plugin to share content from your Flutter app via the platform's share dialog.
-  share: ^0.6.4
+  share: ^0.6.5+4
 
   # Flutter plugin for reading and writing simple key-value pairs.
   # Wraps NSUserDefaults on iOS and SharedPreferences on Android.
-  shared_preferences: ^0.5.7
+  shared_preferences: ^0.5.12+4
 
   # Flutter plugin for launching a URL on Android and iOS.
-  url_launcher: ^5.4.5
+  url_launcher: ^5.7.10
 
 dev_dependencies:
   flutter_test:

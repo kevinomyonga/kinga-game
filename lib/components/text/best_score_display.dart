@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:games_services/games_services.dart';
-import 'package:games_services/score.dart';
 import 'package:kinga/controllers/game_controller.dart';
 import 'package:kinga/res/Ids.dart';
 import 'package:kinga/res/assets.dart';
